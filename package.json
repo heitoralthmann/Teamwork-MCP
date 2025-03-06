@@ -1,1 +1,37 @@
- 
+{
+  "name": "teamwork-api-connector",
+  "version": "1.0.0",
+  "description": "MCP server to connect to the Teamwork API",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/readingdancer/teamwork-api-connector.git"
+  },
+  "keywords": [
+    "teamwork",
+    "api",
+    "mcp",
+    "server"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/readingdancer/teamwork-api-connector/issues"
+  },
+  "homepage": "https://github.com/readingdancer/teamwork-api-connector#readme",
+  "dependencies": {
+    "axios": "^1.6.7",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "winston": "^3.12.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.0"
+  }
+}
