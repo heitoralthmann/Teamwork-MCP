@@ -5,7 +5,7 @@ const logger = require('../utils/logger');
 const teamworkApi = axios.create({
   baseURL: process.env.TEAMWORK_API_URL,
   headers: {
-    'Authorization': `Basic ${Buffer.from(process.env.TEAMWORK_API_KEY + ':xxx').toString('base64')}`,
+    'Authorization': `Basic ${Buffer.from(process.env.TEAMWORK_USERNAME + ':' + process.env.TEAMWORK_PASSWORD).toString('base64')}`,
     'Content-Type': 'application/json'
   }
 });
