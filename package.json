@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
+    "mcp": "node src/mcp.js",
     "test": "jest"
   },
   "repository": {
@@ -25,6 +26,7 @@
   },
   "homepage": "https://github.com/readingdancer/teamwork-api-connector#readme",
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.6.1",
     "axios": "^1.6.7",
     "dotenv": "^16.4.5",
     "express": "^4.18.3",

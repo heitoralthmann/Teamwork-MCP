@@ -9,6 +9,7 @@ An MCP server that connects to the Teamwork API, providing a simplified interfac
 - Create, update, and delete tasks
 - RESTful API endpoints
 - Error handling and logging
+- MCP server for integration with Cursor and other applications
 
 ## Prerequisites
 
@@ -60,6 +61,37 @@ Production mode:
 ```
 npm start
 ```
+
+### Running as an MCP Server
+
+To run as an MCP server for integration with Cursor and other applications:
+```
+npm run mcp
+```
+
+### Adding to Cursor
+
+To add this MCP server to Cursor:
+
+1. Open Cursor Settings > Features > MCP
+2. Click "+ Add New MCP Server"
+3. Enter a name for the server (e.g., "Teamwork API")
+4. Select "stdio" as the transport type
+5. Enter the command to run the server: `node path/to/teamwork-api-connector/src/mcp.js`
+6. Click "Add"
+
+The Teamwork API tools will now be available to the Cursor Agent in Composer.
+
+### Available MCP Tools
+
+The following tools are available through the MCP server:
+
+- `getProjects` - Get all projects from Teamwork
+- `getTasks` - Get all tasks from Teamwork
+- `getTaskById` - Get a specific task by ID from Teamwork
+- `createTask` - Create a new task in Teamwork
+- `updateTask` - Update an existing task in Teamwork
+- `deleteTask` - Delete a task from Teamwork
 
 ### API Endpoints
 
