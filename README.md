@@ -34,7 +34,7 @@ An MCP server that connects to the Teamwork API, providing a simplified interfac
    cp .env.example .env
    ```
 
-4. Update the `.env` file with your Teamwork API credentials.
+4. Update the `.env` file with your Teamwork credentials.
 
 ## Configuration
 
@@ -43,8 +43,9 @@ Edit the `.env` file to configure the application:
 - `PORT`: The port on which the server will run (default: 3000)
 - `NODE_ENV`: The environment (development, production, test)
 - `LOG_LEVEL`: Logging level (info, error, debug)
-- `TEAMWORK_API_URL`: Your Teamwork domain API URL
-- `TEAMWORK_API_KEY`: Your Teamwork API key
+- `TEAMWORK_API_URL`: Your Teamwork domain API URL (format: https://your-domain.teamwork.com/projects/api/v3/)
+- `TEAMWORK_USERNAME`: Your Teamwork username (email)
+- `TEAMWORK_PASSWORD`: Your Teamwork password
 
 ## Usage
 
