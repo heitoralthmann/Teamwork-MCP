@@ -1,17 +1,23 @@
 {
-  "name": "teamwork-api-connector",
+  "name": "teamwork-mcp",
   "version": "1.0.0",
   "description": "MCP server to connect to the Teamwork API",
-  "main": "src/index.js",
-  "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
-    "mcp": "node src/mcp.js",
-    "test": "jest"
+  "type": "module",
+  "bin": {
+    "teamwork-mcp": "./build/index.js"
   },
+  "scripts": {
+    "build": "tsc && node -e \"require('fs').chmodSync('build/index.js', '755')\"",
+    "prepare": "npm run build",
+    "watch": "tsc --watch",
+    "inspector": "tsc && node -e \"require('fs').chmodSync('build/index.js', '755')\" && npx @modelcontextprotocol/inspector build/index.js"
+  },
+  "files": [
+    "build"
+  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/readingdancer/teamwork-api-connector.git"
+    "url": "git+https://github.com/readingdancer/teamwork-mcp.git"
   },
   "keywords": [
     "teamwork",
@@ -22,18 +28,22 @@
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/readingdancer/teamwork-api-connector/issues"
+    "url": "https://github.com/readingdancer/teamwork-mcp/issues"
   },
-  "homepage": "https://github.com/readingdancer/teamwork-api-connector#readme",
+  "homepage": "https://github.com/readingdancer/teamwork-mcp#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.6.1",
+    "@types/minimist": "^1.2.5",
     "axios": "^1.6.7",
     "dotenv": "^16.4.5",
     "express": "^4.18.3",
+    "minimist": "^1.2.8",
     "winston": "^3.12.0"
   },
   "devDependencies": {
+    "@types/node": "^22.10.0",
     "jest": "^29.7.0",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "typescript": "^5.8.2"
   }
 }

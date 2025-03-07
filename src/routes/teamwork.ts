@@ -11,6 +11,9 @@ router.get('/tasks', teamworkController.getTasks);
 // Get task by ID
 router.get('/tasks/:id', teamworkController.getTaskById);
 
+// Get tasks by project ID
+router.get('/tasks/:projectId/tasks', teamworkController.getTasksByProjectId);
+
 // Create task
 router.post('/tasks', teamworkController.createTask);
 

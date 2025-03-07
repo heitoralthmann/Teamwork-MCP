@@ -1,4 +1,4 @@
-const winston = require('winston');
+import winston from 'winston';
 
 // Define log format
 const logFormat = winston.format.combine(
@@ -12,17 +12,17 @@ const logFormat = winston.format.combine(
 const logger = winston.createLogger({
   level: process.env.LOG_LEVEL || 'info',
   format: logFormat,
-  defaultMeta: { service: 'teamwork-api-connector' },
+  defaultMeta: { service: 'teamwork-mcp' },
   transports: [
     // Write all logs to console
-    new winston.transports.Console({
-      format: winston.format.combine(
-        winston.format.colorize(),
-        winston.format.printf(
-          info => `${info.timestamp} ${info.level}: ${info.message}`
-        )
-      )
-    }),
+    // new winston.transports.Console({
+    //   format: winston.format.combine(
+    //     winston.format.colorize(),
+    //     winston.format.printf(
+    //       (info: any) => `${info.timestamp} ${info.level}: ${info.message}`
+    //     )
+    //   )
+    // }),
     // Write all logs with level 'error' and below to error.log
     new winston.transports.File({ filename: 'logs/error.log', level: 'error' }),
     // Write all logs with level 'info' and below to combined.log
@@ -31,10 +31,10 @@ const logger = winston.createLogger({
 });
 
 // If we're not in production, also log to the console with a simpler format
-if (process.env.NODE_ENV !== 'production') {
-  logger.add(new winston.transports.Console({
-    format: winston.format.simple()
-  }));
-}
+// if (process.env.NODE_ENV !== 'production') {
+//   logger.add(new winston.transports.Console({
+//     format: winston.format.simple()
+//   }));
+// }
 
-module.exports = logger;
+export default logger;
