@@ -30,3 +30,6 @@ build/Release
 # OS files
 .DS_Store
 Thumbs.db
+
+# Ignore the build folder.
+build/
