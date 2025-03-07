@@ -83,17 +83,17 @@ Build the application:
 npm run build
 ```
 
-This will compile the TypeScript code and make the executable file permissions correct.
+This will compile the TypeScript code ready to be used as an MCP Server
 
-### Starting the server
+### Running as an MCP Server
 
-To run the application:
+To run as an MCP server for integration with Cursor and other applications, if you are using the .env file for your username, password & url, or if you have saved them in environment variables:
 
 ```
 node build/index.js
 ```
 
-Or with command line arguments:
+Or you can pass them using line arguments:
 
 ```
 node build/index.js --teamwork-api-url=https://your-domain.teamwork.com/api/v3 --teamwork-username=your-email@example.com --teamwork-password=your-password
@@ -103,22 +103,6 @@ You can also use the short form:
 
 ```
 node build/index.js --url=https://your-domain.teamwork.com/api/v3 --user=your-email@example.com --pass=your-password
-```
-
-### Running in watch mode
-
-For development with automatic recompilation when files change:
-
-```
-npm run watch
-```
-
-### Running as an MCP Server
-
-To run as an MCP server for integration with Cursor and other applications:
-
-```
-node build/index.js
 ```
 
 ### Using the MCP Inspector
@@ -137,12 +121,12 @@ To add this MCP server to Cursor:
 2. Click "+ Add New MCP Server"
 3. Enter a name for the server (e.g., "Teamwork API")
 4. Select "stdio" as the transport type
-5. Enter the command to run the server: `node path/to/teamwork-mcp/build/index.js`
+5. Enter the command to run the server: `node path/to/teamwork-mcp/build/index.js` and then if needed, add the command line arguments as mentioned above.
 6. Click "Add"
 
-The Teamwork API tools will now be available to the Cursor Agent in Composer.
+The Teamwork MCP tools will now be available to the Cursor Agent in Composer.
 
-### Available MCP Tools
+### Available Teamwork MCP Tools
 
 The following tools are available through the MCP server:
 
@@ -153,27 +137,6 @@ The following tools are available through the MCP server:
 - `createTask` - Create a new task in Teamwork
 - `updateTask` - Update an existing task in Teamwork
 - `deleteTask` - Delete a task from Teamwork
-
-### API Endpoints
-
-#### Projects
-
-- `GET /api/teamwork/projects` - Get all projects
-
-#### Tasks
-
-- `GET /api/teamwork/tasks` - Get all tasks
-- `GET /api/teamwork/tasks/:id` - Get a specific task
-- `GET /api/teamwork/project/:id` - Get a specific task
-- `POST /api/teamwork/tasks` - Create a new task
-- `PUT /api/teamwork/tasks/:id` - Update a task
-- `DELETE /api/teamwork/tasks/:id` - Delete a task
-
-## Testing
-
-Run tests:
-
-```npm test```
 
 ## License
 
