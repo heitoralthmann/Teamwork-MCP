@@ -1,0 +1,213 @@
+import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import minimist from 'minimist';
+import logger from './logger.js';
+import fs from 'fs';
+
+// Get the directory name of the current module
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const rootDir = path.resolve(__dirname, '..', '..');
+
+/**
+ * Constructs the full Teamwork API URL from a domain name
+ * @param domain The Teamwork domain name
+ * @returns The full API URL
+ */
+export const constructApiUrl = (domain: string | undefined): string => {
+  if (!domain) {
+    logger.error('Teamwork domain is not set. Please set TEAMWORK_DOMAIN in your environment or .env file.');
+    return '';
+  }
+  
+  try {
+    // Remove any http/https prefix if present
+    const cleanDomain = domain.replace(/^(https?:\/\/)/, '');
+    
+    // Remove .teamwork.com if present (in case user enters full domain)
+    const baseDomain = cleanDomain.replace(/\.teamwork\.com$/, '');
+    
+    // Remove any trailing slashes
+    const trimmedDomain = baseDomain.replace(/\/+$/, '');
+    
+    // Construct the URL
+    const url = `https://${trimmedDomain}.teamwork.com/projects/api/v3/`;
+    
+    logger.info(`Constructed Teamwork API URL: ${url}`);
+    return url;
+  } catch (error: any) {
+    logger.error(`Error constructing Teamwork API URL: ${error.message}`);
+    return '';
+  }
+};
+
+/**
+ * Loads configuration from environment variables, .env file, and command line arguments
+ * @param args Command line arguments (optional)
+ * @returns Configuration object with Teamwork settings
+ */
+export const loadConfig = (args?: string[]) => {
+  // Parse command line arguments if provided
+
+  logger.info('🎈🎈🎈🎈🎈🦈🦈🦈🦈🎈🎈🎈🎈🎈');
+  logger.info('args', args ? JSON.stringify(args) : 'undefined');
+
+  const argv = args 
+    ? minimist(args, {
+        string: ['teamwork-domain', 'teamwork-username', 'teamwork-password', 'teamwork-project-id', 'solution-root'],
+        alias: {
+          'domain': 'teamwork-domain',
+          'user': 'teamwork-username',
+          'pass': 'teamwork-password',
+          'project': 'teamwork-project-id',
+          'root': 'solution-root'
+        }
+      })
+    : minimist(process.argv.slice(2), {
+        string: ['teamwork-domain', 'teamwork-username', 'teamwork-password', 'teamwork-project-id', 'solution-root'],
+        alias: {
+          'domain': 'teamwork-domain',
+          'user': 'teamwork-username',
+          'pass': 'teamwork-password',
+          'project': 'teamwork-project-id',
+          'root': 'solution-root'
+        }
+      });
+
+  // Try to load environment variables from .env file if they're not already set
+  if (!process.env.TEAMWORK_DOMAIN || !process.env.TEAMWORK_USERNAME || !process.env.TEAMWORK_PASSWORD) {
+    try {
+      dotenv.config({ path: path.resolve(rootDir, '.env') });
+      logger.info('Attempted to load environment variables from .env file');
+    } catch (error) {
+      logger.warn('Failed to load .env file, will use environment variables or command line arguments');
+    }
+  }
+
+  // Set environment variables from command line arguments if provided
+  if (argv['teamwork-domain']) {
+    process.env.TEAMWORK_DOMAIN = argv['teamwork-domain'];
+    logger.info('Using TEAMWORK_DOMAIN from command line argument');
+  } else if (argv['domain']) {
+    process.env.TEAMWORK_DOMAIN = argv['domain'];
+    logger.info('Using TEAMWORK_DOMAIN from short form command line argument');
+  }
+
+  if (argv['teamwork-username']) {
+    process.env.TEAMWORK_USERNAME = argv['teamwork-username'];
+    logger.info('Using TEAMWORK_USERNAME from command line argument');
+  } else if (argv['user']) {
+    process.env.TEAMWORK_USERNAME = argv['user'];
+    logger.info('Using TEAMWORK_USERNAME from short form command line argument');
+  }
+
+  if (argv['teamwork-password']) {
+    process.env.TEAMWORK_PASSWORD = argv['teamwork-password'];
+    logger.info('Using TEAMWORK_PASSWORD from command line argument');
+  } else if (argv['pass']) {
+    process.env.TEAMWORK_PASSWORD = argv['pass'];
+    logger.info('Using TEAMWORK_PASSWORD from short form command line argument');
+  }
+
+  if (argv['teamwork-project-id']) {
+    process.env.TEAMWORK_PROJECT_ID = argv['teamwork-project-id'];
+    logger.info('Using TEAMWORK_PROJECT_ID from command line argument');
+  } else if (argv['project']) {
+    process.env.TEAMWORK_PROJECT_ID = argv['project'];
+    logger.info('Using TEAMWORK_PROJECT_ID from short form command line argument');
+  }
+
+  if (argv['solution-root']) {
+    process.env.SOLUTION_ROOT_PATH = argv['solution-root'];
+    logger.info('Using SOLUTION_ROOT_PATH from command line argument');
+  } else if (argv['root']) {
+    process.env.SOLUTION_ROOT_PATH = argv['root'];
+    logger.info('Using SOLUTION_ROOT_PATH from short form command line argument');
+  }
+
+  // Validate required configuration
+  const isConfigValid = validateConfig();
+
+  // Construct the API URL
+  const apiUrl = constructApiUrl(process.env.TEAMWORK_DOMAIN);
+
+  return {
+    domain: process.env.TEAMWORK_DOMAIN,
+    username: process.env.TEAMWORK_USERNAME,
+    password: process.env.TEAMWORK_PASSWORD,
+    projectId: process.env.TEAMWORK_PROJECT_ID,
+    solutionRootPath: process.env.SOLUTION_ROOT_PATH,
+    apiUrl,
+    isValid: isConfigValid
+  };
+};
+
+/**
+ * Validates that all required configuration is present
+ * @returns True if configuration is valid, false otherwise
+ */
+export const validateConfig = (): boolean => {
+  const requiredVars = ['TEAMWORK_DOMAIN', 'TEAMWORK_USERNAME', 'TEAMWORK_PASSWORD'];
+  const missingVars = requiredVars.filter(varName => !process.env[varName]);
+  
+  if (missingVars.length > 0) {
+    logger.error(`Required environment variables are not set: ${missingVars.join(', ')}`);
+    logger.error('You can set these via:');
+    logger.error('1. Environment variables');
+    logger.error('2. .env file');
+    logger.error('3. Command line arguments: --teamwork-domain, --teamwork-username, --teamwork-password');
+    logger.error('   or short form: --domain, --user, --pass');
+    return false;
+  }
+  
+  logger.info('Environment variables loaded successfully');
+  logger.info('TEAMWORK_DOMAIN:', process.env.TEAMWORK_DOMAIN);
+  logger.info('TEAMWORK_USERNAME:', process.env.TEAMWORK_USERNAME);
+  logger.info('TEAMWORK_PASSWORD length:', process.env.TEAMWORK_PASSWORD ? process.env.TEAMWORK_PASSWORD.length : 0);
+  if (process.env.TEAMWORK_PROJECT_ID) {
+    logger.info('TEAMWORK_PROJECT_ID:', process.env.TEAMWORK_PROJECT_ID);
+  }
+  if (process.env.SOLUTION_ROOT_PATH) {
+    logger.info('SOLUTION_ROOT_PATH:', process.env.SOLUTION_ROOT_PATH);
+  }
+  
+  return true;
+};
+
+/**
+ * Saves the current project configuration to a file
+ * @param projectId The Teamwork project ID
+ * @param solutionRootPath The solution root path
+ * @returns True if successful, false otherwise
+ */
+export const saveProjectConfig = (projectId: string, solutionRootPath?: string): boolean => {
+  try {
+    const configData: any = {
+      teamworkProjectId: projectId
+    };
+    
+    if (solutionRootPath) {
+      configData.solutionRootPath = solutionRootPath;
+    }
+    
+    fs.writeFileSync(
+      path.resolve(rootDir, 'teamwork.config.json'), 
+      JSON.stringify(configData, null, 2)
+    );
+    
+    logger.info(`Saved project configuration to teamwork.config.json`);
+    logger.info(`Project ID: ${projectId}`);
+    if (solutionRootPath) {
+      logger.info(`Solution Root Path: ${solutionRootPath}`);
+    }
+    
+    return true;
+  } catch (error: any) {
+    logger.error(`Failed to save project configuration: ${error.message}`);
+    return false;
+  }
+};
+
+// Export a default config object for convenience
+export default loadConfig(); 

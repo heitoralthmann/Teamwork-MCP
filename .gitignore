@@ -33,3 +33,6 @@ Thumbs.db
 
 # Ignore the build folder.
 build/
+ReferenceFiles/
+
+teamwork.config.json

@@ -1,44 +1,49 @@
-import minimist from 'minimist';
+import { loadConfig, constructApiUrl } from './utils/config.js';
+import fs from 'fs';
 
-// Parse command line arguments
-const argv = minimist(process.argv.slice(2), {
-  string: ['teamwork-api-url', 'teamwork-username', 'teamwork-password'],
-  alias: {
-    'url': 'teamwork-api-url',
-    'user': 'teamwork-username',
-    'pass': 'teamwork-password'
+// Load configuration from environment variables, .env file, and command line arguments
+const config = loadConfig();
+
+console.log('Teamwork MCP Configuration Test CLI');
+console.log('===================================');
+
+// Display configuration
+console.log('\nConfiguration:');
+console.log('TEAMWORK_DOMAIN:', config.domain || 'Not set');
+console.log('TEAMWORK_USERNAME:', config.username || 'Not set');
+console.log('TEAMWORK_PASSWORD:', config.password ? '******' : 'Not set');
+console.log('TEAMWORK_PROJECT_ID:', config.projectId || 'Not set');
+
+// Display API URL
+console.log('\nAPI URL:');
+console.log(config.apiUrl || 'Not available - configuration is invalid');
+
+// Check for teamwork.config.json file
+const configPath = 'teamwork.config.json';
+if (fs.existsSync(configPath)) {
+  try {
+    const fileConfig = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+    console.log('\nteamwork.config.json:');
+    console.log(JSON.stringify(fileConfig, null, 2));
+  } catch (error) {
+    console.error(`\nError reading teamwork.config.json: ${error}`);
   }
-});
-
-console.log('Command line arguments:');
-console.log('--teamwork-api-url:', argv['teamwork-api-url'] || 'Not provided');
-console.log('--teamwork-username:', argv['teamwork-username'] || 'Not provided');
-console.log('--teamwork-password:', argv['teamwork-password'] ? '******' : 'Not provided');
-
-// Check environment variables
-console.log('\nEnvironment variables:');
-console.log('TEAMWORK_API_URL:', process.env.TEAMWORK_API_URL || 'Not set');
-console.log('TEAMWORK_USERNAME:', process.env.TEAMWORK_USERNAME || 'Not set');
-console.log('TEAMWORK_PASSWORD:', process.env.TEAMWORK_PASSWORD ? '******' : 'Not set');
-
-// Set environment variables from command line arguments if provided
-if (argv['teamwork-api-url']) {
-  process.env.TEAMWORK_API_URL = argv['teamwork-api-url'];
-  console.log('\nSet TEAMWORK_API_URL from command line argument');
+} else {
+  console.log('\nNo teamwork.config.json file found');
 }
 
-if (argv['teamwork-username']) {
-  process.env.TEAMWORK_USERNAME = argv['teamwork-username'];
-  console.log('Set TEAMWORK_USERNAME from command line argument');
+// Display configuration status
+console.log('\nConfiguration Status:');
+console.log('Valid:', config.isValid ? 'Yes' : 'No');
+
+// Display usage instructions if configuration is invalid
+if (!config.isValid) {
+  console.log('\nUsage:');
+  console.log('  node build/test-cli.js --domain=your-domain --user=your-username --pass=your-password');
+  console.log('\nOr set environment variables:');
+  console.log('  TEAMWORK_DOMAIN=your-domain');
+  console.log('  TEAMWORK_USERNAME=your-username');
+  console.log('  TEAMWORK_PASSWORD=your-password');
 }
 
-if (argv['teamwork-password']) {
-  process.env.TEAMWORK_PASSWORD = argv['teamwork-password'];
-  console.log('Set TEAMWORK_PASSWORD from command line argument');
-}
-
-// Final environment variables
-console.log('\nFinal environment variables:');
-console.log('TEAMWORK_API_URL:', process.env.TEAMWORK_API_URL || 'Not set');
-console.log('TEAMWORK_USERNAME:', process.env.TEAMWORK_USERNAME || 'Not set');
-console.log('TEAMWORK_PASSWORD:', process.env.TEAMWORK_PASSWORD ? '******' : 'Not set'); 
+console.log('\n==================================='); 

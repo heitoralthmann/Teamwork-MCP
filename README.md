@@ -47,7 +47,7 @@ Edit the `.env` file to configure the application:
 - `PORT`: The port on which the server will run (default: 3000)
 - `NODE_ENV`: The environment (development, production, test)
 - `LOG_LEVEL`: Logging level (info, error, debug)
-- `TEAMWORK_API_URL`: Your Teamwork domain API URL (format: https://your-domain.teamwork.com/api/v3)
+- `TEAMWORK_DOMAIN`: Your Teamwork domain name (e.g., "your-company" for https://your-company.teamwork.com)
 - `TEAMWORK_USERNAME`: Your Teamwork username (email)
 - `TEAMWORK_PASSWORD`: Your Teamwork password
 
@@ -55,23 +55,19 @@ Edit the `.env` file to configure the application:
 
 You can provide your Teamwork credentials in three ways:
 
-1. **Environment Variables**: Set `TEAMWORK_API_URL`, `TEAMWORK_USERNAME`, and `TEAMWORK_PASSWORD` in your environment.
+1. **Environment Variables**: Set `TEAMWORK_DOMAIN`, `TEAMWORK_USERNAME`, and `TEAMWORK_PASSWORD` in your environment.
 
 2. **.env File**: Create a `.env` file with the required variables as shown above.
 
-3. **Command Line Arguments**: Pass credentials when starting the application:
-
-```
-node build/index.js --teamwork-api-url=https://your-domain.teamwork.com/api/v3 --teamwork-username=your-email@example.com --teamwork-password=your-password
-```
-
-Or using the short form:
-
-```
-node build/index.js --url=https://your-domain.teamwork.com/api/v3 --user=your-email@example.com --pass=your-password
-```
-
-The application will check for credentials in the order: command line arguments, environment variables, .env file.
+3. **Command Line Arguments**: Pass credentials when running the application:
+   ```
+   node build/index.js --teamwork-domain=your-company --teamwork-username=your-email@example.com --teamwork-password=your-password
+   ```
+   
+   Or using short form:
+   ```
+   node build/index.js --domain=your-company --user=your-email@example.com --pass=your-password
+   ```
 
 ## Usage
 
@@ -96,13 +92,13 @@ node build/index.js
 Or you can pass them using line arguments:
 
 ```
-node build/index.js --teamwork-api-url=https://your-domain.teamwork.com/api/v3 --teamwork-username=your-email@example.com --teamwork-password=your-password
+node build/index.js --teamwork-domain=your-company --teamwork-username=your-email@example.com --teamwork-password=your-password
 ```
 
 You can also use the short form:
 
 ```
-node build/index.js --url=https://your-domain.teamwork.com/api/v3 --user=your-email@example.com --pass=your-password
+node build/index.js --domain=your-company --user=your-email@example.com --pass=your-password
 ```
 
 ### Using the MCP Inspector
@@ -137,6 +133,60 @@ The following tools are available through the MCP server:
 - `createTask` - Create a new task in Teamwork
 - `updateTask` - Update an existing task in Teamwork
 - `deleteTask` - Delete a task from Teamwork
+
+## Setting Up Your Teamwork Project
+
+To associate your current solution with a Teamwork project, you can use the following methods:
+
+### Method 1: Using the MCP Tools
+
+When using this MCP with Claude or another AI assistant, you can use the following tools to set up your Teamwork project:
+
+1. **Set the Solution Root Path**:
+   ```
+   mcp__setSolutionRootPath({ "solutionRootPath": "C:/path/to/your/solution" })
+   ```
+   This will store the absolute path to your solution's root folder.
+
+2. **Set the Teamwork Project ID**:
+   ```
+   mcp__setProjectId({ "projectId": "123456" })
+   ```
+   This will associate your solution with a specific Teamwork project.
+
+3. **Verify the Configuration**:
+   ```
+   mcp__getCurrentProjectId()
+   ```
+   This will return the current project ID and solution root path if they are set.
+
+### Method 2: Using a Configuration File
+
+You can create a `teamwork.config.json` file in the root of your project with the following structure:
+
+```json
+{
+  "teamworkProjectId": "123456",
+  "solutionRootPath": "C:/path/to/your/solution"
+}
+```
+
+### Method 3: Using Environment Variables or Command Line Arguments
+
+You can set the following environment variables:
+
+```
+TEAMWORK_PROJECT_ID=123456
+SOLUTION_ROOT_PATH=C:/path/to/your/solution
+```
+
+Or use command line arguments when starting the MCP:
+
+```
+node build/index.js --project 123456 --root "C:/path/to/your/solution"
+```
+
+Once configured, the MCP will be able to find your Teamwork project and associate it with your current solution.
 
 ## License
 
