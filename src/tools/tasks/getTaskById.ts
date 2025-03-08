@@ -1,0 +1,54 @@
+/**
+ * getTaskById tool
+ * Retrieves a specific task by ID from Teamwork
+ */
+
+import logger from "../../utils/logger.ts"; 
+import teamworkService from "../../services/index.ts";
+
+// Tool definition
+export const getTaskByIdDefinition = {
+  name: "getTaskById",
+  description: "Get a specific task by ID from Teamwork",
+  inputSchema: {
+    type: "object",
+    properties: {
+      taskId: {
+        type: "integer",
+        description: "The ID of the task to retrieve"
+      }
+    },
+    required: ["taskId"]
+  }
+};
+
+// Tool handler
+export async function handleGetTaskById(input: any) {
+  logger.info('Calling teamworkService.getTaskById()');
+  logger.info(`Task ID: ${input?.taskId}`);
+  
+  try {
+    const taskId = String(input?.taskId);
+    if (!taskId) {
+      throw new Error("Task ID is required");
+    }
+    
+    const task = await teamworkService.getTaskById(taskId);
+    logger.info(`Task response received for task ID: ${taskId}`);
+    
+    return {
+      content: [{
+        type: "text",
+        text: JSON.stringify(task, null, 2)
+      }]
+    };
+  } catch (error: any) {
+    logger.error(`Error in getTaskById handler: ${error.message}`);
+    return {
+      content: [{
+        type: "text",
+        text: `Error retrieving task: ${error.message}`
+      }]
+    };
+  }
+} 
