@@ -1,7 +1,5 @@
-import axios from 'axios';
 import logger from '../../utils/logger.js';
-import config from '../../utils/config.js';
-import { ensureApiClient } from '../core/apiClient.js';
+import { ensureApiClient, getApiClientForVersion } from '../core/apiClient.js';
 import { ProjectQueryParams } from '../core/types.js';
 
 /**
@@ -11,30 +9,23 @@ import { ProjectQueryParams } from '../core/types.js';
  */
 export const getProjects = async (params?: ProjectQueryParams) => {
   try {
-    logger.info(`Making request to Teamwork API: ${config.apiUrl}/projects.json`);
+    logger.info('Fetching projects from Teamwork API');
     
-    // Try different API URL formats
     try {
+      // Try with v3 API first
       const api = ensureApiClient();
       const response = await api.get('/projects.json', { params });
+      logger.info('Successfully fetched projects using v3 API');
       return response.data;
     } catch (error: any) {
       logger.warn(`V3 API request failed: ${error.message}`);
       
       // Try the v1 API format as fallback
       logger.info('Trying v1 API format as fallback');
-      const v1BaseURL = config.apiUrl?.replace('/v3/', '/v1/') || '';
-      const v1Api = axios.create({
-        baseURL: v1BaseURL,
-        headers: {
-          'Authorization': `Basic ${Buffer.from(`${config.username}:${config.password}`).toString('base64')}`,
-          'Content-Type': 'application/json'
-        }
-      });
-      
       try {
+        const v1Api = getApiClientForVersion('v1');
         const v1Response = await v1Api.get('/projects.json', { params });
-        logger.info('V1 API request succeeded');
+        logger.info('Successfully fetched projects using v1 API');
         return v1Response.data;
       } catch (v1Error: any) {
         logger.error(`V1 API request also failed: ${v1Error.message}`);

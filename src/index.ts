@@ -11,6 +11,7 @@ import logger from "./utils/logger.js";
 import { toolDefinitions, 
   handleGetProjects,
   handleGetCurrentProject,
+  handleCreateProject,
   handleGetTasks,
   handleGetTasksByProjectId,
   handleGetTaskById,
@@ -61,6 +62,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       
       case "getCurrentProject":
         return await handleGetCurrentProject(input);
+      
+      case "createProject":
+        return await handleCreateProject(input);
       
       case "getTasks":
         return await handleGetTasks();

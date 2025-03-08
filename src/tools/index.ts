@@ -5,6 +5,7 @@
 
 import { getProjectsDefinition } from './projects/getProjects.js';
 import { getCurrentProjectDefinition } from './projects/getCurrentProject.js';
+import { createProjectDefinition } from './projects/createProject.js';
 import { getTasksDefinition } from './tasks/getTasks.js';
 import { getTasksByProjectIdDefinition } from './tasks/getTasksByProjectId.js';
 import { getTaskByIdDefinition } from './tasks/getTaskById.js';
@@ -17,6 +18,7 @@ import { getTaskListsByProjectIdDefinition } from './tasks/getTaskListsByProject
 export const toolDefinitions = [
   getProjectsDefinition,
   getCurrentProjectDefinition,
+  createProjectDefinition,
   getTasksDefinition,
   getTasksByProjectIdDefinition,
   getTaskByIdDefinition,
@@ -29,6 +31,7 @@ export const toolDefinitions = [
 // Export all tool handlers
 export { handleGetProjects } from './projects/getProjects.js';
 export { handleGetCurrentProject } from './projects/getCurrentProject.js';
+export { handleCreateProject } from './projects/createProject.js';
 export { handleGetTasks } from './tasks/getTasks.js';
 export { handleGetTasksByProjectId } from './tasks/getTasksByProjectId.js';
 export { handleGetTaskById } from './tasks/getTaskById.js';

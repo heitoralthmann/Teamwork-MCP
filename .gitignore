@@ -36,3 +36,5 @@ build/
 ReferenceFiles/
 
 teamwork.config.json
+
+.teamwork
