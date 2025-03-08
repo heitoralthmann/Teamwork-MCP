@@ -1,29 +1,29 @@
 // Core exports
-export * from './core/apiClient.ts';
-export * from './core/types.ts';
+export * from './core/apiClient.js';
+export * from './core/types.js';
 
 // Project-related exports
-import getProjects from './projects/getProjects.ts';
-import getCurrentProjectId from './projects/getCurrentProjectId.ts';
+import getProjects from './projects/getProjects.js';
+import getCurrentProject from './projects/getCurrentProject.js';
 
 // Task-related exports
-import getTasks from './tasks/getTasks.ts';
-import getTasksByProjectId from './tasks/getTasksByProjectId.ts';
-import getTaskListsByProjectId from './tasks/getTaskListsByProjectId.ts';
-import getTaskById from './tasks/getTaskById.ts';
-import createTask from './tasks/createTask.ts';
-import updateTask from './tasks/updateTask.ts';
-import deleteTask from './tasks/deleteTask.ts';
+import getTasks from './tasks/getTasks.js';
+import getTasksByProjectId from './tasks/getTasksByProjectId.js';
+import getTaskListsByProjectId from './tasks/getTaskListsByProjectId.js';
+import getTaskById from './tasks/getTaskById.js';
+import createTask from './tasks/createTask.js';
+import updateTask from './tasks/updateTask.js';
+import deleteTask from './tasks/deleteTask.js';
 
 // Re-export all functions
-export { getProjects, getCurrentProjectId };
+export { getProjects, getCurrentProject };
 export { getTasks, getTasksByProjectId, getTaskListsByProjectId, getTaskById, createTask, updateTask, deleteTask };
 
 // Default export with all services
 export default {
   // Projects
   getProjects,
-  getCurrentProjectId,
+  getCurrentProject,
   
   // Tasks
   getTasks,

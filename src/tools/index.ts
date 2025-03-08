@@ -3,20 +3,20 @@
  * Exports all tool definitions and implementations
  */
 
-import { getProjectsDefinition } from './projects/getProjects.ts';
-import { getCurrentProjectIdDefinition } from './projects/getCurrentProjectId.ts';
-import { getTasksDefinition } from './tasks/getTasks.ts';
-import { getTasksByProjectIdDefinition } from './tasks/getTasksByProjectId.ts';
-import { getTaskByIdDefinition } from './tasks/getTaskById.ts';
-import { createTaskDefinition } from './tasks/createTask.ts';
-import { updateTaskDefinition } from './tasks/updateTask.ts';
-import { deleteTaskDefinition } from './tasks/deleteTask.ts';
-import { getTaskListsByProjectIdDefinition } from './tasks/getTaskListsByProjectId.ts';
+import { getProjectsDefinition } from './projects/getProjects.js';
+import { getCurrentProjectDefinition } from './projects/getCurrentProject.js';
+import { getTasksDefinition } from './tasks/getTasks.js';
+import { getTasksByProjectIdDefinition } from './tasks/getTasksByProjectId.js';
+import { getTaskByIdDefinition } from './tasks/getTaskById.js';
+import { createTaskDefinition } from './tasks/createTask.js';
+import { updateTaskDefinition } from './tasks/updateTask.js';
+import { deleteTaskDefinition } from './tasks/deleteTask.js';
+import { getTaskListsByProjectIdDefinition } from './tasks/getTaskListsByProjectId.js';
 
 // Tool definitions array
 export const toolDefinitions = [
   getProjectsDefinition,
-  getCurrentProjectIdDefinition,
+  getCurrentProjectDefinition,
   getTasksDefinition,
   getTasksByProjectIdDefinition,
   getTaskByIdDefinition,
@@ -27,12 +27,12 @@ export const toolDefinitions = [
 ];
 
 // Export all tool handlers
-export { handleGetProjects } from './projects/getProjects.ts';
-export { handleGetCurrentProjectId } from './projects/getCurrentProjectId.ts';
-export { handleGetTasks } from './tasks/getTasks.ts';
-export { handleGetTasksByProjectId } from './tasks/getTasksByProjectId.ts';
-export { handleGetTaskById } from './tasks/getTaskById.ts';
-export { handleCreateTask } from './tasks/createTask.ts';
-export { handleUpdateTask } from './tasks/updateTask.ts';
-export { handleDeleteTask } from './tasks/deleteTask.ts';
-export { handleGetTaskListsByProjectId } from './tasks/getTaskListsByProjectId.ts'; 
+export { handleGetProjects } from './projects/getProjects.js';
+export { handleGetCurrentProject } from './projects/getCurrentProject.js';
+export { handleGetTasks } from './tasks/getTasks.js';
+export { handleGetTasksByProjectId } from './tasks/getTasksByProjectId.js';
+export { handleGetTaskById } from './tasks/getTaskById.js';
+export { handleCreateTask } from './tasks/createTask.js';
+export { handleUpdateTask } from './tasks/updateTask.js';
+export { handleDeleteTask } from './tasks/deleteTask.js';
+export { handleGetTaskListsByProjectId } from './tasks/getTaskListsByProjectId.js'; 

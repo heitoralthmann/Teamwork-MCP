@@ -126,6 +126,7 @@ The Teamwork MCP tools will now be available to the Cursor Agent in Composer.
 
 The following tools are available through the MCP server:
 
+- `getCurrentProject` - Gets details about the current project ( if you have setup your `.teamwork` settings file, see below.)
 - `getProjects` - Get all projects from Teamwork
 - `getTasks` - Get all tasks from Teamwork
 - `getTaskById` - Get a specific task by ID from Teamwork
@@ -136,57 +137,19 @@ The following tools are available through the MCP server:
 
 ## Setting Up Your Teamwork Project
 
-To associate your current solution with a Teamwork project, you can use the following methods:
+To associate your current solution with a Teamwork project, you can use the following method:
 
-### Method 1: Using the MCP Tools
+### Using a Configuration File
 
-When using this MCP with Claude or another AI assistant, you can use the following tools to set up your Teamwork project:
-
-1. **Set the Solution Root Path**:
-   ```
-   mcp__setSolutionRootPath({ "solutionRootPath": "C:/path/to/your/solution" })
-   ```
-   This will store the absolute path to your solution's root folder.
-
-2. **Set the Teamwork Project ID**:
-   ```
-   mcp__setProjectId({ "projectId": "123456" })
-   ```
-   This will associate your solution with a specific Teamwork project.
-
-3. **Verify the Configuration**:
-   ```
-   mcp__getCurrentProjectId()
-   ```
-   This will return the current project ID and solution root path if they are set.
-
-### Method 2: Using a Configuration File
-
-You can create a `teamwork.config.json` file in the root of your project with the following structure:
-
-```json
-{
-  "teamworkProjectId": "123456",
-  "solutionRootPath": "C:/path/to/your/solution"
-}
-```
-
-### Method 3: Using Environment Variables or Command Line Arguments
-
-You can set the following environment variables:
+You can create a `.teamwork` file in the root of your project with the following structure:
 
 ```
-TEAMWORK_PROJECT_ID=123456
-SOLUTION_ROOT_PATH=C:/path/to/your/solution
+PROJECT_ID = YourTeamworkProjectID
 ```
 
-Or use command line arguments when starting the MCP:
+This simple configuration file associates your solution with a specific Teamwork project, we may use it to store more details in the future.
 
-```
-node build/index.js --project 123456 --root "C:/path/to/your/solution"
-```
-
-Once configured, the MCP will be able to find your Teamwork project and associate it with your current solution.
+Once configured, the MCP will be able to find your Teamwork project and associate it with your current solution, reducing the number of API calls needed to get the project and tasks related to the solution you are working on.
 
 ## License
 

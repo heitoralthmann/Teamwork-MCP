@@ -3,8 +3,8 @@
  * Updates an existing task in Teamwork
  */
 
-import logger from "../../utils/logger.ts";
-import teamworkService from "../../services/index.ts";
+import logger from "../../utils/logger.js";
+import teamworkService from "../../services/index.js";
 
 // Tool definition
 export const updateTaskDefinition = {

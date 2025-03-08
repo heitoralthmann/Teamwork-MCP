@@ -3,8 +3,8 @@
  * Retrieves a specific task by ID from Teamwork
  */
 
-import logger from "../../utils/logger.ts"; 
-import teamworkService from "../../services/index.ts";
+import logger from "../../utils/logger.js"; 
+import teamworkService from "../../services/index.js";
 
 // Tool definition
 export const getTaskByIdDefinition = {
@@ -34,7 +34,6 @@ export async function handleGetTaskById(input: any) {
     }
     
     const task = await teamworkService.getTaskById(taskId);
-    logger.info(`Task response received for task ID: ${taskId}`);
     
     return {
       content: [{

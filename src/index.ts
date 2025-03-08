@@ -1,5 +1,3 @@
-// Load environment variables from .env file or command line parameters
-import fs from 'fs';
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import {
@@ -7,14 +5,12 @@ import {
   ListToolsRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 
-import logger from "./utils/logger.ts";
-import config from "./utils/config.ts";
-import path from 'path';
+import logger from "./utils/logger.js";
 
 // Import tool definitions and handlers
 import { toolDefinitions, 
   handleGetProjects,
-  handleGetCurrentProjectId,
+  handleGetCurrentProject,
   handleGetTasks,
   handleGetTasksByProjectId,
   handleGetTaskById,
@@ -22,39 +18,7 @@ import { toolDefinitions,
   handleUpdateTask,
   handleDeleteTask,
   handleGetTaskListsByProjectId
-} from "./tools/index.ts";
-
-// Check for teamwork.config.json file for additional configuration
-const configPath = 'teamwork.config.json';
-
-// Write all the process.env variables to the logger
-logger.info(`process.env: ${JSON.stringify(process.env)}`);
-
-logger.info(`process.argv: ${JSON.stringify(process.argv)}`);
-
-var solutionRootPath = process.env.SOLUTION_ROOT_PATH ?? "";
-
-var solutionRootPathToo = path.resolve(solutionRootPath);
-
-logger.info(`solutionRootPathToo: ${solutionRootPathToo}`);
-
-// If we have a config file and no project ID is set yet, try to load it
-if (!config.projectId && fs.existsSync(configPath)) {
-  try {
-    const fileConfig = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
-    if (fileConfig.teamworkProjectId) {
-      process.env.TEAMWORK_PROJECT_ID = fileConfig.teamworkProjectId;
-      logger.info(`Using Teamwork project ID from config file: ${fileConfig.teamworkProjectId}`);
-    }
-  } catch (error) {
-    logger.warn(`Failed to parse ${configPath}: ${error}`);
-  }
-}
-
-// Exit if configuration is not valid
-if (!config.isValid) {
-  process.exit(1);
-}
+} from "./tools/index.js";
 
 // Create MCP server
 const server = new Server(
@@ -95,8 +59,8 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       case "getProjects":
         return await handleGetProjects(input);
       
-      case "getCurrentProjectId":
-        return await handleGetCurrentProjectId();
+      case "getCurrentProject":
+        return await handleGetCurrentProject(input);
       
       case "getTasks":
         return await handleGetTasks();
