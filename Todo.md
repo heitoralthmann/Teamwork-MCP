@@ -293,7 +293,7 @@
 
 ### Task Creation and Updates
 
-- 🔴 Fix updateTask functionality - Currently failing with "Failed to update task" error
+- ✅ Fix updateTask functionality - Updated with Swagger-generated schema and improved error handling
 - 🟨 Implement proper date handling for task creation and updates - Use `dueAt` format "YYYY-MM-DD" instead of full ISO timestamps
 - 🟨 Add support for task status values - Need to determine valid status values (only "new" and "active" work; "complete", "completed", "done", and "in-progress" all fail). "Late" status causes a 500 server error, suggesting it might be a valid status but can't be set directly. Setting progress to 100% does not automatically change status.
 - 🟨 Improve error handling for task creation and updates - Add more detailed error messages
