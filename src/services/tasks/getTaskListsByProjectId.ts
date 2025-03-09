@@ -6,7 +6,7 @@ import { ensureApiClient } from '../core/apiClient.js';
  * @param projectId The ID of the project to get task lists for
  * @returns The API response with task list data
  */
-export const getTaskListsByProjectId = async (projectId: string) => {
+export const getTaskListsByProjectId = async (projectId: number) => {
   try {
     const api = ensureApiClient();
     const response = await api.get(`/projects/${projectId}/tasklists.json`);

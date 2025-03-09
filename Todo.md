@@ -299,3 +299,25 @@
 - 🟨 Improve error handling for task creation and updates - Add more detailed error messages
 - ✅ Support for task assignees works with format: `{"assignees": {"userIds": [22717]}}` 
 - 🟨 Document the proper structure for task creation and updates in README.md
+
+### MCP Server Enhancements
+
+- ✅ Add command-line arguments for Allow and Deny lists to control which tools are available
+- ✅ Enhance security by ensuring both tool listing and tool execution respect the allow/deny lists
+- ✅ Improve debugging and error handling throughout the MCP server
+  - Added file logging for better troubleshooting
+  - Enhanced API client with detailed request/response logging
+  - Added more detailed error handling in tool handlers
+  - Added test-connection script to verify Teamwork API connectivity
+- ✅ Fix JSON response validation issues
+  - Added response validation and sanitization to ensure proper JSON formatting
+  - Enhanced createTask handler with better error handling and response validation
+  - Added comprehensive logging of response data for debugging
+- ✅ Fix MCP protocol communication issues
+  - Removed all console logging to prevent interference with the MCP JSON protocol
+  - Ensured all logging is directed to files only
+  - Fixed startup errors in the inspector
+- ✅ Fix task creation validation
+  - Fixed validation to check for the correct 'name' field instead of 'content'
+  - Updated both the handler and service implementation to use consistent field names
+  - Aligned validation with the TaskTask model definition

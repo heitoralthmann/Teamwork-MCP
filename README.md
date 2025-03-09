@@ -69,6 +69,36 @@ You can provide your Teamwork credentials in three ways:
    node build/index.js --domain=your-company --user=your-email@example.com --pass=your-password
    ```
 
+### Tool Filtering
+
+You can control which tools are available to the MCP server using the following command-line arguments:
+
+1. **Allow List**: Only expose specific tools:
+   ```
+   node build/index.js --allow-tools=getProjects,getTasks,getTaskById
+   ```
+   
+   Or using short form:
+   ```
+   node build/index.js --allow=getProjects,getTasks,getTaskById
+   ```
+
+2. **Deny List**: Expose all tools except those specified:
+   ```
+   node build/index.js --deny-tools=deleteTask,updateTask
+   ```
+   
+   Or using short form:
+   ```
+   node build/index.js --deny=deleteTask,updateTask
+   ```
+
+By default, all tools are exposed if neither allow nor deny list is provided. If both are provided, the allow list takes precedence.
+
+The tool filtering is enforced at two levels for enhanced security:
+1. When listing available tools (tools not in the allow list or in the deny list won't be visible)
+2. When executing tool calls (attempts to call filtered tools will be rejected with an error)
+
 ## Usage
 
 ### Building the application
@@ -118,6 +148,7 @@ To add this MCP server to Cursor:
 3. Enter a name for the server (e.g., "Teamwork API")
 4. Select "stdio" as the transport type
 5. Enter the command to run the server: `node path/to/teamwork-mcp/build/index.js` and then if needed, add the command line arguments as mentioned above.
+   - You can include tool filtering options: `--allow=getProjects,getTasks` or `--deny=deleteTask`
 6. Click "Add"
 
 The Teamwork MCP tools will now be available to the Cursor Agent in Composer.

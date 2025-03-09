@@ -18,7 +18,7 @@ import deleteTask from './tasks/deleteTask.js';
 
 // Re-export all functions
 export { getProjects, getCurrentProject, createProject, CreateProjectData };
-export { getTasks, getTasksByProjectId, getTaskListsByProjectId, getTaskById, createTask, updateTask, deleteTask };
+export { getTasks, getTasksByProjectId, getTaskListsByProjectId, getTaskById, updateTask, deleteTask };
 
 // Default export with all services
 export default {

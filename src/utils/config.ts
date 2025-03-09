@@ -55,23 +55,27 @@ export const loadConfig = (args?: string[]) => {
 
   const argv = args 
     ? minimist(args, {
-        string: ['teamwork-domain', 'teamwork-username', 'teamwork-password', 'teamwork-project-id', 'solution-root'],
+        string: ['teamwork-domain', 'teamwork-username', 'teamwork-password', 'teamwork-project-id', 'solution-root', 'allow-tools', 'deny-tools'],
         alias: {
           'domain': 'teamwork-domain',
           'user': 'teamwork-username',
           'pass': 'teamwork-password',
           'project': 'teamwork-project-id',
-          'root': 'solution-root'
+          'root': 'solution-root',
+          'allow': 'allow-tools',
+          'deny': 'deny-tools'
         }
       })
     : minimist(process.argv.slice(2), {
-        string: ['teamwork-domain', 'teamwork-username', 'teamwork-password', 'teamwork-project-id', 'solution-root'],
+        string: ['teamwork-domain', 'teamwork-username', 'teamwork-password', 'teamwork-project-id', 'solution-root', 'allow-tools', 'deny-tools'],
         alias: {
           'domain': 'teamwork-domain',
           'user': 'teamwork-username',
           'pass': 'teamwork-password',
           'project': 'teamwork-project-id',
-          'root': 'solution-root'
+          'root': 'solution-root',
+          'allow': 'allow-tools',
+          'deny': 'deny-tools'
         }
       });
 
@@ -126,6 +130,23 @@ export const loadConfig = (args?: string[]) => {
     logger.info('Using SOLUTION_ROOT_PATH from short form command line argument');
   }
 
+  // Set tool filtering options
+  if (argv['allow-tools']) {
+    process.env.ALLOW_TOOLS = argv['allow-tools'];
+    logger.info(`Using ALLOW_TOOLS from command line argument: ${argv['allow-tools']}`);
+  } else if (argv['allow']) {
+    process.env.ALLOW_TOOLS = argv['allow'];
+    logger.info(`Using ALLOW_TOOLS from short form command line argument: ${argv['allow']}`);
+  }
+
+  if (argv['deny-tools']) {
+    process.env.DENY_TOOLS = argv['deny-tools'];
+    logger.info(`Using DENY_TOOLS from command line argument: ${argv['deny-tools']}`);
+  } else if (argv['deny']) {
+    process.env.DENY_TOOLS = argv['deny'];
+    logger.info(`Using DENY_TOOLS from short form command line argument: ${argv['deny']}`);
+  }
+
   // Validate required configuration
   const isConfigValid = validateConfig();
 
@@ -138,6 +159,8 @@ export const loadConfig = (args?: string[]) => {
     password: process.env.TEAMWORK_PASSWORD,
     projectId: process.env.TEAMWORK_PROJECT_ID,
     solutionRootPath: process.env.SOLUTION_ROOT_PATH,
+    allowTools: process.env.ALLOW_TOOLS,
+    denyTools: process.env.DENY_TOOLS,
     apiUrl,
     isValid: isConfigValid
   };
@@ -210,4 +233,48 @@ export const saveProjectConfig = (projectId: string, solutionRootPath?: string):
 };
 
 // Export a default config object for convenience
-export default loadConfig(); 
+export default loadConfig();
+
+/**
+ * Filters tools based on allow and deny lists
+ * @param tools Array of tool definitions
+ * @param allowList Comma-separated list of tool names to allow (if provided)
+ * @param denyList Comma-separated list of tool names to deny (if provided)
+ * @returns Filtered array of tool definitions
+ */
+export const filterTools = (tools: any[], allowList?: string, denyList?: string): any[] => {
+  // If neither allow nor deny list is provided, return all tools
+  if (!allowList && !denyList) {
+    return tools;
+  }
+
+  // Parse allow and deny lists into arrays
+  const allowedTools = allowList ? allowList.split(',').map(t => t.trim()) : [];
+  const deniedTools = denyList ? denyList.split(',').map(t => t.trim()) : [];
+
+  // Log the filtering that will be applied
+  if (allowedTools.length > 0) {
+    logger.info(`Filtering tools to allow only: ${allowedTools.join(', ')}`);
+  }
+  if (deniedTools.length > 0) {
+    logger.info(`Filtering tools to deny: ${deniedTools.join(', ')}`);
+  }
+
+  // Apply filtering
+  return tools.filter(tool => {
+    const toolName = tool.name;
+    
+    // If allow list is provided, only include tools in the allow list
+    if (allowedTools.length > 0) {
+      return allowedTools.includes(toolName);
+    }
+    
+    // If deny list is provided, exclude tools in the deny list
+    if (deniedTools.length > 0) {
+      return !deniedTools.includes(toolName);
+    }
+    
+    // Default case (should not reach here)
+    return true;
+  });
+}; 

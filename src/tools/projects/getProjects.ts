@@ -189,25 +189,57 @@ export const getProjectsDefinition = {
 
 // Tool handler
 export async function handleGetProjects(input: any) {
-  logger.info('Calling teamworkService.getProjects()');
-  logger.info(`Query parameters: ${JSON.stringify(input)}`);
+  logger.info('=== getProjects tool called ===');
+  logger.info(`Query parameters: ${JSON.stringify(input || {})}`);
   
   try {
+    logger.info('Calling teamworkService.getProjects()');
     const projects = await teamworkService.getProjects(input);
-    logger.info(`Projects response type: ${typeof projects}`);
     
     // Debug the response
+    logger.info(`Projects response type: ${typeof projects}`);
+    
     if (projects === null || projects === undefined) {
       logger.warn('Projects response is null or undefined');
+      return {
+        content: [{
+          type: "text",
+          text: "No projects found or API returned empty response."
+        }]
+      };
     } else if (Array.isArray(projects)) {
       logger.info(`Projects array length: ${projects.length}`);
+      if (projects.length === 0) {
+        return {
+          content: [{
+            type: "text",
+            text: "No projects found. The API returned an empty array."
+          }]
+        };
+      }
+    } else if (typeof projects === 'object') {
+      // Check if it's a paginated response with 'projects' property
+      if (projects.projects && Array.isArray(projects.projects)) {
+        logger.info(`Projects array found in response object. Length: ${projects.projects.length}`);
+        if (projects.projects.length === 0) {
+          return {
+            content: [{
+              type: "text",
+              text: "No projects found. The API returned an empty projects array."
+            }]
+          };
+        }
+      } else {
+        logger.info(`Projects response is an object: ${JSON.stringify(projects).substring(0, 200)}...`);
+      }
     } else {
-      logger.info(`Projects response is not an array: ${JSON.stringify(projects).substring(0, 200)}...`);
+      logger.info(`Projects response is not an array or object: ${JSON.stringify(projects).substring(0, 200)}...`);
     }
     
     try {
       const jsonString = JSON.stringify(projects, null, 2);
       logger.info(`Successfully stringified projects response`);
+      logger.info('=== getProjects tool completed successfully ===');
       return {
         content: [{
           type: "text",
@@ -225,6 +257,16 @@ export async function handleGetProjects(input: any) {
     }
   } catch (error: any) {
     logger.error(`Error in getProjects handler: ${error.message}`);
+    if (error.stack) {
+      logger.error(`Stack trace: ${error.stack}`);
+    }
+    if (error.response) {
+      logger.error(`API response error: ${JSON.stringify({
+        status: error.response.status,
+        statusText: error.response.statusText,
+        data: error.response.data
+      })}`);
+    }
     return {
       content: [{
         type: "text",

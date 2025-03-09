@@ -74,26 +74,88 @@ export const createApiClientForVersion = (version: string = 'v3'): AxiosInstance
     // Log request interceptor for debugging
     api.interceptors.request.use((request: InternalAxiosRequestConfig) => {
       logger.info(`Request URL: ${request.baseURL}${request.url}`);
-      logger.info(`Request method: ${request.method}`);
-      logger.info(`Request headers: ${JSON.stringify(request.headers)}`);
+      logger.info(`Request method: ${request.method?.toUpperCase()}`);
+      
+      // Don't log full headers to avoid exposing auth credentials in logs
+      const safeHeaders = { ...request.headers };
+      if (safeHeaders.Authorization) {
+        safeHeaders.Authorization = 'Basic ***** (redacted)';
+      }
+      logger.info(`Request headers: ${JSON.stringify(safeHeaders)}`);
+      
+      // Log request body for POST/PUT/PATCH requests
+      if (request.data && ['post', 'put', 'patch'].includes(request.method || '')) {
+        logger.info(`Request body: ${JSON.stringify(request.data)}`);
+      }
+      
+      // Log query parameters if present
+      if (request.params) {
+        logger.info(`Request params: ${JSON.stringify(request.params)}`);
+      }
+      
       return request;
     }, (error: AxiosError) => {
-      logger.error(`Request error: ${error.message}`);
+      logger.error(`Request setup error: ${error.message}`);
+      if (error.stack) {
+        logger.error(`Stack trace: ${error.stack}`);
+      }
       return Promise.reject(error);
     });
     
     // Log response interceptor for debugging
     api.interceptors.response.use((response: AxiosResponse) => {
-      logger.info(`Response status: ${response.status}`);
+      logger.info(`Response status: ${response.status} ${response.statusText}`);
+      
+      // Log response headers
+      logger.info(`Response headers: ${JSON.stringify(response.headers)}`);
+      
+      // Log response data preview
+      const dataType = typeof response.data;
+      if (dataType === 'object' && response.data !== null) {
+        if (Array.isArray(response.data)) {
+          logger.info(`Response data: Array with ${response.data.length} items`);
+          if (response.data.length > 0) {
+            logger.info(`First item sample: ${JSON.stringify(response.data[0]).substring(0, 200)}...`);
+          }
+        } else {
+          const keys = Object.keys(response.data);
+          logger.info(`Response data: Object with keys [${keys.join(', ')}]`);
+          logger.info(`Data preview: ${JSON.stringify(response.data).substring(0, 200)}...`);
+        }
+      } else {
+        logger.info(`Response data type: ${dataType}`);
+      }
+      
       return response;
     }, (error: AxiosError) => {
       if (error.response) {
         logger.error(`Response error: ${error.response.status} - ${error.response.statusText}`);
+        logger.error(`Response headers: ${JSON.stringify(error.response.headers)}`);
+        
+        // Log response data if available
+        if (error.response.data) {
+          logger.error(`Response data: ${JSON.stringify(error.response.data)}`);
+        }
       } else if (error.request) {
-        logger.error(`Request error: ${error.message}`);
+        logger.error(`Request error (no response received): ${error.message}`);
+        logger.error(`Request details: ${JSON.stringify(error.request)}`);
       } else {
         logger.error(`Error setting up request: ${error.message}`);
       }
+      
+      if (error.config) {
+        logger.error(`Request config: ${JSON.stringify({
+          url: error.config.url,
+          method: error.config.method,
+          baseURL: error.config.baseURL,
+          timeout: error.config.timeout
+        })}`);
+      }
+      
+      if (error.stack) {
+        logger.error(`Stack trace: ${error.stack}`);
+      }
+      
       return Promise.reject(error);
     });
     

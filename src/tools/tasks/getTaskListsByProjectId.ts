@@ -33,7 +33,7 @@ export async function handleGetTaskListsByProjectId(input: any) {
   logger.info(`Project ID: ${input?.projectId}`);
   
   try {
-    const projectId = String(input?.projectId);
+    const projectId = input?.projectId;
     if (!projectId) {
       throw new Error("Project ID is required");
     }
