@@ -25,7 +25,7 @@ export const toolDefinitions = [
   createTaskDefinition,
   updateTaskDefinition,
   deleteTaskDefinition,
-  getTaskListsByProjectIdDefinition,
+  getTaskListsByProjectIdDefinition
 ];
 
 // Export all tool handlers

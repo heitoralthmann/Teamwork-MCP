@@ -15,7 +15,12 @@ export const getTaskListsByProjectIdDefinition = {
     properties: {
       projectId: {
         type: "integer",
-        description: "The ID of the project to get task lists from"
+        description: "The ID of the project to get task lists from, this should be chosen in the following order: \n" + 
+                     " 1) If a project ID is provided by the user, use that. \n" + 
+                     " 2) If a project name is provided, use the `getProjects` function to try and find the project, if found use that project ID \n" + 
+                     " 3) If no project ID or name was provided, check the `.teamwork` file to see if one has been stored and use that \n" + 
+                     " 4) If none of the above have found a project ID, get a list of all projects using the `getProjects` function and ask the user which project they are working on, then ask them if they would like you to store this as a default before continuing, if they do, store the project ID in the `.teamwork` file. \n" +
+                     " If a project ID is not stored in the `.teamwork` file, always ask the user which project they are working on, then ask them if they would like you to store this as a default before continuing, if they do, store the project ID in the `.teamwork` file. \n"
       }
     },
     required: ["projectId"]

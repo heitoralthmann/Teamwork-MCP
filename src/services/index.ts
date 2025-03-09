@@ -35,4 +35,4 @@ export default {
   createTask,
   updateTask,
   deleteTask
-}; 
+};  

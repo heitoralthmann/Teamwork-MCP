@@ -60,7 +60,7 @@ export async function handleCreateProject(input: any) {
     const projectData: CreateProjectData = {
       name: input.name
     };
-    
+      
     // Add optional fields if provided
     if (input.description) projectData.description = input.description;
     if (input.companyId) projectData.companyId = input.companyId;
