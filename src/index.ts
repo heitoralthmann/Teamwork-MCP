@@ -2,7 +2,9 @@ import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import {
   CallToolRequestSchema,
+  ListPromptsRequestSchema,
   ListToolsRequestSchema,
+  Prompt
 } from "@modelcontextprotocol/sdk/types.js";
 
 import logger from "./utils/logger.js";
@@ -10,17 +12,9 @@ import config, { filterTools } from "./utils/config.js";
 import { ensureApiClient } from "./services/core/apiClient.js";
 
 // Import tool definitions and handlers
-import { toolDefinitions, 
-  handleGetProjects,
-  handleGetCurrentProject,
-  handleCreateProject,
-  handleGetTasks,
-  handleGetTasksByProjectId,
-  handleGetTaskById,
-  handleCreateTask,
-  handleUpdateTask,
-  handleDeleteTask,
-  handleGetTaskListsByProjectId
+import {
+  toolDefinitions,
+  toolHandlersMap
 } from "./tools/index.js";
 
 // Create MCP server
@@ -32,6 +26,7 @@ const server = new Server(
   {
     capabilities: {
       tools: {},
+      prompts: {}
     },
   }
 );
@@ -128,50 +123,15 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     
     let response;
     
-    switch (name) {
-      case "getProjects":
-        response = await handleGetProjects(input);
-        break;
-      
-      case "getCurrentProject":
-        response = await handleGetCurrentProject(input);
-        break;
-      
-      case "createProject":
-        response = await handleCreateProject(input);
-        break;
-      
-      case "getTasks":
-        response = await handleGetTasks();
-        break;
-      
-      case "getTasksByProjectId":
-        response = await handleGetTasksByProjectId(input);
-        break;
-
-      case "getTaskById":
-        response = await handleGetTaskById(input);
-        break;
-
-      case "createTask":
-        response = await handleCreateTask(input);
-        break;
-      
-      case "updateTask":
-        response = await handleUpdateTask(input);
-        break;
-      
-      case "deleteTask":
-        response = await handleDeleteTask(input);
-        break;
-      
-      case "getTaskListsByProjectId":
-        response = await handleGetTaskListsByProjectId(input);
-        break;
-      
-      default:
-        throw new Error("Unknown tool");
+    // Get the handler function for the requested tool
+    const handler = toolHandlersMap[name];
+    
+    if (!handler) {
+      throw new Error(`Unknown tool: ${name}`);
     }
+    
+    // Call the handler with the input
+    response = await handler(input);
     
     // Log the response for debugging
     logger.info(`Tool response structure: ${JSON.stringify(Object.keys(response || {}))}`);
@@ -199,6 +159,31 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     logger.error(`MCP tool error: ${error.message}`);
     throw new Error(`Tool execution failed: ${error.message}`);
   }
+});
+
+const prompts: Prompt[] = [
+  {
+    name: "About the Teamwork MCP",
+    description: "This prompt is used to provide information about the Teamwork MCP",
+    instructions: "You are a helpful assistant that can help with tasks in Teamwork which is a project management tool that is used to manage projects, tasks, and other resources. You can use the following tools to help with your tasks: " + toolDefinitions.map(tool => tool.name).join(", ")
+  }, 
+  {
+    name: "How to find the project ID",
+    description: "This prompt is used to get the current project ID from Teamwork",
+    instructions:  "To find the ID of the current project you can follow these steps: \n" + 
+    " 1) If a project ID is provided by the user, use that. \n" + 
+    " 2) If a project name is provided, use the `getProjects` function to try and find the project, if found use that project ID \n" + 
+    " 3) If no project ID or name was provided, check the `.teamwork` file to see if one has been stored and use that, this file should be located in the root of the solution \n" + 
+    " 4) If none of the above have found a project ID, get a list of all projects using the `getProjects` function and ask the user which project they are working on, then ask them if they would like you to store this as a default before continuing, if they do, store the project ID in the `.teamwork` file in the root of the solution. \n" +
+    " ** If a project ID is not stored in the `.teamwork` file, always ask the user which project they are working on, then ask them if they would like you to store this as a default before continuing, if they do, store the project ID in the `.teamwork` file in the root of the solution. ** \n"
+  }
+]
+
+server.setRequestHandler(ListPromptsRequestSchema, async () => {
+  // Filter tools based on allow and deny lists
+  return {
+    prompts: prompts
+  };
 });
 
 /**

@@ -15,7 +15,7 @@ export const getCurrentProjectDefinition = {
     properties: {
       projectId: {
         type: "integer",
-        description: "The Teamwork project ID that you should first find stored in the .teamwork file in the solution root"
+        description: "The ID of the project to get the current project from"
       }
     },
     required: ["projectId"]
