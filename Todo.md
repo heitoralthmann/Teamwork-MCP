@@ -255,7 +255,7 @@
 - ✅ GET /projects/api/v3/tasks/{taskId}.json
 - ✅ PATCH /projects/api/v3/tasks/{taskId}.json
 - ✅ GET /projects/api/v3/tasks/{taskId}/subtasks.json
-- 🟨 POST /projects/api/v3/tasks/{taskId}/subtasks.json
+- ✅ POST /projects/api/v3/tasks/{taskId}/subtasks.json
 - 🟨 GET /projects/api/v3/reporting/precanned/plannedvsactual/tasks.csv
 - 🟨 GET /projects/api/v3/reporting/precanned/plannedvsactual/tasks.html
 - 🟨 GET /projects/api/v3/reporting/precanned/plannedvsactual/tasks.pdf
@@ -321,3 +321,10 @@
   - Fixed validation to check for the correct 'name' field instead of 'content'
   - Updated both the handler and service implementation to use consistent field names
   - Aligned validation with the TaskTask model definition
+
+## 03/10/2024
+
+- ✅ Implemented CreateSubTask endpoint
+  - Added service implementation for creating subtasks
+  - Added tool implementation following the same pattern as CreateTask
+  - Updated service and tool indexes to include the new functionality

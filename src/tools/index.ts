@@ -10,6 +10,7 @@ import { getTasksDefinition, handleGetTasks } from './tasks/getTasks.js';
 import { getTasksByProjectIdDefinition, handleGetTasksByProjectId } from './tasks/getTasksByProjectId.js';
 import { getTaskByIdDefinition, handleGetTaskById } from './tasks/getTaskById.js';
 import { createTaskDefinition, handleCreateTask } from './tasks/createTask.js';
+import { createSubTaskDefinition, handleCreateSubTask } from './tasks/createSubTask.js';
 import { updateTaskDefinition, handleUpdateTask } from './tasks/updateTask.js';
 import { deleteTaskDefinition, handleDeleteTask } from './tasks/deleteTask.js';
 import { getTaskListsByProjectIdDefinition, handleGetTaskListsByProjectId } from './tasks/getTaskListsByProjectId.js';
@@ -33,6 +34,7 @@ const toolPairs: ToolPair[] = [
   { definition: getTasksByProjectIdDefinition, handler: handleGetTasksByProjectId },
   { definition: getTaskByIdDefinition, handler: handleGetTaskById },
   { definition: createTaskDefinition, handler: handleCreateTask },
+  { definition: createSubTaskDefinition, handler: handleCreateSubTask },
   { definition: updateTaskDefinition, handler: handleUpdateTask },
   { definition: deleteTaskDefinition, handler: handleDeleteTask },
   { definition: getTaskListsByProjectIdDefinition, handler: handleGetTaskListsByProjectId },
@@ -59,6 +61,7 @@ export { handleGetTasks } from './tasks/getTasks.js';
 export { handleGetTasksByProjectId } from './tasks/getTasksByProjectId.js';
 export { handleGetTaskById } from './tasks/getTaskById.js';
 export { handleCreateTask } from './tasks/createTask.js';
+export { handleCreateSubTask } from './tasks/createSubTask.js';
 export { handleUpdateTask } from './tasks/updateTask.js';
 export { handleDeleteTask } from './tasks/deleteTask.js';
 export { handleGetTaskListsByProjectId } from './tasks/getTaskListsByProjectId.js';

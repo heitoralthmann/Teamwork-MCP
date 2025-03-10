@@ -13,12 +13,13 @@ import getTasksByProjectId from './tasks/getTasksByProjectId.js';
 import getTaskListsByProjectId from './tasks/getTaskListsByProjectId.js';
 import getTaskById from './tasks/getTaskById.js';
 import createTask from './tasks/createTask.js';
+import createSubTask from './tasks/createSubTask.js';
 import updateTask from './tasks/updateTask.js';
 import deleteTask from './tasks/deleteTask.js';
 
 // Re-export all functions
 export { getProjects, getCurrentProject, createProject, CreateProjectData };
-export { getTasks, getTasksByProjectId, getTaskListsByProjectId, getTaskById, updateTask, deleteTask };
+export { getTasks, getTasksByProjectId, getTaskListsByProjectId, getTaskById, createTask, createSubTask, updateTask, deleteTask };
 
 // Default export with all services
 export default {
@@ -33,6 +34,7 @@ export default {
   getTaskListsByProjectId,
   getTaskById,
   createTask,
+  createSubTask,
   updateTask,
   deleteTask
 };  
