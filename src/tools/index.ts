@@ -18,6 +18,11 @@ import { getTasksByTaskListIdDefinition, handleGetTasksByTaskListId } from './ta
 import { getTasksMetricsCompleteDefinition, handleGetTasksMetricsComplete } from './tasks/getTasksMetricsComplete.js';
 import { getTasksMetricsLateDefinition, handleGetTasksMetricsLate } from './tasks/getTasksMetricsLate.js';
 import { getTaskSubtasksDefinition, handleGetTaskSubtasks } from './tasks/getTaskSubtasks.js';
+import { getPeopleDefinition, handleGetPeople } from './people/getPeople.js';
+import { getPersonByIdDefinition, handleGetPersonById } from './people/getPersonById.js';
+import { getProjectPeopleDefinition, handleGetProjectPeople } from './people/getProjectPeople.js';
+import { addPeopleToProjectDefinition, handleAddPeopleToProject } from './people/addPeopleToProject.js';
+import { deletePersonDefinition, handleDeletePerson } from './people/deletePerson.js';
 
 // Define a structure that pairs tool definitions with their handlers
 interface ToolPair {
@@ -41,7 +46,12 @@ const toolPairs: ToolPair[] = [
   { definition: getTasksByTaskListIdDefinition, handler: handleGetTasksByTaskListId },
   { definition: getTasksMetricsCompleteDefinition, handler: handleGetTasksMetricsComplete },
   { definition: getTasksMetricsLateDefinition, handler: handleGetTasksMetricsLate },
-  { definition: getTaskSubtasksDefinition, handler: handleGetTaskSubtasks }
+  { definition: getTaskSubtasksDefinition, handler: handleGetTaskSubtasks },
+  { definition: getPeopleDefinition, handler: handleGetPeople },
+  { definition: getPersonByIdDefinition, handler: handleGetPersonById },
+  { definition: getProjectPeopleDefinition, handler: handleGetProjectPeople },
+  { definition: addPeopleToProjectDefinition, handler: handleAddPeopleToProject },
+  { definition: deletePersonDefinition, handler: handleDeletePerson }
 ];
 
 // Extract just the definitions for the toolDefinitions array
@@ -68,4 +78,9 @@ export { handleGetTaskListsByProjectId } from './tasks/getTaskListsByProjectId.j
 export { handleGetTasksByTaskListId } from './tasks/getTasksByTaskListId.js';
 export { handleGetTasksMetricsComplete } from './tasks/getTasksMetricsComplete.js';
 export { handleGetTasksMetricsLate } from './tasks/getTasksMetricsLate.js';
-export { handleGetTaskSubtasks } from './tasks/getTaskSubtasks.js'; 
+export { handleGetTaskSubtasks } from './tasks/getTaskSubtasks.js';
+export { handleGetPeople } from './people/getPeople.js';
+export { handleGetPersonById } from './people/getPersonById.js';
+export { handleGetProjectPeople } from './people/getProjectPeople.js';
+export { handleAddPeopleToProject } from './people/addPeopleToProject.js';
+export { handleDeletePerson } from './people/deletePerson.js'; 

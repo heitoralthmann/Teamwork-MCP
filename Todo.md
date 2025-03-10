@@ -167,12 +167,12 @@
 
 ## People
 
-- 🟨 GET /projects/api/v3/people.json
+- ✅ GET /projects/api/v3/people.json
+- ✅ GET /projects/api/v3/projects/{projectId}/people.json
+- ✅ PUT /projects/api/v3/projects/{projectId}/people.json
 - 🟨 GET /projects/api/v3/people/metrics/performance.json
 - 🟨 GET /projects/api/v3/people/utilization.json
-- 🟨 DELETE /projects/api/v3/people/{personId}.json
-- 🟨 GET /projects/api/v3/projects/{projectId}/people.json
-- 🟨 PUT /projects/api/v3/projects/{projectId}/people.json
+- ✅ DELETE /projects/api/v3/people/{personId}.json
 - 🟨 GET /projects/api/v3/reporting/precanned/usertaskcompletion.json
 - 🟨 GET /projects/api/v3/reporting/precanned/utilization.csv
 - 🟨 GET /projects/api/v3/reporting/precanned/utilization.html
@@ -181,7 +181,7 @@
 
 ## Person
 
-- 🟨 GET /projects/api/v3/people/{personId}.json
+- ✅ GET /projects/api/v3/people/{personId}.json
 - 🟨 GET /projects/api/v3/projects/{projectId}/people/{personId}.json
 - 🟨 GET /projects/api/v3/reporting/precanned/usertaskcompletion/{userId}.json
 
@@ -327,4 +327,8 @@
 - ✅ Implemented CreateSubTask endpoint
   - Added service implementation for creating subtasks
   - Added tool implementation following the same pattern as CreateTask
+  - Updated service and tool indexes to include the new functionality
+- ✅ Implemented People endpoints
+  - Added service implementations for getPeople, getPersonById, getProjectPeople, addPeopleToProject, and deletePerson
+  - Added tool implementations for all people services
   - Updated service and tool indexes to include the new functionality
