@@ -157,14 +157,34 @@ The Teamwork MCP tools will now be available to the Cursor Agent in Composer.
 
 The following tools are available through the MCP server:
 
-- `getCurrentProject` - Gets details about the current project ( if you have setup your `.teamwork` settings file, see below.)
+#### Project Tools
+
+- `getCurrentProject` - Gets details about the current project (if you have setup your `.teamwork` settings file, see below.)
 - `getProjects` - Get all projects from Teamwork
+- `createProject` - Create a new project in Teamwork
+
+#### Task Tools
+
 - `getTasks` - Get all tasks from Teamwork
 - `getTaskById` - Get a specific task by ID from Teamwork
-- `getTasksByProjectId` - Get a list of task from a Project using the Teamwork Project ID
+- `getTasksByProjectId` - Get all tasks from a specific project in Teamwork
+- `getTaskListsByProjectId` - Get all task lists from a specific project in Teamwork
+- `getTasksByTaskListId` - Get all tasks from a specific task list in Teamwork
+- `getTaskSubtasks` - Get all subtasks for a specific task in Teamwork
+- `getTasksMetricsComplete` - Get the total count of completed tasks in Teamwork
+- `getTasksMetricsLate` - Get the total count of late tasks in Teamwork
 - `createTask` - Create a new task in Teamwork
+- `createSubTask` - Create a new subtask under a parent task in Teamwork
 - `updateTask` - Update an existing task in Teamwork
 - `deleteTask` - Delete a task from Teamwork
+
+#### People Tools
+
+- `getPeople` - Get all people from Teamwork
+- `getPersonById` - Get a specific person by ID from Teamwork
+- `getProjectPeople` - Get all people assigned to a specific project from Teamwork
+- `addPeopleToProject` - Add people to a specific project in Teamwork
+- `deletePerson` - Delete a person from Teamwork
 
 ## Setting Up Your Teamwork Project
 
