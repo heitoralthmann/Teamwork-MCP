@@ -186,6 +186,21 @@ The following tools are available through the MCP server:
 - `addPeopleToProject` - Add people to a specific project in Teamwork
 - `deletePerson` - Delete a person from Teamwork
 
+#### Reporting Tools
+
+- `getUserTaskCompletion` - Get task completion data for a specific user
+- `getUtilizationCsv` - Generate utilization report in CSV format
+- `getUtilizationHtml` - Generate utilization report in HTML format
+- `getUtilizationPdf` - Generate utilization report in PDF format
+- `getUtilizationXlsx` - Generate utilization report in XLSX format
+
+#### Other Tools
+
+- `getTasksMetricsComplete` - Get the total count of completed tasks in Teamwork
+- `getTasksMetricsLate` - Get the total count of late tasks in Teamwork
+- `getProjectsReportingPrecannedUsertaskcompletionUserId` - Get user task completion report
+- `getProjectsReportingPrecannedUtilization` - Get utilization report in various formats (CSV, HTML, PDF, XLSX)
+
 ## Setting Up Your Teamwork Project
 
 To associate your current solution with a Teamwork project, you can use the following method:

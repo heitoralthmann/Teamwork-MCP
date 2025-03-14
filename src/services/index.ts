@@ -23,11 +23,23 @@ import getPersonById from './people/getPersonById.js';
 import getProjectPeople from './people/getProjectPeople.js';
 import addPeopleToProject, { AddPeopleToProjectPayload } from './people/addPeopleToProject.js';
 import deletePerson from './people/deletePerson.js';
+import getPeopleMetricsPerformance from './people/getPeopleMetricsPerformance.js';
+import getPeopleUtilization from './people/getPeopleUtilization.js';
+import getProjectPerson from './people/getProjectPerson.js';
+
+// Time-related exports
+import getTime, { GetTimeParams } from './time/getTime.js';
+
+// Reporting exports
+import getUserTaskCompletion from './reporting/getUserTaskCompletion.js';
+import getUtilizationCsv from './reporting/getUtilizationCsv.js';
 
 // Re-export all functions
 export { getProjects, getCurrentProject, createProject, CreateProjectData };
 export { getTasks, getTasksByProjectId, getTaskListsByProjectId, getTaskById, createTask, createSubTask, updateTask, deleteTask };
-export { getPeople, PeopleQueryParams, getPersonById, getProjectPeople, addPeopleToProject, AddPeopleToProjectPayload, deletePerson };
+export { getPeople, PeopleQueryParams, getPersonById, getProjectPeople, addPeopleToProject, AddPeopleToProjectPayload, deletePerson, getPeopleMetricsPerformance, getPeopleUtilization, getProjectPerson };
+export { getTime, GetTimeParams };
+export { getUserTaskCompletion, getUtilizationCsv };
 
 // Default export with all services
 export default {
@@ -51,5 +63,15 @@ export default {
   getPersonById,
   getProjectPeople,
   addPeopleToProject,
-  deletePerson
+  deletePerson,
+  getPeopleMetricsPerformance,
+  getPeopleUtilization,
+  getProjectPerson,
+  
+  // Time
+  getTime,
+
+  // Reporting
+  getUserTaskCompletion,
+  getUtilizationCsv
 };  
