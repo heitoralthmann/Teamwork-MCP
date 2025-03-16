@@ -17,6 +17,54 @@ An MCP server that connects to the Teamwork API, providing a simplified interfac
 - npm or yarn
 - Teamwork account with API access
 
+## Available Teamwork MCP Tools
+
+The following tools are available through the MCP server:
+
+#### Project Tools
+
+- `getCurrentProject` - Gets details about the current project (if you have setup your `.teamwork` settings file, see below.)
+- `getProjects` - Get all projects from Teamwork
+- `createProject` - Create a new project in Teamwork
+
+#### Task Tools
+
+- `getTasks` - Get all tasks from Teamwork
+- `getTaskById` - Get a specific task by ID from Teamwork
+- `getTasksByProjectId` - Get all tasks from a specific project in Teamwork
+- `getTaskListsByProjectId` - Get all task lists from a specific project in Teamwork
+- `getTasksByTaskListId` - Get all tasks from a specific task list in Teamwork
+- `getTaskSubtasks` - Get all subtasks for a specific task in Teamwork
+- `getTasksMetricsComplete` - Get the total count of completed tasks in Teamwork
+- `getTasksMetricsLate` - Get the total count of late tasks in Teamwork
+- `createTask` - Create a new task in Teamwork
+- `createSubTask` - Create a new subtask under a parent task in Teamwork
+- `updateTask` - Update an existing task in Teamwork
+- `deleteTask` - Delete a task from Teamwork
+
+#### People Tools
+
+- `getPeople` - Get all people from Teamwork
+- `getPersonById` - Get a specific person by ID from Teamwork
+- `getProjectPeople` - Get all people assigned to a specific project from Teamwork
+- `addPeopleToProject` - Add people to a specific project in Teamwork
+- `deletePerson` - Delete a person from Teamwork
+
+#### Reporting Tools
+
+- `getUserTaskCompletion` - Get task completion data for a specific user
+- `getUtilizationCsv` - Generate utilization report in CSV format
+- `getUtilizationHtml` - Generate utilization report in HTML format
+- `getUtilizationPdf` - Generate utilization report in PDF format
+- `getUtilizationXlsx` - Generate utilization report in XLSX format
+
+#### Other Tools
+
+- `getTasksMetricsComplete` - Get the total count of completed tasks in Teamwork
+- `getTasksMetricsLate` - Get the total count of late tasks in Teamwork
+- `getProjectsReportingPrecannedUsertaskcompletionUserId` - Get user task completion report
+- `getProjectsReportingPrecannedUtilization` - Get utilization report in various formats (CSV, HTML, PDF, XLSX)
+
 ## Installation
 
 1. Clone the repository:
@@ -106,13 +154,29 @@ The tool filtering is enforced at two levels for enhanced security:
 1. When listing available tools (tools not in the allow list or in the deny list won't be visible)
 2. When executing tool calls (attempts to call filtered tools will be rejected with an error)
 
+### Setting Up Your Teamwork Project
+
+To associate your current solution with a Teamwork project, you can use the following method:
+
+#### Using a Configuration File
+
+You can create a `.teamwork` file in the root of your project with the following structure:
+
+``` batch
+PROJECT_ID = YourTeamworkProjectID
+```
+
+This simple configuration file associates your solution with a specific Teamwork project, we may use it to store more details in the future.
+
+Once configured, the MCP will be able to find your Teamwork project and associate it with your current solution, reducing the number of API calls needed to get the project and tasks related to the solution you are working on.
+
 ## Usage
 
 ### Building the application
 
 Build the application:
 
-```
+``` batch
 npm run build
 ```
 
@@ -183,72 +247,7 @@ If you want to add the allow or deny arguments mentioned above you just add them
       ]
 ```
 
-
 The Teamwork MCP tools will now be available to the Cursor Agent in Composer.
-
-### Available Teamwork MCP Tools
-
-The following tools are available through the MCP server:
-
-#### Project Tools
-
-- `getCurrentProject` - Gets details about the current project (if you have setup your `.teamwork` settings file, see below.)
-- `getProjects` - Get all projects from Teamwork
-- `createProject` - Create a new project in Teamwork
-
-#### Task Tools
-
-- `getTasks` - Get all tasks from Teamwork
-- `getTaskById` - Get a specific task by ID from Teamwork
-- `getTasksByProjectId` - Get all tasks from a specific project in Teamwork
-- `getTaskListsByProjectId` - Get all task lists from a specific project in Teamwork
-- `getTasksByTaskListId` - Get all tasks from a specific task list in Teamwork
-- `getTaskSubtasks` - Get all subtasks for a specific task in Teamwork
-- `getTasksMetricsComplete` - Get the total count of completed tasks in Teamwork
-- `getTasksMetricsLate` - Get the total count of late tasks in Teamwork
-- `createTask` - Create a new task in Teamwork
-- `createSubTask` - Create a new subtask under a parent task in Teamwork
-- `updateTask` - Update an existing task in Teamwork
-- `deleteTask` - Delete a task from Teamwork
-
-#### People Tools
-
-- `getPeople` - Get all people from Teamwork
-- `getPersonById` - Get a specific person by ID from Teamwork
-- `getProjectPeople` - Get all people assigned to a specific project from Teamwork
-- `addPeopleToProject` - Add people to a specific project in Teamwork
-- `deletePerson` - Delete a person from Teamwork
-
-#### Reporting Tools
-
-- `getUserTaskCompletion` - Get task completion data for a specific user
-- `getUtilizationCsv` - Generate utilization report in CSV format
-- `getUtilizationHtml` - Generate utilization report in HTML format
-- `getUtilizationPdf` - Generate utilization report in PDF format
-- `getUtilizationXlsx` - Generate utilization report in XLSX format
-
-#### Other Tools
-
-- `getTasksMetricsComplete` - Get the total count of completed tasks in Teamwork
-- `getTasksMetricsLate` - Get the total count of late tasks in Teamwork
-- `getProjectsReportingPrecannedUsertaskcompletionUserId` - Get user task completion report
-- `getProjectsReportingPrecannedUtilization` - Get utilization report in various formats (CSV, HTML, PDF, XLSX)
-
-## Setting Up Your Teamwork Project
-
-To associate your current solution with a Teamwork project, you can use the following method:
-
-### Using a Configuration File
-
-You can create a `.teamwork` file in the root of your project with the following structure:
-
-```
-PROJECT_ID = YourTeamworkProjectID
-```
-
-This simple configuration file associates your solution with a specific Teamwork project, we may use it to store more details in the future.
-
-Once configured, the MCP will be able to find your Teamwork project and associate it with your current solution, reducing the number of API calls needed to get the project and tasks related to the solution you are working on.
 
 ## License
 
