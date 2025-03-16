@@ -13,7 +13,7 @@ An MCP server that connects to the Teamwork API, providing a simplified interfac
 
 ## Prerequisites
 
-- Node.js (v14 or higher)
+- Node.js (v14.17 or higher, recommend 18+ or even better latest LTS version)
 - npm or yarn
 - Teamwork account with API access
 
@@ -21,22 +21,22 @@ An MCP server that connects to the Teamwork API, providing a simplified interfac
 
 1. Clone the repository:
 
-```
-git clone https://github.com/readingdancer/teamwork-mcp.git
-cd teamwork-mcp
-```
+   ``` batch
+   git clone https://github.com/readingdancer/teamwork-mcp.git
+   cd teamwork-mcp
+   ```
 
-2. Install dependencies:
+2. dependencies:
 
-```
-npm install
-```
+   ``` batch
+   npm install
+   ```
 
 3. Create a `.env` file based on the `.env.example` file:
 
-```
-cp .env.example .env
-```
+   ``` batch
+   cp .env.example .env
+   ```
 
 4. Update the `.env` file with your Teamwork credentials.
 
@@ -60,42 +60,49 @@ You can provide your Teamwork credentials in three ways:
 2. **.env File**: Create a `.env` file with the required variables as shown above.
 
 3. **Command Line Arguments**: Pass credentials when running the application:
-   ```
+
+``` batch
    node build/index.js --teamwork-domain=your-company --teamwork-username=your-email@example.com --teamwork-password=your-password
-   ```
-   
-   Or using short form:
-   ```
+```
+
+Or using short form:
+
+``` batch
    node build/index.js --domain=your-company --user=your-email@example.com --pass=your-password
-   ```
+```
 
 ### Tool Filtering
 
 You can control which tools are available to the MCP server using the following command-line arguments:
 
 1. **Allow List**: Only expose specific tools:
+
+   ``` batch
+      node build/index.js --allow-tools=getProjects,getTasks,getTaskById
    ```
-   node build/index.js --allow-tools=getProjects,getTasks,getTaskById
-   ```
-   
+
    Or using short form:
-   ```
-   node build/index.js --allow=getProjects,getTasks,getTaskById
+
+   ``` batch
+      node build/index.js --allow=getProjects,getTasks,getTaskById
    ```
 
 2. **Deny List**: Expose all tools except those specified:
+
+   ``` batch
+      node build/index.js --deny-tools=deleteTask,updateTask
    ```
-   node build/index.js --deny-tools=deleteTask,updateTask
-   ```
-   
+
    Or using short form:
-   ```
-   node build/index.js --deny=deleteTask,updateTask
+
+   ``` batch
+      node build/index.js --deny=deleteTask,updateTask
    ```
 
 By default, all tools are exposed if neither allow nor deny list is provided. If both are provided, the allow list takes precedence.
 
 The tool filtering is enforced at two levels for enhanced security:
+
 1. When listing available tools (tools not in the allow list or in the deny list won't be visible)
 2. When executing tool calls (attempts to call filtered tools will be rejected with an error)
 
@@ -115,41 +122,67 @@ This will compile the TypeScript code ready to be used as an MCP Server
 
 To run as an MCP server for integration with Cursor and other applications, if you are using the .env file for your username, password & url, or if you have saved them in environment variables:
 
-```
-node build/index.js
+*NOTE: Don't forget to change the drive and path details based on where you have saved the repository.*
+
+``` batch
+node C:/your-full-path/build/index.js
 ```
 
 Or you can pass them using line arguments:
 
-```
-node build/index.js --teamwork-domain=your-company --teamwork-username=your-email@example.com --teamwork-password=your-password
+``` batch
+node C:/your-full-path/build/index.js --teamwork-domain=your-company --teamwork-username=your-email@example.com --teamwork-password=your-password
 ```
 
 You can also use the short form:
 
-```
-node build/index.js --domain=your-company --user=your-email@example.com --pass=your-password
+``` batch
+node C:/your-full-path/build/index.js --domain=your-company --user=your-email@example.com --pass=your-password
 ```
 
 ### Using the MCP Inspector
 
 To run the MCP inspector for debugging:
 
-```
+``` batch
 npm run inspector
 ```
 
-### Adding to Cursor
+## Adding to Cursor
 
 To add this MCP server to Cursor:
+
+### Versions before 0.47
 
 1. Open Cursor Settings > Features > MCP
 2. Click "+ Add New MCP Server"
 3. Enter a name for the server (e.g., "Teamwork API")
 4. Select "stdio" as the transport type
-5. Enter the command to run the server: `node path/to/teamwork-mcp/build/index.js` and then if needed, add the command line arguments as mentioned above.
+5. Enter the command to run the server: `node C:/your-full-path/build/index.js` and then if needed, add the command line arguments as mentioned above.
    - You can include tool filtering options: `--allow=getProjects,getTasks` or `--deny=deleteTask`
 6. Click "Add"
+
+### Versions after 0.47 ( editing the config manually )
+
+``` json
+    "Teamwork-MCP": {
+      "command": "node",
+      "args": [
+        "C:/your-full-path/build/index.js"
+      ]
+```
+
+If you want to add the allow or deny arguments mentioned above you just add them like this, you can add any of the examples given above.
+
+``` json
+    "Teamwork-MCP": {
+      "command": "node",
+      "args": [
+        "C:/your-full-path/build/index.js",
+        "--allow=getProjects,getTasks,getTaskById"
+      ]
+```
+
 
 The Teamwork MCP tools will now be available to the Cursor Agent in Composer.
 
