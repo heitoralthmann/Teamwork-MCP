@@ -37,6 +37,7 @@ The following tools are available through the MCP server:
 - `getTaskSubtasks` - Get all subtasks for a specific task in Teamwork
 - `getTasksMetricsComplete` - Get the total count of completed tasks in Teamwork
 - `getTasksMetricsLate` - Get the total count of late tasks in Teamwork
+- `getTaskComments` - Get comments for a specific task from Teamwork
 - `createTask` - Create a new task in Teamwork
 - `createSubTask` - Create a new subtask under a parent task in Teamwork
 - `updateTask` - Update an existing task in Teamwork

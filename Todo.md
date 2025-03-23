@@ -265,7 +265,7 @@
 
 ## TaskComments
 
-🟨 GET /projects/api/v3/tasks/{taskId}/comments.json
+- ✅ GET /projects/api/v3/tasks/{taskId}/comments.json
 
 ## PeopleStatus
 
@@ -331,11 +331,15 @@
 
 ## 03/10/2024
 
-✅ Implemented CreateSubTask endpoint
-✅ Added service implementation for creating subtasks
-✅ Added tool implementation following the same pattern as CreateTask
-✅ Updated service and tool indexes to include the new functionality
-✅ Implemented People endpoints
-✅ Added service implementations for getPeople, getPersonById, getProjectPeople, addPeopleToProject, and deletePerson
-✅ Added tool implementations for all people services
-✅ Updated service and tool indexes to include the new functionality
+- ✅ Implemented CreateSubTask endpoint
+  - Added service implementation for creating subtasks
+  - Added tool implementation following the same pattern as CreateTask
+  - Updated service and tool indexes to include the new functionality
+- ✅ Implemented People endpoints
+  - Added service implementations for getPeople, getPersonById, getProjectPeople, addPeopleToProject, and deletePerson
+  - Added tool implementations for all people services
+  - Updated service and tool indexes to include the new functionality
+- ✅ Implemented TaskComments endpoint
+  - Added service implementation for getting task comments
+  - Added tool implementation following the same pattern as other task-related tools
+  - Updated service and tool indexes to include the new functionality

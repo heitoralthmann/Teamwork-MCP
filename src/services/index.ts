@@ -16,6 +16,7 @@ import createTask from './tasks/createTask.js';
 import createSubTask from './tasks/createSubTask.js';
 import updateTask from './tasks/updateTask.js';
 import deleteTask from './tasks/deleteTask.js';
+import getTaskComments from './tasks/getTaskComments.js';
 
 // People-related exports
 import getPeople, { PeopleQueryParams } from './people/getPeople.js';
@@ -57,6 +58,7 @@ export default {
   createSubTask,
   updateTask,
   deleteTask,
+  getTaskComments,
   
   // People
   getPeople,

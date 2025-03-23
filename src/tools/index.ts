@@ -92,6 +92,7 @@ export { handleDeleteTask } from './tasks/deleteTask.js';
 export { handleGetTasksMetricsComplete } from './tasks/getTasksMetricsComplete.js';
 export { handleGetTasksMetricsLate } from './tasks/getTasksMetricsLate.js';
 export { handleGetTaskSubtasks } from './tasks/getTaskSubtasks.js';
+export { handleGetTaskComments } from './tasks/getTaskComments.js';
 export { handleGetPeople } from './people/getPeople.js';
 export { handleGetPersonById } from './people/getPersonById.js';
 export { handleGetProjectPeople } from './people/getProjectPeople.js';
