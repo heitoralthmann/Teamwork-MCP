@@ -53,14 +53,6 @@ The following tools are available through the MCP server:
 
 #### Reporting Tools
 
-- `getUserTaskCompletion` - Get task completion data for a specific user
-- `getUtilizationCsv` - Generate utilization report in CSV format
-- `getUtilizationHtml` - Generate utilization report in HTML format
-- `getUtilizationPdf` - Generate utilization report in PDF format
-- `getUtilizationXlsx` - Generate utilization report in XLSX format
-
-#### Other Tools
-
 - `getTasksMetricsComplete` - Get the total count of completed tasks in Teamwork
 - `getTasksMetricsLate` - Get the total count of late tasks in Teamwork
 - `getProjectsReportingPrecannedUsertaskcompletionUserId` - Get user task completion report
