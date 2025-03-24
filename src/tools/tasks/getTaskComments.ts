@@ -7,7 +7,7 @@ import logger from "../../utils/logger.js";
 import teamworkService from "../../services/index.js";
 
 // Tool definition
-export const getTaskCommentsDefinition = {
+export const getTaskComments = {
   name: "getTaskComments",
   description: "Get comments for a specific task from Teamwork",
   inputSchema: {

@@ -1,10 +1,10 @@
-import { getTime } from '../../services/time/getTime.js';
+import { getTime as getTimeService } from '../../services/time/getTime.js';
 import logger from '../../utils/logger.js';
 
 /**
  * Tool definition for getting all time entries
  */
-export const getTimeDefinition = {
+export const getTime = {
   name: "getTime",
   description: "Get all time entries. Return all logged time entries for all projects. Only the time entries that the logged-in user can access will be returned.",
   inputSchema: {
@@ -132,7 +132,7 @@ export const getTimeDefinition = {
 export async function handleGetTime(input: any) {
   try {
     logger.info('Handling getTime tool request');
-    const response = await getTime(input);
+    const response = await getTimeService(input);
     
     logger.info('Successfully handled getTime request');
     return {

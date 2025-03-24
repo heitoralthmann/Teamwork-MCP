@@ -29,8 +29,9 @@ import { getProjectsReportingPrecannedUsertaskcompletionUserId, handlegetProject
 import { getProjectsReportingPrecannedUtilization, handlegetProjectsReportingPrecannedUtilization } from './people/getUtilization.js';
 
 // Time-related imports
-import { getTimeDefinition as getTime, handleGetTime } from './time/getTime.js';
+import { getTime, handleGetTime } from './time/getTime.js';
 import { getProjectsAllocationsAllocationIdTime as getAllocationTimeDefinition, handlegetProjectsAllocationsAllocationIdTime } from './time/getAllocationTime.js';
+import { getTaskComments, handleGetTaskComments } from './tasks/getTaskComments.js';
 
 // Define a structure that pairs tool definitions with their handlers
 interface ToolPair {
@@ -54,6 +55,7 @@ const toolPairs: ToolPair[] = [
   { definition: getTasksMetricsCompleteDefinition, handler: handleGetTasksMetricsComplete },
   { definition: getTasksMetricsLateDefinition, handler: handleGetTasksMetricsLate },
   { definition: getTaskSubtasksDefinition, handler: handleGetTaskSubtasks },
+  { definition: getTaskComments, handler: handleGetTaskComments },
   { definition: getPeople, handler: handleGetPeople },
   { definition: getPersonById, handler: handleGetPersonById },
   { definition: getProjectPeople, handler: handleGetProjectPeople },
