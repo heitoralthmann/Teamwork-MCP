@@ -64,7 +64,7 @@ The following tools are available through the MCP server:
 - `getTasksMetricsComplete` - Get the total count of completed tasks in Teamwork
 - `getTasksMetricsLate` - Get the total count of late tasks in Teamwork
 - `getProjectsReportingPrecannedUsertaskcompletionUserId` - Get user task completion report
-- `getProjectsReportingPrecannedUtilization` - Get utilization report in various formats (CSV, HTML, PDF, XLSX)
+- `getProjectsReportingPrecannedUtilization` - Get utilization report in various formats CSV & HTML (Note: PDF, XLSX are not currently supported)
 
 ## Installation
 
