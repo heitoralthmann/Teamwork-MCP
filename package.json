@@ -35,7 +35,7 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.6.1",
     "@types/minimist": "^1.2.5",
-    "axios": "^1.6.7",
+    "axios": "^1.8.2",
     "dotenv": "^16.4.5",
     "minimist": "^1.2.8",
     "winston": "^3.12.0"
