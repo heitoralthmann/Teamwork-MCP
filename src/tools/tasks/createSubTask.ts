@@ -5,6 +5,7 @@
 
 import logger from "../../utils/logger.js";
 import teamworkService from "../../services/index.js";
+import { TaskRequest } from "../../models/TaskRequest.js";
 
 export const createSubTaskDefinition = {
   name: "createSubTask",
@@ -514,7 +515,7 @@ export async function handleCreateSubTask(input: any) {
     }
     
     // Prepare the task request
-    const taskRequest = input.taskRequest;
+    const taskRequest = input.taskRequest as TaskRequest;
     
     // Validate task request
     if (!taskRequest || !taskRequest.task) {

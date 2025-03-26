@@ -21,12 +21,11 @@ import {
 const server = new Server(
   {
     name: 'teamwork-mcp',
-    version: '1.0.0'
+    version: '1.0.1'
   },
   {
     capabilities: {
-      tools: {},
-      prompts: {}
+      tools: {}
     },
   }
 );
@@ -161,30 +160,30 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
   }
 });
 
-const prompts: Prompt[] = [
-  {
-    name: "About the Teamwork MCP",
-    description: "This prompt is used to provide information about the Teamwork MCP",
-    instructions: "You are a helpful assistant that can help with tasks in Teamwork which is a project management tool that is used to manage projects, tasks, and other resources. You can use the following tools to help with your tasks: " + toolDefinitions.map(tool => tool.name).join(", ")
-  }, 
-  {
-    name: "How to find the project ID",
-    description: "This prompt is used to get the current project ID from Teamwork",
-    instructions:  "To find the ID of the current project you can follow these steps: \n" + 
-    " 1) If a project ID is provided by the user, use that. \n" + 
-    " 2) If a project name is provided, use the `getProjects` function to try and find the project, if found use that project ID \n" + 
-    " 3) If no project ID or name was provided, check the `.teamwork` file to see if one has been stored and use that, this file should be located in the root of the solution \n" + 
-    " 4) If none of the above have found a project ID, get a list of all projects using the `getProjects` function and ask the user which project they are working on, then ask them if they would like you to store this as a default before continuing, if they do, store the project ID in the `.teamwork` file in the root of the solution. \n" +
-    " ** If a project ID is not stored in the `.teamwork` file, always ask the user which project they are working on, then ask them if they would like you to store this as a default before continuing, if they do, store the project ID in the `.teamwork` file in the root of the solution. ** \n"
-  }
-]
+// const prompts: Prompt[] = [
+//   {
+//     name: "About the Teamwork MCP",
+//     description: "This prompt is used to provide information about the Teamwork MCP",
+//     instructions: "You are a helpful assistant that can help with tasks in Teamwork which is a project management tool that is used to manage projects, tasks, and other resources. You can use the following tools to help with your tasks: " + toolDefinitions.map(tool => tool.name).join(", ")
+//   }, 
+//   {
+//     name: "How to find the project ID",
+//     description: "This prompt is used to get the current project ID from Teamwork",
+//     instructions:  "To find the ID of the current project you can follow these steps: \n" + 
+//     " 1) If a project ID is provided by the user, use that. \n" + 
+//     " 2) If a project name is provided, use the `getProjects` function to try and find the project, if found use that project ID \n" + 
+//     " 3) If no project ID or name was provided, check the `.teamwork` file to see if one has been stored and use that, this file should be located in the root of the solution \n" + 
+//     " 4) If none of the above have found a project ID, get a list of all projects using the `getProjects` function and ask the user which project they are working on, then ask them if they would like you to store this as a default before continuing, if they do, store the project ID in the `.teamwork` file in the root of the solution. \n" +
+//     " ** If a project ID is not stored in the `.teamwork` file, always ask the user which project they are working on, then ask them if they would like you to store this as a default before continuing, if they do, store the project ID in the `.teamwork` file in the root of the solution. ** \n"
+//   }
+// ]
 
-server.setRequestHandler(ListPromptsRequestSchema, async () => {
-  // Filter tools based on allow and deny lists
-  return {
-    prompts: prompts
-  };
-});
+// server.setRequestHandler(ListPromptsRequestSchema, async () => {
+//   // Filter tools based on allow and deny lists
+//   return {
+//     prompts: prompts
+//   };
+// });
 
 /**
  * Start the server using stdio transport.
@@ -195,7 +194,7 @@ async function main() {
         // Log startup information to file only
         logger.info('=== Teamwork MCP Server Starting ===');
         logger.info(`Server name: teamwork-mcp`);
-        logger.info(`Server version: 1.0.0`);
+        logger.info(`Server version: 1.0.1`);
         logger.info(`Node.js version: ${process.version}`);
         logger.info(`Environment: ${process.env.NODE_ENV || 'development'}`);
         

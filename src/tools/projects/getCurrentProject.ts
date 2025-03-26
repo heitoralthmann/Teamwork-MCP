@@ -9,13 +9,13 @@ import teamworkService from "../../services/index.js";
 // Tool definition
 export const getCurrentProjectDefinition = {
   name: "getCurrentProject",
-  description: "Get the current solution's Teamwork project ID to use for queries",
+  description: "Get the current solution's Teamwork project, check the `.teamwork` file in the root of the solution for the project ID or ask the user which project they are working on.",
   inputSchema: {
     type: "object",
     properties: {
       projectId: {
         type: "integer",
-        description: "The ID of the project to get the current project from"
+        description: "The current Teamwork project ID associated with the solution."
       }
     },
     required: ["projectId"]
@@ -24,8 +24,6 @@ export const getCurrentProjectDefinition = {
 
 // Tool handler
 export async function handleGetCurrentProject(input: any) {
-  logger.info('Calling teamworkService.getCurrentProject()');
-  logger.info(`Project ID: ${input?.projectId}`);
 
   try {
     

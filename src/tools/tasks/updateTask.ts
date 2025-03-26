@@ -496,12 +496,12 @@ export const updateTaskDefinition = {
 
 // Tool handler
 export async function handleUpdateTask(input: any) {
-  logger.info("=== updateTask tool called ===");
-  logger.info(`Input: ${JSON.stringify(input).substring(0, 200)}...`);
-  
+  logger.verbose("=== updateTask tool called ===");  
   try {
-    const { taskId, taskRequest } = input;
     
+    const taskId = input.taskId;
+    const taskRequest = input.taskRequest as TaskRequest;
+
     if (!taskId) {
       logger.error("Invalid request: missing taskId");
       return {
@@ -513,22 +513,16 @@ export async function handleUpdateTask(input: any) {
     }
     
     if (!taskRequest || !taskRequest.task) {
-      logger.error("Invalid request: missing taskRequest.task");
       return {
         content: [{
           type: "text",
           text: "Invalid request: missing taskRequest.task. Please provide task data to update."
         }]
       };
-    }
-    
-    logger.info(`Updating task ${taskId} with data: ${JSON.stringify(taskRequest.task).substring(0, 200)}...`);
-    
+    }    
     // Call the service to update the task
     const response = await teamworkService.updateTask(taskId.toString(), taskRequest);
-    
-    logger.info(`Task updated successfully: ${JSON.stringify(response).substring(0, 200)}...`);
-    
+       
     return {
       content: [{
         type: "text",
@@ -536,21 +530,10 @@ export async function handleUpdateTask(input: any) {
       }]
     };
   } catch (error: any) {
-    logger.error(`Error updating task: ${error.message}`);
-    
-    if (error.stack) {
-      logger.error(`Stack trace: ${error.stack}`);
-    }
-    
-    if (error.response) {
-      logger.error(`API error status: ${error.response.status}`);
-      logger.error(`API error data: ${JSON.stringify(error.response.data || {})}`);
-    }
-    
     return {
       content: [{
         type: "text",
-        text: `Failed to update task: ${error.message}`
+        text: `Error: ${error.message}`
       }]
     };
   }

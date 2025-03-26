@@ -1,7 +1,7 @@
 import getUtilization from '../../services/people/getUtilization.js';
 
-export const getProjectsReportingPrecannedUtilization = {
-  name: "getProjectsReportingPrecannedUtilization",
+export const getProjectsReportingUtilizationDefinition = {
+  name: "getProjectsReportingUtilization",
   description: "Generate utilization report in various formats (CSV, HTML, PDF, XLSX). Generates a utilization report containing all people for the provided filters. Only the people that the logged-in user can access will be returned.",
   inputSchema: {
     type: 'object',
@@ -193,7 +193,7 @@ export const getProjectsReportingPrecannedUtilization = {
 };
 
 // Tool handler
-export async function handlegetProjectsReportingPrecannedUtilization(input: any) {
+export async function handleGetProjectsReportingUtilization(input: any) {
   try {
     const data = await getUtilization({ ...input, format: input.format.toLowerCase() });
     return {

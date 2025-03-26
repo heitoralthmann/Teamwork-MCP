@@ -1,7 +1,7 @@
 import getUserTaskCompletion from '../../services/reporting/getUserTaskCompletion.js';
 
-export const getProjectsReportingPrecannedUsertaskcompletionUserId = {
-  name: "getProjectsReportingPrecannedUsertaskcompletionUserId",
+export const getProjectsReportingUserTaskCompletionDefinition = {
+  name: "getProjectsReportingUserTaskCompletion",
   description: "Returns task completions for a given user. Retrieve a person record and its task completion stats.",
   inputSchema: {
     type: 'object',
@@ -178,7 +178,7 @@ export const getProjectsReportingPrecannedUsertaskcompletionUserId = {
   }
 };
 
-export async function handlegetProjectsReportingPrecannedUsertaskcompletionUserId(input: any) {
+export async function handleGetProjectsReportingUserTaskCompletion(input: any) {
   try {
     const response = await getUserTaskCompletion(input);
     return {

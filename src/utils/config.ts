@@ -235,6 +235,28 @@ export const saveProjectConfig = (projectId: string, solutionRootPath?: string):
 // Export a default config object for convenience
 export default loadConfig();
 
+// Define a mapping of group names to tool names
+const toolGroups: Record<string, string[]> = {
+  'Projects': ['getProjects', 'getCurrentProject', 'createProject'],
+  'Tasks': ['getTasks', 'getTasksByProjectId', 'getTaskListsByProjectId', 'getTaskById', 'createTask', 'createSubTask', 'updateTask', 'deleteTask', 'getTasksMetricsComplete', 'getTasksMetricsLate', 'getTaskSubtasks', 'getTaskComments'],
+  'People': ['getPeople', 'getPersonById', 'getProjectPeople', 'addPeopleToProject', 'deletePerson', 'getProjectsPeopleMetricsPerformance', 'getProjectsPeopleUtilization', 'getProjectPerson'],
+  'Reporting': ['getProjectsReportingUserTaskCompletion', 'getProjectsReportingUtilization'],
+  'Time': ['getTime', 'getProjectsAllocationsTime'],
+};
+
+// Expand allow and deny lists based on groups
+const expandToolList = (list: string[]): string[] => {
+  const expandedList = new Set<string>();
+  list.forEach(item => {
+    if (toolGroups[item]) {
+      toolGroups[item].forEach(tool => expandedList.add(tool));
+    } else {
+      expandedList.add(item);
+    }
+  });
+  return Array.from(expandedList);
+};
+
 /**
  * Filters tools based on allow and deny lists
  * @param tools Array of tool definitions
@@ -249,8 +271,8 @@ export const filterTools = (tools: any[], allowList?: string, denyList?: string)
   }
 
   // Parse allow and deny lists into arrays
-  const allowedTools = allowList ? allowList.split(',').map(t => t.trim()) : [];
-  const deniedTools = denyList ? denyList.split(',').map(t => t.trim()) : [];
+  const allowedTools = allowList ? expandToolList(allowList.split(',').map(t => t.trim())) : [];
+  const deniedTools = denyList ? expandToolList(denyList.split(',').map(t => t.trim())) : [];
 
   // Log the filtering that will be applied
   if (allowedTools.length > 0) {
@@ -266,7 +288,8 @@ export const filterTools = (tools: any[], allowList?: string, denyList?: string)
     
     // If allow list is provided, only include tools in the allow list
     if (allowedTools.length > 0) {
-      return allowedTools.includes(toolName);
+      // Check if the tool is in the allow list and not in the deny list
+      return allowedTools.includes(toolName) && !deniedTools.includes(toolName);
     }
     
     // If deny list is provided, exclude tools in the deny list

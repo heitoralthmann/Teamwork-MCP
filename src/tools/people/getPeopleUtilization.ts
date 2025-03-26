@@ -1,6 +1,6 @@
 import { getPeopleUtilization } from '../../services/people/getPeopleUtilization.js';
 
-export const getProjectsPeopleUtilization = {
+export const getProjectsPeopleUtilizationDefinition = {
   name: "getProjectsPeopleUtilization",
   description: "Return the user utilization data. This endpoint provides detailed information about user utilization, including billable and non-billable time, availability, and various utilization metrics.",
   inputSchema: {
@@ -213,7 +213,7 @@ export const getProjectsPeopleUtilization = {
   }
 };
 
-export async function handlegetProjectsPeopleUtilization(input: any) {
+export async function handleGetProjectsPeopleUtilization(input: any) {
   try {
     const response = await getPeopleUtilization(input);
     return {

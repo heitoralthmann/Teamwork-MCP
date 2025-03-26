@@ -1,7 +1,7 @@
-import { getAllocationTime } from '../../services/time/getAllocationTime.js';
+import { getAllocationTime as getAllocationTimeService } from '../../services/time/getAllocationTime.js';
 
-export const getProjectsAllocationsAllocationIdTime = {
-  name: "getProjectsAllocationsAllocationIdTime",
+export const getProjectsAllocationsTimeDefinition = {
+  name: "getProjectsAllocationsTime",
   description: "Get time entries for a specific allocation. Return logged time entries for a specific allocation. Only the time entries that the logged-in user can access will be returned.",
   inputSchema: {
     type: 'object',
@@ -68,9 +68,9 @@ export const getProjectsAllocationsAllocationIdTime = {
   }
 };
 
-export async function handlegetProjectsAllocationsAllocationIdTime(input: any) {
+export async function handleGetProjectsAllocationsTime(input: any) {
   try {
-    const response = await getAllocationTime(input);
+    const response = await getAllocationTimeService(input);
     return {
       content: [{
         type: "text",

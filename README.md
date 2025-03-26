@@ -21,42 +21,47 @@ An MCP server that connects to the Teamwork API, providing a simplified interfac
 
 The following tools are available through the MCP server:
 
-#### Project Tools
+### Project Tools
 
-- `getCurrentProject` - Gets details about the current project (if you have setup your `.teamwork` settings file, see below.)
 - `getProjects` - Get all projects from Teamwork
+- `getCurrentProject` - Gets details about the current project
 - `createProject` - Create a new project in Teamwork
 
-#### Task Tools
+### Task Tools
 
 - `getTasks` - Get all tasks from Teamwork
-- `getTaskById` - Get a specific task by ID from Teamwork
 - `getTasksByProjectId` - Get all tasks from a specific project in Teamwork
 - `getTaskListsByProjectId` - Get all task lists from a specific project in Teamwork
-- `getTasksByTaskListId` - Get all tasks from a specific task list in Teamwork
-- `getTaskSubtasks` - Get all subtasks for a specific task in Teamwork
-- `getTasksMetricsComplete` - Get the total count of completed tasks in Teamwork
-- `getTasksMetricsLate` - Get the total count of late tasks in Teamwork
-- `getTaskComments` - Get comments for a specific task from Teamwork
+- `getTaskById` - Get a specific task by ID from Teamwork
 - `createTask` - Create a new task in Teamwork
 - `createSubTask` - Create a new subtask under a parent task in Teamwork
 - `updateTask` - Update an existing task in Teamwork
 - `deleteTask` - Delete a task from Teamwork
+- `getTasksMetricsComplete` - Get the total count of completed tasks in Teamwork
+- `getTasksMetricsLate` - Get the total count of late tasks in Teamwork
+- `getTaskSubtasks` - Get all subtasks for a specific task in Teamwork
+- `getTaskComments` - Get comments for a specific task from Teamwork
 
-#### People Tools
+### People Tools
 
 - `getPeople` - Get all people from Teamwork
 - `getPersonById` - Get a specific person by ID from Teamwork
 - `getProjectPeople` - Get all people assigned to a specific project from Teamwork
 - `addPeopleToProject` - Add people to a specific project in Teamwork
 - `deletePerson` - Delete a person from Teamwork
+- `getProjectsPeopleMetricsPerformance` - Get people metrics performance
+- `getProjectsPeopleUtilization` - Get people utilization
+- `getProjectPerson` - Get a specific person on a project
 
-#### Reporting Tools
+### Reporting Tools
 
-- `getTasksMetricsComplete` - Get the total count of completed tasks in Teamwork
-- `getTasksMetricsLate` - Get the total count of late tasks in Teamwork
-- `getProjectsReportingPrecannedUsertaskcompletionUserId` - Get user task completion report
-- `getProjectsReportingPrecannedUtilization` - Get utilization report in various formats CSV & HTML (Note: PDF, XLSX are not currently supported)
+- `getProjectsReportingUserTaskCompletion` - Get user task completion report
+- `getProjectsReportingUtilization` - Get utilization report in various formats CSV & HTML
+
+### Time Tools
+
+- `getTime` - Get all time entries
+- `getProjectsAllocationsTime` - Get project allocations time
 
 ## Installation
 
@@ -140,6 +145,44 @@ You can control which tools are available to the MCP server using the following 
       node build/index.js --deny=deleteTask,updateTask
    ```
 
+### Tool Filtering with Groups
+
+You can now specify groups of tools for filtering, allowing for more flexible control over which tools are available to the MCP server. The available groups are:
+
+- **Projects**: Includes all project-related tools.
+- **Tasks**: Includes all task-related tools.
+- **People**: Includes all people-related tools.
+- **Reporting**: Includes all reporting-related tools.
+- **Time**: Includes all time-related tools.
+
+### Using Groups in Tool Filtering
+
+You can specify these groups in the allow or deny lists to include or exclude all tools within a group. For example:
+
+1. **Allow List with Groups**: Only expose specific groups of tools:
+
+   ```batch
+   node build/index.js --allow-tools=Tasks,People
+   ```
+
+   Or using short form:
+
+   ```batch
+   node build/index.js --allow=Tasks,People
+   ```
+
+2. **Deny List with Groups**: Expose all tools except those in specified groups:
+
+   ```batch
+   node build/index.js --deny-tools=Reporting,Time
+   ```
+
+   Or using short form:
+
+   ```batch
+   node build/index.js --deny=Reporting,Time
+   ```
+
 By default, all tools are exposed if neither allow nor deny list is provided. If both are provided, the allow list takes precedence.
 
 The tool filtering is enforced at two levels for enhanced security:
@@ -147,7 +190,7 @@ The tool filtering is enforced at two levels for enhanced security:
 1. When listing available tools (tools not in the allow list or in the deny list won't be visible)
 2. When executing tool calls (attempts to call filtered tools will be rejected with an error)
 
-### Setting Up Your Teamwork Project
+## Setting Up Your Teamwork Project
 
 To associate your current solution with a Teamwork project, you can use the following method:
 
@@ -229,14 +272,14 @@ To add this MCP server to Cursor:
       ]
 ```
 
-If you want to add the allow or deny arguments mentioned above you just add them like this, you can add any of the examples given above.
+If you want to add the allow or deny arguments mentioned above you just add them like this, you can add any of the examples given above, you can also add both groups and individual tools as shown below:
 
 ``` json
     "Teamwork-MCP": {
       "command": "node",
       "args": [
         "C:/your-full-path/build/index.js",
-        "--allow=getProjects,getTasks,getTaskById"
+        "--allow=Tasks,getProjects"
       ]
 ```
 

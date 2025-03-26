@@ -1,7 +1,7 @@
-import { getProjectPerson } from '../../services/people/getProjectPerson.js';
+import { getProjectPerson as getProjectPersonService } from '../../services/people/getProjectPerson.js';
 
-export const getProjectsProjectsProjectIdPeoplePersonId = {
-  name: "getProjectsProjectsProjectIdPeoplePersonId",
+export const getProjectPersonDefinition = {
+  name: "getProjectPerson",
   description: "Returns a person on a project. Retrieve a person record.",
   inputSchema: {
     type: 'object',
@@ -204,9 +204,9 @@ export const getProjectsProjectsProjectIdPeoplePersonId = {
   }
 };
 
-export async function handlegetProjectsProjectsProjectIdPeoplePersonId(input: any) {
+export async function handleGetProjectPerson(input: any) {
   try {
-    const response = await getProjectPerson(input);
+    const response = await getProjectPersonService(input);
     return {
       content: [{
         type: "text",

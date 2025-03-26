@@ -2,7 +2,7 @@ import logger from '../../utils/logger.js';
 import { ensureApiClient } from '../core/apiClient.js';
 
 /**
- * Gets the current Teamwork project ID from the configuration
+ * Gets the current Teamwork project
  * @param projectId The Teamwork project ID that you should first find stored in the .teamwork file in the solution root
  * @returns An object with success status and project details or error message
  */

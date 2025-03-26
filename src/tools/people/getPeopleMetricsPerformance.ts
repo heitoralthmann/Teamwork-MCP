@@ -1,6 +1,6 @@
 import { getPeopleMetricsPerformance } from '../../services/people/getPeopleMetricsPerformance.js';
 
-export const getProjectsPeopleMetricsPerformance = {
+export const getProjectsPeopleMetricsPerformanceDefinition = {
   name: "getProjectsPeopleMetricsPerformance",
   description: "Performance of users completing the most tasks. Count the number of completed tasks by user for the provided period. By default the user with the most completed tasks is shown first.",
   inputSchema: {
@@ -26,7 +26,7 @@ export const getProjectsPeopleMetricsPerformance = {
   }
 };
 
-export async function handlegetProjectsPeopleMetricsPerformance(input: any) {
+export async function handleGetProjectsPeopleMetricsPerformance(input: any) {
   try {
     const response = await getPeopleMetricsPerformance(input);
     return {

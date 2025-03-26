@@ -3,9 +3,12 @@
  * Exports all tool definitions and implementations
  */
 
+// Projects
 import { getProjectsDefinition as getProjects, handleGetProjects } from './projects/getProjects.js';
 import { getCurrentProjectDefinition as getCurrentProject, handleGetCurrentProject } from './projects/getCurrentProject.js';
 import { createProjectDefinition as createProject, handleCreateProject } from './projects/createProject.js';
+
+// Tasks
 import { getTasksDefinition as getTasks, handleGetTasks } from './tasks/getTasks.js';
 import { getTasksByProjectIdDefinition as getTasksByProjectId, handleGetTasksByProjectId } from './tasks/getTasksByProjectId.js';
 import { getTaskListsByProjectIdDefinition as getTaskListsByProjectId, handleGetTaskListsByProjectId } from './tasks/getTaskListsByProjectId.js';
@@ -14,24 +17,28 @@ import { createTaskDefinition as createTask, handleCreateTask } from './tasks/cr
 import { createSubTaskDefinition as createSubTask, handleCreateSubTask } from './tasks/createSubTask.js';
 import { updateTaskDefinition as updateTask, handleUpdateTask } from './tasks/updateTask.js';
 import { deleteTaskDefinition as deleteTask, handleDeleteTask } from './tasks/deleteTask.js';
-import { getTasksMetricsCompleteDefinition, handleGetTasksMetricsComplete } from './tasks/getTasksMetricsComplete.js';
-import { getTasksMetricsLateDefinition, handleGetTasksMetricsLate } from './tasks/getTasksMetricsLate.js';
-import { getTaskSubtasksDefinition, handleGetTaskSubtasks } from './tasks/getTaskSubtasks.js';
+import { getTasksMetricsCompleteDefinition as getTasksMetricsComplete, handleGetTasksMetricsComplete } from './tasks/getTasksMetricsComplete.js';
+import { getTasksMetricsLateDefinition as getTasksMetricsLate, handleGetTasksMetricsLate } from './tasks/getTasksMetricsLate.js';
+import { getTaskSubtasksDefinition as getTaskSubtasks, handleGetTaskSubtasks } from './tasks/getTaskSubtasks.js';
+
+// People
 import { getPeopleDefinition as getPeople, handleGetPeople } from './people/getPeople.js';
 import { getPersonByIdDefinition as getPersonById, handleGetPersonById } from './people/getPersonById.js';
 import { getProjectPeopleDefinition as getProjectPeople, handleGetProjectPeople } from './people/getProjectPeople.js';
 import { addPeopleToProjectDefinition as addPeopleToProject, handleAddPeopleToProject } from './people/addPeopleToProject.js';
 import { deletePersonDefinition as deletePerson, handleDeletePerson } from './people/deletePerson.js';
-import { getProjectsPeopleMetricsPerformance, handlegetProjectsPeopleMetricsPerformance } from './people/getPeopleMetricsPerformance.js';
-import { getProjectsPeopleUtilization, handlegetProjectsPeopleUtilization } from './people/getPeopleUtilization.js';
-import { getProjectsProjectsProjectIdPeoplePersonId, handlegetProjectsProjectsProjectIdPeoplePersonId } from './people/getProjectPerson.js';
-import { getProjectsReportingPrecannedUsertaskcompletionUserId, handlegetProjectsReportingPrecannedUsertaskcompletionUserId } from './reporting/getUserTaskCompletion.js';
-import { getProjectsReportingPrecannedUtilization, handlegetProjectsReportingPrecannedUtilization } from './people/getUtilization.js';
+
+// Reporting
+import { getProjectsPeopleMetricsPerformanceDefinition as getProjectsPeopleMetricsPerformance, handleGetProjectsPeopleMetricsPerformance } from './people/getPeopleMetricsPerformance.js';
+import { getProjectsPeopleUtilizationDefinition as getProjectsPeopleUtilization, handleGetProjectsPeopleUtilization } from './people/getPeopleUtilization.js';
+import { getProjectPersonDefinition as getProjectPerson, handleGetProjectPerson } from './people/getProjectPerson.js';
+import { getProjectsReportingUserTaskCompletionDefinition as getProjectsReportingUserTaskCompletion, handleGetProjectsReportingUserTaskCompletion } from './reporting/getUserTaskCompletion.js';
+import { getProjectsReportingUtilizationDefinition as getProjectsReportingUtilization, handleGetProjectsReportingUtilization } from './people/getUtilization.js';
 
 // Time-related imports
-import { getTime, handleGetTime } from './time/getTime.js';
-import { getProjectsAllocationsAllocationIdTime as getAllocationTimeDefinition, handlegetProjectsAllocationsAllocationIdTime } from './time/getAllocationTime.js';
-import { getTaskComments, handleGetTaskComments } from './tasks/getTaskComments.js';
+import { getTimeDefinition as getTime, handleGetTime } from './time/getTime.js';
+import { getProjectsAllocationsTimeDefinition as getAllocationTime, handleGetProjectsAllocationsTime } from './time/getAllocationTime.js';
+import { getTaskCommentsDefinition as getTaskComments, handleGetTaskComments } from './tasks/getTaskComments.js';
 
 // Define a structure that pairs tool definitions with their handlers
 interface ToolPair {
@@ -52,22 +59,22 @@ const toolPairs: ToolPair[] = [
   { definition: createSubTask, handler: handleCreateSubTask },
   { definition: updateTask, handler: handleUpdateTask },
   { definition: deleteTask, handler: handleDeleteTask },
-  { definition: getTasksMetricsCompleteDefinition, handler: handleGetTasksMetricsComplete },
-  { definition: getTasksMetricsLateDefinition, handler: handleGetTasksMetricsLate },
-  { definition: getTaskSubtasksDefinition, handler: handleGetTaskSubtasks },
+  { definition: getTasksMetricsComplete, handler: handleGetTasksMetricsComplete },
+  { definition: getTasksMetricsLate, handler: handleGetTasksMetricsLate },
+  { definition: getTaskSubtasks, handler: handleGetTaskSubtasks },
   { definition: getTaskComments, handler: handleGetTaskComments },
   { definition: getPeople, handler: handleGetPeople },
   { definition: getPersonById, handler: handleGetPersonById },
   { definition: getProjectPeople, handler: handleGetProjectPeople },
   { definition: addPeopleToProject, handler: handleAddPeopleToProject },
   { definition: deletePerson, handler: handleDeletePerson },
-  { definition: getProjectsPeopleMetricsPerformance, handler: handlegetProjectsPeopleMetricsPerformance },
-  { definition: getProjectsPeopleUtilization, handler: handlegetProjectsPeopleUtilization },
-  { definition: getAllocationTimeDefinition, handler: handlegetProjectsAllocationsAllocationIdTime },
+  { definition: getProjectsPeopleMetricsPerformance, handler: handleGetProjectsPeopleMetricsPerformance },
+  { definition: getProjectsPeopleUtilization, handler: handleGetProjectsPeopleUtilization },
+  { definition: getAllocationTime, handler: handleGetProjectsAllocationsTime },
   { definition: getTime, handler: handleGetTime },
-  { definition: getProjectsProjectsProjectIdPeoplePersonId, handler: handlegetProjectsProjectsProjectIdPeoplePersonId },
-  { definition: getProjectsReportingPrecannedUsertaskcompletionUserId, handler: handlegetProjectsReportingPrecannedUsertaskcompletionUserId },
-  { definition: getProjectsReportingPrecannedUtilization, handler: handlegetProjectsReportingPrecannedUtilization }
+  { definition: getProjectPerson, handler: handleGetProjectPerson },
+  { definition: getProjectsReportingUserTaskCompletion, handler: handleGetProjectsReportingUserTaskCompletion },
+  { definition: getProjectsReportingUtilization, handler: handleGetProjectsReportingUtilization }
 ];
 
 // Extract just the definitions for the toolDefinitions array
@@ -100,10 +107,10 @@ export { handleGetPersonById } from './people/getPersonById.js';
 export { handleGetProjectPeople } from './people/getProjectPeople.js';
 export { handleAddPeopleToProject } from './people/addPeopleToProject.js';
 export { handleDeletePerson } from './people/deletePerson.js';
-export { handlegetProjectsPeopleMetricsPerformance } from './people/getPeopleMetricsPerformance.js';
-export { handlegetProjectsPeopleUtilization } from './people/getPeopleUtilization.js';
+export { handleGetProjectsPeopleMetricsPerformance } from './people/getPeopleMetricsPerformance.js';
+export { handleGetProjectsPeopleUtilization } from './people/getPeopleUtilization.js';
 export { handleGetTime } from './time/getTime.js';
-export { handlegetProjectsAllocationsAllocationIdTime } from './time/getAllocationTime.js';
-export { handlegetProjectsProjectsProjectIdPeoplePersonId } from './people/getProjectPerson.js';
-export { handlegetProjectsReportingPrecannedUsertaskcompletionUserId } from './reporting/getUserTaskCompletion.js';
-export { handlegetProjectsReportingPrecannedUtilization } from './people/getUtilization.js'; 
+export { handleGetProjectsAllocationsTime } from './time/getAllocationTime.js';
+export { handleGetProjectPerson } from './people/getProjectPerson.js';
+export { handleGetProjectsReportingUserTaskCompletion } from './reporting/getUserTaskCompletion.js';
+export { handleGetProjectsReportingUtilization } from './people/getUtilization.js'; 

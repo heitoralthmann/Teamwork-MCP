@@ -4,7 +4,7 @@ import logger from '../../utils/logger.js';
 /**
  * Tool definition for getting all time entries
  */
-export const getTime = {
+export const getTimeDefinition = {
   name: "getTime",
   description: "Get all time entries. Return all logged time entries for all projects. Only the time entries that the logged-in user can access will be returned.",
   inputSchema: {

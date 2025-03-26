@@ -73,7 +73,9 @@ export const createApiClientForVersion = (version: string = 'v3'): AxiosInstance
     
     // Log request interceptor for debugging
     api.interceptors.request.use((request: InternalAxiosRequestConfig) => {
-      logger.info(`Request URL: ${request.baseURL}${request.url}`);
+      // Remove any prefix / from the url
+      const url = request.url?.replace(/^\/+/, '');
+      logger.info(`Request URL: ${request.baseURL}${url}`);
       logger.info(`Request method: ${request.method?.toUpperCase()}`);
       
       // Don't log full headers to avoid exposing auth credentials in logs
@@ -107,17 +109,21 @@ export const createApiClientForVersion = (version: string = 'v3'): AxiosInstance
       logger.info(`Response status: ${response.status} ${response.statusText}`);
       
       // Log response headers
-      logger.info(`Response headers: ${JSON.stringify(response.headers)}`);
+      logger.verbose(`Response headers: ${JSON.stringify(response.headers)}`);
       
       // Log response data preview
       const dataType = typeof response.data;
       if (dataType === 'object' && response.data !== null) {
+        logger.info(`4️⃣`);
         if (Array.isArray(response.data)) {
+          logger.info(`5️⃣`);
           logger.info(`Response data: Array with ${response.data.length} items`);
           if (response.data.length > 0) {
+            logger.info(`6️⃣`);
             logger.info(`First item sample: ${JSON.stringify(response.data[0]).substring(0, 200)}...`);
           }
         } else {
+          logger.info(`7️⃣`);
           const keys = Object.keys(response.data);
           logger.info(`Response data: Object with keys [${keys.join(', ')}]`);
           logger.info(`Data preview: ${JSON.stringify(response.data).substring(0, 200)}...`);
@@ -128,6 +134,7 @@ export const createApiClientForVersion = (version: string = 'v3'): AxiosInstance
       
       return response;
     }, (error: AxiosError) => {
+      logger.info(`8️⃣`);
       if (error.response) {
         logger.error(`Response error: ${error.response.status} - ${error.response.statusText}`);
         logger.error(`Response headers: ${JSON.stringify(error.response.headers)}`);
