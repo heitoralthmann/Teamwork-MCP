@@ -194,7 +194,7 @@ The tool filtering is enforced at two levels for enhanced security:
 
 To associate your current solution with a Teamwork project, you can use the following method:
 
-#### Using a Configuration File
+### Using a Configuration File
 
 You can create a `.teamwork` file in the root of your project with the following structure:
 
@@ -302,3 +302,7 @@ The Teamwork MCP tools will now be available to the Cursor Agent in Composer.
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Disclaimer
+
+This project is not affiliated with, endorsed by, or sponsored by Teamwork.com. The use of the name "Teamwork" in the package name (@vizioz/teamwork-mcp) is solely for descriptive purposes to indicate compatibility with the Teamwork.com API.
