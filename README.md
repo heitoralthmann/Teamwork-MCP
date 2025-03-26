@@ -301,7 +301,7 @@ The Teamwork MCP tools will now be available to the Cursor Agent in Composer.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/Vizioz/Teamwork-MCP?tab=License-1-ov-file) file for details.
 
 ## Disclaimer
 
