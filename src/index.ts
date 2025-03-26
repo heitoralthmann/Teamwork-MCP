@@ -2,7 +2,6 @@ import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import {
   CallToolRequestSchema,
-  ListPromptsRequestSchema,
   ListToolsRequestSchema,
   Prompt
 } from "@modelcontextprotocol/sdk/types.js";
@@ -21,7 +20,7 @@ import {
 const server = new Server(
   {
     name: 'teamwork-mcp',
-    version: '0.1.3-alpha'
+    version: '0.1.4-alpha'
   },
   {
     capabilities: {
@@ -194,7 +193,7 @@ async function main() {
         // Log startup information to file only
         logger.info('=== Teamwork MCP Server Starting ===');
         logger.info(`Server name: teamwork-mcp`);
-        logger.info(`Server version: 1.0.1`);
+        logger.info(`Server version: 0.1.4-alpha`);
         logger.info(`Node.js version: ${process.version}`);
         logger.info(`Environment: ${process.env.NODE_ENV || 'development'}`);
         
@@ -210,6 +209,7 @@ async function main() {
         
         // Validate configuration
         if (!config.isValid) {
+            console.log("⚙️ Invalid configuration. Please check your settings.");
             logger.error('Invalid configuration. Please check your settings.');
             process.exit(1);
         }
@@ -230,6 +230,7 @@ async function main() {
         logger.info('Server connected to stdio transport successfully');
         logger.info('=== Teamwork MCP Server Ready ===');
     } catch (error: any) {
+        console.log("🚀 Server startup error:", error);
         logger.error(`Server startup error: ${error.message}`);
         if (error.stack) {
             logger.error(`Stack trace: ${error.stack}`);
@@ -240,8 +241,10 @@ async function main() {
 
 main().catch((error) => {
     logger.error("Unhandled server error:", error);
+    console.log("🚀 Unhandled server error:", error);
     if (error.stack) {
         logger.error(`Stack trace: ${error.stack}`);
+        console.log("🚀 Stack trace:", error.stack);
     }
     process.exit(1);
 });

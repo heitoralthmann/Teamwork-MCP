@@ -224,6 +224,8 @@ npx teamwork-mcp --domain=your-company --user=your-email@example.com --pass=your
 
 ### Building the application
 
+*Note: This is not needed if you just want to use the MCP, use the NPX instructions above.*
+
 Build the application:
 
 ``` batch
@@ -262,7 +264,7 @@ To run the MCP inspector for debugging:
 npm run inspector
 ```
 
-## Adding to Cursor
+## Adding to Cursor (and other MCP Clients)
 
 To add this MCP server to Cursor:
 
@@ -272,28 +274,46 @@ To add this MCP server to Cursor:
 2. Click "+ Add New MCP Server"
 3. Enter a name for the server (e.g., "Teamwork API")
 4. Select "stdio" as the transport type
-5. Enter the command to run the server: `node C:/your-full-path/build/index.js` and then if needed, add the command line arguments as mentioned above.
+5. Enter the command to run the server: `npx @vizioz/teamwork-mcp` and add the credentials and domain command line arguments as mentioned above.
    - You can include tool filtering options: `--allow=getProjects,getTasks` or `--deny=deleteTask`
 6. Click "Add"
 
 ### Versions after 0.47 ( editing the config manually )
 
 ``` json
-    "Teamwork-MCP": {
-      "command": "node",
+    "Teamwork": {
+      "command": "npx",
       "args": [
-        "C:/your-full-path/build/index.js"
+        "-y",
+        "@vizioz/teamwork-mcp",
+        "--domain",
+        "yourdomain",
+        "--user",
+        "youruser@yourdomain.com",
+        "--pass",
+        "yourPassword"
       ]
+    }
 ```
 
 If you want to add the allow or deny arguments mentioned above you just add them like this, you can add any of the examples given above, you can also add both groups and individual tools as shown below:
 
 ``` json
-    "Teamwork-MCP": {
-      "command": "node",
+    "Teamwork": {
+      "command": "npx",
       "args": [
-        "C:/your-full-path/build/index.js",
-        "--allow=Tasks,getProjects"
+        "-y",
+        "@vizioz/teamwork-mcp",
+        "--domain",
+        "yourdomain",
+        "--user",
+        "youruser@yourdomain.com",
+        "--pass",
+        "yourPassword",
+        "--allow",
+        "Tasks,Projects",
+        "--deny",
+        "getProjectsPeopleMetricsPerformance,getProjectsPeopleUtilization"
       ]
 ```
 
