@@ -208,6 +208,20 @@ Once configured, the MCP will be able to find your Teamwork project and associat
 
 ## Usage
 
+### Using NPX (Recommended)
+
+The easiest way to use Teamwork MCP is with npx:
+
+```bash
+npx teamwork-mcp
+```
+
+You can also pass configuration options:
+
+```bash
+npx teamwork-mcp --domain=your-company --user=your-email@example.com --pass=your-password
+```
+
 ### Building the application
 
 Build the application:

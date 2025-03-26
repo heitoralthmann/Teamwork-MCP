@@ -343,3 +343,10 @@
   - Added service implementation for getting task comments
   - Added tool implementation following the same pattern as other task-related tools
   - Updated service and tool indexes to include the new functionality
+
+### 03/25/2024
+
+- ✅ Added GitHub Actions workflow for npm publishing
+  - Created npm-publish.yml workflow that triggers on release creation
+  - Configured workflow to build and publish package to npmjs.com
+  - Setup authentication using NPM_TOKEN secret
