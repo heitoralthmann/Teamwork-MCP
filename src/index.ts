@@ -21,7 +21,7 @@ import {
 const server = new Server(
   {
     name: 'teamwork-mcp',
-    version: '1.0.1'
+    version: '0.1.0-alpha'
   },
   {
     capabilities: {

@@ -1,6 +1,6 @@
 {
-  "name": "teamwork-mcp",
-  "version": "1.0.1",
+  "name": "@vizioz/teamwork-mcp",
+  "version": "0.1.0-alpha",
   "description": "MCP server to connect to the Teamwork.com API",
   "type": "module",
   "bin": {
