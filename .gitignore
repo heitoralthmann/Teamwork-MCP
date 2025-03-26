@@ -44,3 +44,5 @@ teamwork.config.json
 .swagger-mcp
 
 .vs/
+
+*.tgz
