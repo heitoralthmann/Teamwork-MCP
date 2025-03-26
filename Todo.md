@@ -324,6 +324,17 @@
 ✅ Updated both the handler and service implementation to use consistent field names
 ✅ Aligned validation with the TaskTask model definition
 
+### 03/26/2024
+
+- ✅ Fix build script in package.json to handle missing .env file gracefully in GitHub Actions
+
+### 03/25/2024
+
+- ✅ Added GitHub Actions workflow for npm publishing
+  - Created npm-publish.yml workflow that triggers on release creation
+  - Configured workflow to build and publish package to npmjs.com
+  - Setup authentication using NPM_TOKEN secret
+
 ### 03/14/2024
 
 ✅ GET /projects/api/v3/time.json - Implemented endpoint to get all time entries
@@ -343,10 +354,3 @@
   - Added service implementation for getting task comments
   - Added tool implementation following the same pattern as other task-related tools
   - Updated service and tool indexes to include the new functionality
-
-### 03/25/2024
-
-- ✅ Added GitHub Actions workflow for npm publishing
-  - Created npm-publish.yml workflow that triggers on release creation
-  - Configured workflow to build and publish package to npmjs.com
-  - Setup authentication using NPM_TOKEN secret
