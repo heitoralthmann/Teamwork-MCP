@@ -6,6 +6,9 @@
   "bin": {
     "teamwork-mcp": "./build/index.js"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc && node -e \"const fs = require('fs'); if (fs.existsSync('.env.example')) { fs.copyFileSync('.env.example', 'build/.env'); } fs.chmodSync('build/index.js', '755')\"",
     "prepare": "npm run build",
