@@ -7,6 +7,9 @@
 - 🟨 GET /projects/api/v3/projects/{projectId}/latestactivity
 - 🟨 DELETE /projects/api/v3/projects/{projectId}/activity
 
+## Comments
+- 🟨 POST /{resource}/{resourceId}/comments.json ( Resource options: links, milestones, files, notebooks or tasks )
+
 ## TimeTracking
 
 - ✅ GET /projects/api/v3/allocations/{allocationId}/time.json
