@@ -229,7 +229,6 @@ async function main() {
         logger.info('Server connected to stdio transport successfully');
         logger.info('=== Teamwork MCP Server Ready ===');
     } catch (error: any) {
-        console.log("🚀 Server startup error:", error);
         logger.error(`Server startup error: ${error.message}`);
         if (error.stack) {
             logger.error(`Stack trace: ${error.stack}`);
@@ -240,10 +239,8 @@ async function main() {
 
 main().catch((error) => {
     logger.error("Unhandled server error:", error);
-    console.log("🚀 Unhandled server error:", error);
     if (error.stack) {
         logger.error(`Stack trace: ${error.stack}`);
-        console.log("🚀 Stack trace:", error.stack);
     }
     process.exit(1);
 });
