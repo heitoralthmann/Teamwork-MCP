@@ -242,6 +242,7 @@ const toolGroups: Record<string, string[]> = {
   'People': ['getPeople', 'getPersonById', 'getProjectPeople', 'addPeopleToProject', 'deletePerson', 'getProjectsPeopleMetricsPerformance', 'getProjectsPeopleUtilization', 'getProjectPerson'],
   'Reporting': ['getProjectsReportingUserTaskCompletion', 'getProjectsReportingUtilization'],
   'Time': ['getTime', 'getProjectsAllocationsTime'],
+  'Comments': ['createComment']
 };
 
 // Expand allow and deny lists based on groups

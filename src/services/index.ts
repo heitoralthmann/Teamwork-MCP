@@ -18,6 +18,9 @@ import updateTask from './tasks/updateTask.js';
 import deleteTask from './tasks/deleteTask.js';
 import getTaskComments from './tasks/getTaskComments.js';
 
+// Comment-related exports
+import createComment from './comments/createComment.js';
+
 // People-related exports
 import getPeople, { PeopleQueryParams } from './people/getPeople.js';
 import getPersonById from './people/getPersonById.js';
@@ -38,6 +41,7 @@ import getUtilizationCsv from './reporting/getUtilizationCsv.js';
 // Re-export all functions
 export { getProjects, getCurrentProject, createProject, CreateProjectData };
 export { getTasks, getTasksByProjectId, getTaskListsByProjectId, getTaskById, createTask, createSubTask, updateTask, deleteTask };
+export { createComment };
 export { getPeople, PeopleQueryParams, getPersonById, getProjectPeople, addPeopleToProject, AddPeopleToProjectPayload, deletePerson, getPeopleMetricsPerformance, getPeopleUtilization, getProjectPerson };
 export { getTime, GetTimeParams };
 export { getUserTaskCompletion, getUtilizationCsv };
@@ -59,6 +63,9 @@ export default {
   updateTask,
   deleteTask,
   getTaskComments,
+  
+  // Comments
+  createComment,
   
   // People
   getPeople,

@@ -20,6 +20,10 @@ import { deleteTaskDefinition as deleteTask, handleDeleteTask } from './tasks/de
 import { getTasksMetricsCompleteDefinition as getTasksMetricsComplete, handleGetTasksMetricsComplete } from './tasks/getTasksMetricsComplete.js';
 import { getTasksMetricsLateDefinition as getTasksMetricsLate, handleGetTasksMetricsLate } from './tasks/getTasksMetricsLate.js';
 import { getTaskSubtasksDefinition as getTaskSubtasks, handleGetTaskSubtasks } from './tasks/getTaskSubtasks.js';
+import { getTaskCommentsDefinition as getTaskComments, handleGetTaskComments } from './tasks/getTaskComments.js';
+
+// Comments
+import { createCommentDefinition as createComment, handleCreateComment } from './comments/createComment.js';
 
 // People
 import { getPeopleDefinition as getPeople, handleGetPeople } from './people/getPeople.js';
@@ -38,7 +42,6 @@ import { getProjectsReportingUtilizationDefinition as getProjectsReportingUtiliz
 // Time-related imports
 import { getTimeDefinition as getTime, handleGetTime } from './time/getTime.js';
 import { getProjectsAllocationsTimeDefinition as getAllocationTime, handleGetProjectsAllocationsTime } from './time/getAllocationTime.js';
-import { getTaskCommentsDefinition as getTaskComments, handleGetTaskComments } from './tasks/getTaskComments.js';
 
 // Define a structure that pairs tool definitions with their handlers
 interface ToolPair {
@@ -63,6 +66,7 @@ const toolPairs: ToolPair[] = [
   { definition: getTasksMetricsLate, handler: handleGetTasksMetricsLate },
   { definition: getTaskSubtasks, handler: handleGetTaskSubtasks },
   { definition: getTaskComments, handler: handleGetTaskComments },
+  { definition: createComment, handler: handleCreateComment },
   { definition: getPeople, handler: handleGetPeople },
   { definition: getPersonById, handler: handleGetPersonById },
   { definition: getProjectPeople, handler: handleGetProjectPeople },
@@ -102,6 +106,7 @@ export { handleGetTasksMetricsComplete } from './tasks/getTasksMetricsComplete.j
 export { handleGetTasksMetricsLate } from './tasks/getTasksMetricsLate.js';
 export { handleGetTaskSubtasks } from './tasks/getTaskSubtasks.js';
 export { handleGetTaskComments } from './tasks/getTaskComments.js';
+export { handleCreateComment } from './comments/createComment.js';
 export { handleGetPeople } from './people/getPeople.js';
 export { handleGetPersonById } from './people/getPersonById.js';
 export { handleGetProjectPeople } from './people/getProjectPeople.js';

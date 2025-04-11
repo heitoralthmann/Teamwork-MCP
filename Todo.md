@@ -8,7 +8,8 @@
 - 🟨 DELETE /projects/api/v3/projects/{projectId}/activity
 
 ## Comments
-- 🟨 POST /{resource}/{resourceId}/comments.json ( Resource options: links, milestones, files, notebooks or tasks )
+
+- ✅ POST /{resource}/{resourceId}/comments.json ( Resource options: links, milestones, files, notebooks or tasks )
 
 ## TimeTracking
 
@@ -302,7 +303,7 @@
 🟨 Implement proper date handling for task creation and updates - Use `dueAt` format "YYYY-MM-DD" instead of full ISO timestamps
 🟨 Add support for task status values - Need to determine valid status values (only "new" and "active" work; "complete", "completed", "done", and "in-progress" all fail). "Late" status causes a 500 server error, suggesting it might be a valid status but can't be set directly. Setting progress to 100% does not automatically change status.
 🟨 Improve error handling for task creation and updates - Add more detailed error messages
-✅ Support for task assignees works with format: `{"assignees": {"userIds": [22717]}}` 
+✅ Support for task assignees works with format: `{"assignees": {"userIds": [22717]}}`
 🟨 Document the proper structure for task creation and updates in README.md
 
 ### MCP Server Enhancements
@@ -327,23 +328,34 @@
 ✅ Updated both the handler and service implementation to use consistent field names
 ✅ Aligned validation with the TaskTask model definition
 
-### 03/26/2024
+### 04/10/2025
+
+- ✅ Added the Create Comment Endpoint
+
+### 03/27/2025
+
+- ✅ Implemented CreateComment endpoint
+  - Added service implementation for creating comments on resources (tasks, milestones, notebooks, links, fileversions)
+  - Added tool implementation following existing patterns
+  - Updated service and tool indexes to include the new functionality
+
+### 03/26/2025
 
 - ✅ Fix build script in package.json to handle missing .env file gracefully in GitHub Actions
 
-### 03/25/2024
+### 03/25/2025
 
 - ✅ Added GitHub Actions workflow for npm publishing
   - Created npm-publish.yml workflow that triggers on release creation
   - Configured workflow to build and publish package to npmjs.com
   - Setup authentication using NPM_TOKEN secret
 
-### 03/14/2024
+### 03/14/2025
 
 ✅ GET /projects/api/v3/time.json - Implemented endpoint to get all time entries
 ✅ GET /projects/api/v3/allocations/{allocationId}/time.json
 
-## 03/10/2024
+## 03/10/2025
 
 - ✅ Implemented CreateSubTask endpoint
   - Added service implementation for creating subtasks
