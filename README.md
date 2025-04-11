@@ -42,6 +42,10 @@ The following tools are available through the MCP server:
 - `getTaskSubtasks` - Get all subtasks for a specific task in Teamwork
 - `getTaskComments` - Get comments for a specific task from Teamwork
 
+### Comment Tools
+
+- `createComment` - Create a comment related to a task/message/notebook
+
 ### People Tools
 
 - `getPeople` - Get all people from Teamwork
@@ -154,6 +158,7 @@ You can now specify groups of tools for filtering, allowing for more flexible co
 - **People**: Includes all people-related tools.
 - **Reporting**: Includes all reporting-related tools.
 - **Time**: Includes all time-related tools.
+- **Comments**: Includes specific comment tools.
 
 ### Using Groups in Tool Filtering
 
