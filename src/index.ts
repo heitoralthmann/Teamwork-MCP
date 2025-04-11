@@ -20,7 +20,7 @@ import {
 const server = new Server(
   {
     name: 'teamwork-mcp',
-    version: '0.1.6-alpha'
+    version: '0.1.11-alpha'
   },
   {
     capabilities: {
@@ -193,7 +193,7 @@ async function main() {
         // Log startup information to file only
         logger.info('=== Teamwork MCP Server Starting ===');
         logger.info(`Server name: teamwork-mcp`);
-        logger.info(`Server version: 0.1.6-alpha`);
+        logger.info(`Server version: 0.1.11-alpha`);
         logger.info(`Node.js version: ${process.version}`);
         logger.info(`Environment: ${process.env.NODE_ENV || 'development'}`);
         
@@ -210,7 +210,6 @@ async function main() {
         // Validate configuration
         if (!config.isValid) {
             logger.error('Invalid configuration. Please check your settings.');
-            process.exit(1);
         }
         
         // Test API connection
@@ -219,7 +218,6 @@ async function main() {
             logger.info('API client initialized successfully');
         } catch (apiError: any) {
             logger.error(`API client initialization failed: ${apiError.message}`);
-            process.exit(1);
         }
         
         // Connect using stdio transport - no console output
@@ -233,7 +231,6 @@ async function main() {
         if (error.stack) {
             logger.error(`Stack trace: ${error.stack}`);
         }
-        process.exit(1);
     }
 }
 

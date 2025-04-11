@@ -49,8 +49,9 @@ export const constructApiUrl = (domain: string | undefined): string => {
  */
 export const loadConfig = (args?: string[]) => {
   // Parse command line arguments if provided
-
-  logger.info('args', args ? JSON.stringify(args) : 'undefined');
+  if (args === undefined) {
+    logger.info('No command line arguments provided');
+  }
 
   const argv = args 
     ? minimist(args, {
@@ -84,7 +85,6 @@ export const loadConfig = (args?: string[]) => {
       dotenv.config({ path: path.resolve(rootDir, '.env') });
       logger.info('Attempted to load environment variables from .env file');
     } catch (error) {
-      console.log("🪲 Failed to load .env file, will use environment variables or command line arguments");
       logger.warn('Failed to load .env file, will use environment variables or command line arguments');
     }
   }
