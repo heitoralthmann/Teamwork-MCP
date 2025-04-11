@@ -209,7 +209,6 @@ async function main() {
         
         // Validate configuration
         if (!config.isValid) {
-            console.log("⚙️ Invalid configuration. Please check your settings.");
             logger.error('Invalid configuration. Please check your settings.');
             process.exit(1);
         }
