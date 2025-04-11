@@ -171,101 +171,101 @@
 
 ## People
 
-✅ GET /projects/api/v3/people.json
-✅ GET /projects/api/v3/people/{personId}.json
-✅ GET /projects/api/v3/projects/{projectId}/people.json
-✅ POST /projects/api/v3/projects/{projectId}/people.json
-✅ DELETE /projects/api/v3/people/{personId}.json
-✅ GET /projects/api/v3/people/metrics/performance.json
-✅ GET /projects/api/v3/people/utilization.json
-✅ GET /projects/api/v3/projects/{projectId}/people/{personId}.json
-✅ GET /projects/api/v3/reporting/precanned/usertaskcompletion/{userId}.json
-✅ GET /projects/api/v3/reporting/precanned/utilization.csv
-✅ GET /projects/api/v3/reporting/precanned/utilization.html
-✅ GET /projects/api/v3/reporting/precanned/utilization.pdf
-✅ GET /projects/api/v3/reporting/precanned/utilization.xlsx
+- ✅ GET /projects/api/v3/people.json
+- ✅ GET /projects/api/v3/people/{personId}.json
+- ✅ GET /projects/api/v3/projects/{projectId}/people.json
+- ✅ POST /projects/api/v3/projects/{projectId}/people.json
+- ✅ DELETE /projects/api/v3/people/{personId}.json
+- ✅ GET /projects/api/v3/people/metrics/performance.json
+- ✅ GET /projects/api/v3/people/utilization.json
+- ✅ GET /projects/api/v3/projects/{projectId}/people/{personId}.json
+- ✅ GET /projects/api/v3/reporting/precanned/usertaskcompletion/{userId}.json
+- ✅ GET /projects/api/v3/reporting/precanned/utilization.csv
+- ✅ GET /projects/api/v3/reporting/precanned/utilization.html
+- ✅ GET /projects/api/v3/reporting/precanned/utilization.pdf
+- ✅ GET /projects/api/v3/reporting/precanned/utilization.xlsx
 
 ## Person
 
-✅ GET /projects/api/v3/people/{personId}.json
-✅ GET /projects/api/v3/projects/{projectId}/people/{personId}.json
-✅ GET /projects/api/v3/reporting/precanned/usertaskcompletion/{userId}.json
+- ✅ GET /projects/api/v3/people/{personId}.json
+- ✅ GET /projects/api/v3/projects/{projectId}/people/{personId}.json
+- ✅ GET /projects/api/v3/reporting/precanned/usertaskcompletion/{userId}.json
 
 ## Categories
 
-🟨 GET /projects/api/v3/projectcategories.json
-🟨 GET /projects/api/v3/projectcategories/{categoryId}.json
-🟨 GET /projects/api/v3/projects/teamwork/categories.json
+- 🟨 GET /projects/api/v3/projectcategories.json
+- 🟨 GET /projects/api/v3/projectcategories/{categoryId}.json
+- 🟨 GET /projects/api/v3/projects/teamwork/categories.json
 
 ## Projects
 
-✅ GET /projects/api/v3/projects.json
-🟨 PUT /projects/api/v3/projects/featureorder.json
-🟨 GET /projects/api/v3/projects/metrics/active.json
-🟨 GET /projects/api/v3/projects/metrics/billable.json
-🟨 GET /projects/api/v3/projects/metrics/healths.json
-🟨 GET /projects/api/v3/projects/metrics/invoice.json
-🟨 GET /projects/api/v3/projects/metrics/owners.json
-🟨 GET /projects/api/v3/projects/metrics/unbilled.json
-🟨 GET /projects/api/v3/projects/starred.json
-🟨 GET /projects/api/v3/projects/teamwork/samples.json
-🟨 GET /projects/api/v3/projects/templates.json
-🟨 PUT /projects/api/v3/projects/tentative/{projectId}/convert.json
-✅ GET /projects/api/v3/projects/{projectId}.json
-🟨 GET /projects/api/v3/projects/{projectId}/featureorder.json
-🟨 PUT /projects/api/v3/projects/{projectId}/featureorder.json
-🟨 GET /projects/api/v3/reporting/precanned/health/projects.csv
-🟨 GET /projects/api/v3/reporting/precanned/health/projects.html
-🟨 GET /projects/api/v3/reporting/precanned/health/projects.pdf
-🟨 GET /projects/api/v3/reporting/precanned/health/projects.xlsx
+- ✅ GET /projects/api/v3/projects.json
+- 🟨 PUT /projects/api/v3/projects/featureorder.json
+- 🟨 GET /projects/api/v3/projects/metrics/active.json
+- 🟨 GET /projects/api/v3/projects/metrics/billable.json
+- 🟨 GET /projects/api/v3/projects/metrics/healths.json
+- 🟨 GET /projects/api/v3/projects/metrics/invoice.json
+- 🟨 GET /projects/api/v3/projects/metrics/owners.json
+- 🟨 GET /projects/api/v3/projects/metrics/unbilled.json
+- 🟨 GET /projects/api/v3/projects/starred.json
+- 🟨 GET /projects/api/v3/projects/teamwork/samples.json
+- 🟨 GET /projects/api/v3/projects/templates.json
+- 🟨 PUT /projects/api/v3/projects/tentative/{projectId}/convert.json
+- ✅ GET /projects/api/v3/projects/{projectId}.json
+- 🟨 GET /projects/api/v3/projects/{projectId}/featureorder.json
+- 🟨 PUT /projects/api/v3/projects/{projectId}/featureorder.json
+- 🟨 GET /projects/api/v3/reporting/precanned/health/projects.csv
+- 🟨 GET /projects/api/v3/reporting/precanned/health/projects.html
+- 🟨 GET /projects/api/v3/reporting/precanned/health/projects.pdf
+- 🟨 GET /projects/api/v3/reporting/precanned/health/projects.xlsx
 
 ## ProjectUpdates
 
-🟨 GET /projects/api/v3/projects/updates.json
-🟨 GET /projects/api/v3/projects/{projectIds}/updates.json
+- 🟨 GET /projects/api/v3/projects/updates.json
+- 🟨 GET /projects/api/v3/projects/{projectIds}/updates.json
 
 ## Risks
 
-🟨 GET /projects/api/v3/projects/{projectId}/risks
-🟨 PUT /projects/api/v3/projects/{projectId}/risks/copy
-🟨 GET /projects/api/v3/risks.json
+- 🟨 GET /projects/api/v3/projects/{projectId}/risks
+- 🟨 PUT /projects/api/v3/projects/{projectId}/risks/copy
+- 🟨 GET /projects/api/v3/risks.json
 
 ## Summary
 
-🟨 GET /projects/api/v3/projects/{projectId}/summary.json
-🟨 GET /projects/api/v3/summary.json
+- 🟨 GET /projects/api/v3/projects/{projectId}/summary.json
+- 🟨 GET /projects/api/v3/summary.json
 
 ## TaskLists
 
-✅ GET /projects/api/v3/projects/{projectId}/tasklists
-🟨 GET /projects/api/v3/projects/{projectId}/tasklists.csv
-🟨 GET /projects/api/v3/projects/{projectId}/tasklists.html
-🟨 GET /projects/api/v3/projects/{projectId}/tasklists.pdf
-🟨 GET /projects/api/v3/projects/{projectId}/tasklists.xlsx
-🟨 GET /projects/api/v3/tasklists
-🟨 GET /projects/api/v3/tasklists/{tasklistId}
+- ✅ GET /projects/api/v3/projects/{projectId}/tasklists
+- 🟨 GET /projects/api/v3/projects/{projectId}/tasklists.csv
+- 🟨 GET /projects/api/v3/projects/{projectId}/tasklists.html
+- 🟨 GET /projects/api/v3/projects/{projectId}/tasklists.pdf
+- 🟨 GET /projects/api/v3/projects/{projectId}/tasklists.xlsx
+- 🟨 GET /projects/api/v3/tasklists
+- 🟨 GET /projects/api/v3/tasklists/{tasklistId}
 
 ## Tasklists
 
-🟨 DELETE /projects/api/v3/tasklists/{tasklistId}.json
+- 🟨 DELETE /projects/api/v3/tasklists/{tasklistId}.json
 
 ## Tasks
 
-✅ POST /projects/api/v3/tasklists/{tasklistId}/tasks.json
-✅ GET /projects/api/v3/projects/{projectId}/tasks.json
-✅ GET /projects/api/v3/tasklists/{tasklistId}/tasks.json
-✅ GET /projects/api/v3/tasks.json
-✅ GET /projects/api/v3/tasks/metrics/complete.json
-✅ GET /projects/api/v3/tasks/metrics/late.json
-✅ DELETE /projects/api/v3/tasks/{taskId}.json
-✅ GET /projects/api/v3/tasks/{taskId}.json
-✅ PATCH /projects/api/v3/tasks/{taskId}.json
-✅ GET /projects/api/v3/tasks/{taskId}/subtasks.json
-✅ POST /projects/api/v3/tasks/{taskId}/subtasks.json
-🟨 GET /projects/api/v3/reporting/precanned/plannedvsactual/tasks.csv
-🟨 GET /projects/api/v3/reporting/precanned/plannedvsactual/tasks.html
-🟨 GET /projects/api/v3/reporting/precanned/plannedvsactual/tasks.pdf
-🟨 GET /projects/api/v3/reporting/precanned/plannedvsactual/tasks.xlsx
+- ✅ POST /projects/api/v3/tasklists/{tasklistId}/tasks.json
+- ✅ GET /projects/api/v3/projects/{projectId}/tasks.json
+- ✅ GET /projects/api/v3/tasklists/{tasklistId}/tasks.json
+- ✅ GET /projects/api/v3/tasks.json
+- ✅ GET /projects/api/v3/tasks/metrics/complete.json
+- ✅ GET /projects/api/v3/tasks/metrics/late.json
+- ✅ DELETE /projects/api/v3/tasks/{taskId}.json
+- ✅ GET /projects/api/v3/tasks/{taskId}.json
+- ✅ PATCH /projects/api/v3/tasks/{taskId}.json
+- ✅ GET /projects/api/v3/tasks/{taskId}/subtasks.json
+- ✅ POST /projects/api/v3/tasks/{taskId}/subtasks.json
+- 🟨 GET /projects/api/v3/reporting/precanned/plannedvsactual/tasks.csv
+- 🟨 GET /projects/api/v3/reporting/precanned/plannedvsactual/tasks.html
+- 🟨 GET /projects/api/v3/reporting/precanned/plannedvsactual/tasks.pdf
+- 🟨 GET /projects/api/v3/reporting/precanned/plannedvsactual/tasks.xlsx
 
 ## TaskComments
 
@@ -273,60 +273,65 @@
 
 ## PeopleStatus
 
-🟨 GET /projects/api/v3/statuses.json
-🟨 GET /projects/api/v3/statuses/timeline.json
-🟨 GET /projects/api/v3/teams/{teamId}/statuses/timeline.json
+- 🟨 GET /projects/api/v3/statuses.json
+- 🟨 GET /projects/api/v3/statuses/timeline.json
+- 🟨 GET /projects/api/v3/teams/{teamId}/statuses/timeline.json
 
 ## Tags
 
-🟨 GET /projects/api/v3/tags.json
-🟨 POST /projects/api/v3/tags.json
-🟨 POST /projects/api/v3/tags/bulk/delete.json
-🟨 DELETE /projects/api/v3/tags/{tagId}.json
-🟨 GET /projects/api/v3/tags/{tagId}.json
-🟨 PATCH /projects/api/v3/tags/{tagId}.json
+- 🟨 GET /projects/api/v3/tags.json
+- 🟨 POST /projects/api/v3/tags.json
+- 🟨 POST /projects/api/v3/tags/bulk/delete.json
+- 🟨 DELETE /projects/api/v3/tags/{tagId}.json
+- 🟨 GET /projects/api/v3/tags/{tagId}.json
+- 🟨 PATCH /projects/api/v3/tags/{tagId}.json
 
 ## Timesheets
 
-🟨 GET /projects/api/v3/timesheets.json
-🟨 GET /projects/api/v3/timesheets/totals.json
+- 🟨 GET /projects/api/v3/timesheets.json
+- 🟨 GET /projects/api/v3/timesheets/totals.json
 
 ## Workload
 
-🟨 GET /projects/api/v3/workload/planners.json
+- 🟨 GET /projects/api/v3/workload/planners.json
 
 ## MCP Implementation Issues
 
 ### Task Creation and Updates
 
-✅ Fix updateTask functionality - Updated with Swagger-generated schema and improved error handling
-🟨 Implement proper date handling for task creation and updates - Use `dueAt` format "YYYY-MM-DD" instead of full ISO timestamps
-🟨 Add support for task status values - Need to determine valid status values (only "new" and "active" work; "complete", "completed", "done", and "in-progress" all fail). "Late" status causes a 500 server error, suggesting it might be a valid status but can't be set directly. Setting progress to 100% does not automatically change status.
-🟨 Improve error handling for task creation and updates - Add more detailed error messages
-✅ Support for task assignees works with format: `{"assignees": {"userIds": [22717]}}`
-🟨 Document the proper structure for task creation and updates in README.md
+- ✅ Fix updateTask functionality - Updated with Swagger-generated schema and improved error handling
+- 🟨 Implement proper date handling for task creation and updates - Use `dueAt` format "YYYY-MM-DD" instead of full ISO timestamps
+- 🟨 Add support for task status values - Need to determine valid status values (only "new" and "active" work; "complete", "completed", "done", and "in-progress" all fail). "Late" status causes a 500 server error, suggesting it might be a valid status but can't be set directly. Setting progress to 100% does not automatically change status.
+- 🟨 Improve error handling for task creation and updates - Add more detailed error messages
+- ✅ Support for task assignees works with format: `{"assignees": {"userIds": [22717]}}`
+- 🟨 Document the proper structure for task creation and updates in README.md
 
 ### MCP Server Enhancements
 
-✅ Add command-line arguments for Allow and Deny lists to control which tools are available
-✅ Enhance security by ensuring both tool listing and tool execution respect the allow/deny lists
-✅ Improve debugging and error handling throughout the MCP server
-✅ Added file logging for better troubleshooting
-✅ Enhanced API client with detailed request/response logging
-✅ Added more detailed error handling in tool handlers
-✅ Added test-connection script to verify Teamwork API connectivity
-✅ Fix JSON response validation issues
-✅ Added response validation and sanitization to ensure proper JSON formatting
-✅ Enhanced createTask handler with better error handling and response validation
-✅ Added comprehensive logging of response data for debugging
-✅ Fix MCP protocol communication issues
-✅ Removed all console logging to prevent interference with the MCP JSON protocol
-✅ Ensured all logging is directed to files only
-✅ Fixed startup errors in the inspector
-✅ Fix task creation validation
-✅ Fixed validation to check for the correct 'name' field instead of 'content'
-✅ Updated both the handler and service implementation to use consistent field names
-✅ Aligned validation with the TaskTask model definition
+- ✅ Add command-line arguments for Allow and Deny lists to control which tools are available
+- ✅ Enhance security by ensuring both tool listing and tool execution respect the allow/deny lists
+- ✅ Improve debugging and error handling throughout the MCP server
+- ✅ Added file logging for better troubleshooting
+- ✅ Enhanced API client with detailed request/response logging
+- ✅ Added more detailed error handling in tool handlers
+- ✅ Added test-connection script to verify Teamwork API connectivity
+- ✅ Fix JSON response validation issues
+- ✅ Added response validation and sanitization to ensure proper JSON formatting
+- ✅ Enhanced createTask handler with better error handling and response validation
+- ✅ Added comprehensive logging of response data for debugging
+- ✅ Fix MCP protocol communication issues
+- ✅ Removed all console logging to prevent interference with the MCP JSON protocol
+- ✅ Ensured all logging is directed to files only
+- ✅ Fixed startup errors in the inspector
+- ✅ Fix task creation validation
+- ✅ Fixed validation to check for the correct 'name' field instead of 'content'
+- ✅ Updated both the handler and service implementation to use consistent field names
+- ✅ Aligned validation with the TaskTask model definition
+
+### 04/11/2025
+
+- ✅ Updated the license file
+- ✅ Cleaned up the start up by removing all console logs (now it just logs to a file)
 
 ### 04/10/2025
 
@@ -352,8 +357,8 @@
 
 ### 03/14/2025
 
-✅ GET /projects/api/v3/time.json - Implemented endpoint to get all time entries
-✅ GET /projects/api/v3/allocations/{allocationId}/time.json
+- ✅ GET /projects/api/v3/time.json - Implemented endpoint to get all time entries
+- ✅ GET /projects/api/v3/allocations/{allocationId}/time.json
 
 ## 03/10/2025
 

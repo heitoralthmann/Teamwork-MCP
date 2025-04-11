@@ -1,5 +1,10 @@
 ---
 description: 
+globs: 
+alwaysApply: false
+---
+---
+description: 
 globs: todo.md
 alwaysApply: true
 ---
@@ -14,11 +19,15 @@ Tasks are prioritized as follows:
 ✅ Completed Tasks: Tasks that have been finished successfully.
 
 When contributing to a task:
-If you verify that it works, update its status in the TODO.md file.
-If it requires manual verification by the team lead, notify them. Once confirmed, update the task status accordingly.
-When adding new tasks, use the 🟨 emoji. Upon completion, mark tasks with a ✅. For known issues, denote them with a 🟥. Ensure each task is listed as a bullet point.
+- If you verify that your changes have completed the task, update its status in the TODO.md file, verification must be in the form of running a test to prove that then functionality works, or by user confirmation.
+- If it requires manual verification by the user, notify them. Once confirmed, update the task status accordingly.
+- All tasks should be in bullet lists
+- When adding new tasks, use the 🟨 emoji. Upon completion, mark tasks with a ✅. For known issues, denote them with a 🟥.
 
 Group competed tasks under third level headings for each date that issues were fixed in the following format: MM/DD/YYYY
+
+New date completed task sections should be added above all other dated sections. 
+
 Always add completed tasks to the top of the current date's list so we see the most recent completed items first, the date sections should also show the most recent date at the top to make it quicker to see the most recently changes.
 
 # Markdown Formatting Standards
