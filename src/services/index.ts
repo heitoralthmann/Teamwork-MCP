@@ -31,6 +31,13 @@ import getPeopleMetricsPerformance from './people/getPeopleMetricsPerformance.js
 import getPeopleUtilization from './people/getPeopleUtilization.js';
 import getProjectPerson from './people/getProjectPerson.js';
 
+// Company-related exports
+import createCompany from './companies/createCompany.js';
+import updateCompany from './companies/updateCompany.js';
+import deleteCompany from './companies/deleteCompany.js';
+import getCompanies from './companies/getCompanies.js';
+import getCompanyById from './companies/getCompanyById.js';
+
 // Time-related exports
 import getTime, { GetTimeParams } from './time/getTime.js';
 
@@ -43,6 +50,7 @@ export { getProjects, getCurrentProject, createProject, CreateProjectData };
 export { getTasks, getTasksByProjectId, getTaskListsByProjectId, getTaskById, createTask, createSubTask, updateTask, deleteTask };
 export { createComment };
 export { getPeople, PeopleQueryParams, getPersonById, getProjectPeople, addPeopleToProject, AddPeopleToProjectPayload, deletePerson, getPeopleMetricsPerformance, getPeopleUtilization, getProjectPerson };
+export { createCompany, updateCompany, deleteCompany, getCompanies, getCompanyById };
 export { getTime, GetTimeParams };
 export { getUserTaskCompletion, getUtilizationCsv };
 
@@ -76,6 +84,13 @@ export default {
   getPeopleMetricsPerformance,
   getPeopleUtilization,
   getProjectPerson,
+  
+  // Companies
+  createCompany,
+  updateCompany,
+  deleteCompany,
+  getCompanies,
+  getCompanyById,
   
   // Time
   getTime,

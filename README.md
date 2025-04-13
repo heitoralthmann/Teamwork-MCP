@@ -46,6 +46,14 @@ The following tools are available through the MCP server:
 
 - `createComment` - Create a comment related to a task/message/notebook
 
+### Company Tools
+
+- `getCompanies` - Get all companies from Teamwork with optional filtering
+- `getCompanyById` - Get a specific company by ID
+- `createCompany` - Create a new company in Teamwork
+- `updateCompany` - Update an existing company's information
+- `deleteCompany` - Delete a company from Teamwork
+
 ### People Tools
 
 - `getPeople` - Get all people from Teamwork

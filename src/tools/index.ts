@@ -32,6 +32,13 @@ import { getProjectPeopleDefinition as getProjectPeople, handleGetProjectPeople 
 import { addPeopleToProjectDefinition as addPeopleToProject, handleAddPeopleToProject } from './people/addPeopleToProject.js';
 import { deletePersonDefinition as deletePerson, handleDeletePerson } from './people/deletePerson.js';
 
+// Companies
+import { createCompanyDefinition as createCompany, handleCreateCompany } from './companies/createCompany.js';
+import { updateCompanyDefinition as updateCompany, handleUpdateCompany } from './companies/updateCompany.js';
+import { deleteCompanyDefinition as deleteCompany, handleDeleteCompany } from './companies/deleteCompany.js';
+import { getCompaniesDefinition as getCompanies, handleGetCompanies } from './companies/getCompanies.js';
+import { getCompanyByIdDefinition as getCompanyById, handleGetCompanyById } from './companies/getCompanyById.js';
+
 // Reporting
 import { getProjectsPeopleMetricsPerformanceDefinition as getProjectsPeopleMetricsPerformance, handleGetProjectsPeopleMetricsPerformance } from './people/getPeopleMetricsPerformance.js';
 import { getProjectsPeopleUtilizationDefinition as getProjectsPeopleUtilization, handleGetProjectsPeopleUtilization } from './people/getPeopleUtilization.js';
@@ -72,6 +79,11 @@ const toolPairs: ToolPair[] = [
   { definition: getProjectPeople, handler: handleGetProjectPeople },
   { definition: addPeopleToProject, handler: handleAddPeopleToProject },
   { definition: deletePerson, handler: handleDeletePerson },
+  { definition: createCompany, handler: handleCreateCompany },
+  { definition: updateCompany, handler: handleUpdateCompany },
+  { definition: deleteCompany, handler: handleDeleteCompany },
+  { definition: getCompanies, handler: handleGetCompanies },
+  { definition: getCompanyById, handler: handleGetCompanyById },
   { definition: getProjectsPeopleMetricsPerformance, handler: handleGetProjectsPeopleMetricsPerformance },
   { definition: getProjectsPeopleUtilization, handler: handleGetProjectsPeopleUtilization },
   { definition: getAllocationTime, handler: handleGetProjectsAllocationsTime },
@@ -112,6 +124,11 @@ export { handleGetPersonById } from './people/getPersonById.js';
 export { handleGetProjectPeople } from './people/getProjectPeople.js';
 export { handleAddPeopleToProject } from './people/addPeopleToProject.js';
 export { handleDeletePerson } from './people/deletePerson.js';
+export { handleCreateCompany } from './companies/createCompany.js';
+export { handleUpdateCompany } from './companies/updateCompany.js';
+export { handleDeleteCompany } from './companies/deleteCompany.js';
+export { handleGetCompanies } from './companies/getCompanies.js';
+export { handleGetCompanyById } from './companies/getCompanyById.js';
 export { handleGetProjectsPeopleMetricsPerformance } from './people/getPeopleMetricsPerformance.js';
 export { handleGetProjectsPeopleUtilization } from './people/getPeopleUtilization.js';
 export { handleGetTime } from './time/getTime.js';

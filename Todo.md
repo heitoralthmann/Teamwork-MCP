@@ -57,11 +57,11 @@
 
 ## Companies
 
-- 🟨 GET /projects/api/v3/companies.json
-- 🟨 POST /projects/api/v3/companies.json
-- 🟨 DELETE /projects/api/v3/companies/{companyId}.json
-- 🟨 GET /projects/api/v3/companies/{companyId}.json
-- 🟨 PATCH /projects/api/v3/companies/{companyId}.json
+- ✅ GET /projects/api/v3/companies.json
+- ✅ POST /projects/api/v3/companies.json
+- ✅ DELETE /projects/api/v3/companies/{companyId}.json
+- ✅ GET /projects/api/v3/companies/{companyId}.json
+- ✅ PATCH /projects/api/v3/companies/{companyId}.json
 
 ## BETA
 
@@ -297,36 +297,21 @@
 
 ## MCP Implementation Issues
 
-### Task Creation and Updates
+### 04/17/2025
 
-- ✅ Fix updateTask functionality - Updated with Swagger-generated schema and improved error handling
-- 🟨 Implement proper date handling for task creation and updates - Use `dueAt` format "YYYY-MM-DD" instead of full ISO timestamps
-- 🟨 Add support for task status values - Need to determine valid status values (only "new" and "active" work; "complete", "completed", "done", and "in-progress" all fail). "Late" status causes a 500 server error, suggesting it might be a valid status but can't be set directly. Setting progress to 100% does not automatically change status.
-- 🟨 Improve error handling for task creation and updates - Add more detailed error messages
-- ✅ Support for task assignees works with format: `{"assignees": {"userIds": [22717]}}`
-- 🟨 Document the proper structure for task creation and updates in README.md
+- ✅ Implemented Company GET API endpoints
+  - Added GET /projects/api/v3/companies.json for listing all companies
+  - Added GET /projects/api/v3/companies/{companyId}.json for retrieving a specific company
+  - Added support for various filtering and pagination options
+  - Added proper error handling and validation
 
-### MCP Server Enhancements
+### 04/16/2025
 
-- ✅ Add command-line arguments for Allow and Deny lists to control which tools are available
-- ✅ Enhance security by ensuring both tool listing and tool execution respect the allow/deny lists
-- ✅ Improve debugging and error handling throughout the MCP server
-- ✅ Added file logging for better troubleshooting
-- ✅ Enhanced API client with detailed request/response logging
-- ✅ Added more detailed error handling in tool handlers
-- ✅ Added test-connection script to verify Teamwork API connectivity
-- ✅ Fix JSON response validation issues
-- ✅ Added response validation and sanitization to ensure proper JSON formatting
-- ✅ Enhanced createTask handler with better error handling and response validation
-- ✅ Added comprehensive logging of response data for debugging
-- ✅ Fix MCP protocol communication issues
-- ✅ Removed all console logging to prevent interference with the MCP JSON protocol
-- ✅ Ensured all logging is directed to files only
-- ✅ Fixed startup errors in the inspector
-- ✅ Fix task creation validation
-- ✅ Fixed validation to check for the correct 'name' field instead of 'content'
-- ✅ Updated both the handler and service implementation to use consistent field names
-- ✅ Aligned validation with the TaskTask model definition
+- ✅ Implemented Company API endpoints
+  - Added POST /projects/api/v3/companies.json for creating new companies
+  - Added PATCH /projects/api/v3/companies/{companyId}.json for updating existing companies
+  - Added DELETE /projects/api/v3/companies/{companyId}.json for deleting companies
+  - Added comprehensive validation for company operations
 
 ### 04/11/2025
 
@@ -374,3 +359,34 @@
   - Added service implementation for getting task comments
   - Added tool implementation following the same pattern as other task-related tools
   - Updated service and tool indexes to include the new functionality
+
+### Task Creation and Updates
+
+- ✅ Fix updateTask functionality - Updated with Swagger-generated schema and improved error handling
+- 🟨 Implement proper date handling for task creation and updates - Use `dueAt` format "YYYY-MM-DD" instead of full ISO timestamps
+- 🟨 Add support for task status values - Need to determine valid status values (only "new" and "active" work; "complete", "completed", "done", and "in-progress" all fail). "Late" status causes a 500 server error, suggesting it might be a valid status but can't be set directly. Setting progress to 100% does not automatically change status.
+- 🟨 Improve error handling for task creation and updates - Add more detailed error messages
+- ✅ Support for task assignees works with format: `{"assignees": {"userIds": [22717]}}`
+- 🟨 Document the proper structure for task creation and updates in README.md
+
+### MCP Server Enhancements
+
+- ✅ Add command-line arguments for Allow and Deny lists to control which tools are available
+- ✅ Enhance security by ensuring both tool listing and tool execution respect the allow/deny lists
+- ✅ Improve debugging and error handling throughout the MCP server
+- ✅ Added file logging for better troubleshooting
+- ✅ Enhanced API client with detailed request/response logging
+- ✅ Added more detailed error handling in tool handlers
+- ✅ Added test-connection script to verify Teamwork API connectivity
+- ✅ Fix JSON response validation issues
+- ✅ Added response validation and sanitization to ensure proper JSON formatting
+- ✅ Enhanced createTask handler with better error handling and response validation
+- ✅ Added comprehensive logging of response data for debugging
+- ✅ Fix MCP protocol communication issues
+- ✅ Removed all console logging to prevent interference with the MCP JSON protocol
+- ✅ Ensured all logging is directed to files only
+- ✅ Fixed startup errors in the inspector
+- ✅ Fix task creation validation
+- ✅ Fixed validation to check for the correct 'name' field instead of 'content'
+- ✅ Updated both the handler and service implementation to use consistent field names
+- ✅ Aligned validation with the TaskTask model definition
