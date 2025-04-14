@@ -61,6 +61,7 @@ The following tools are available through the MCP server:
 - `getProjectPeople` - Get all people assigned to a specific project from Teamwork
 - `addPeopleToProject` - Add people to a specific project in Teamwork
 - `deletePerson` - Delete a person from Teamwork
+- `updatePerson` - Update a person's information (timezone, name, email, etc.)
 - `getProjectsPeopleMetricsPerformance` - Get people metrics performance
 - `getProjectsPeopleUtilization` - Get people utilization
 - `getProjectPerson` - Get a specific person on a project
@@ -74,6 +75,7 @@ The following tools are available through the MCP server:
 
 - `getTime` - Get all time entries
 - `getProjectsAllocationsTime` - Get project allocations time
+- `getTimezones` - Get all available timezones in Teamwork (useful when updating user timezones)
 
 ## Installation
 

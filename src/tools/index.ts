@@ -31,6 +31,7 @@ import { getPersonByIdDefinition as getPersonById, handleGetPersonById } from '.
 import { getProjectPeopleDefinition as getProjectPeople, handleGetProjectPeople } from './people/getProjectPeople.js';
 import { addPeopleToProjectDefinition as addPeopleToProject, handleAddPeopleToProject } from './people/addPeopleToProject.js';
 import { deletePersonDefinition as deletePerson, handleDeletePerson } from './people/deletePerson.js';
+import { updatePersonDefinition as updatePerson, handleUpdatePerson } from './people/updatePerson.js';
 
 // Companies
 import { createCompanyDefinition as createCompany, handleCreateCompany } from './companies/createCompany.js';
@@ -49,6 +50,9 @@ import { getProjectsReportingUtilizationDefinition as getProjectsReportingUtiliz
 // Time-related imports
 import { getTimeDefinition as getTime, handleGetTime } from './time/getTime.js';
 import { getProjectsAllocationsTimeDefinition as getAllocationTime, handleGetProjectsAllocationsTime } from './time/getAllocationTime.js';
+
+// Core
+import { getTimezonesDefinition as getTimezones, handleGetTimezones } from './core/getTimezones.js';
 
 // Define a structure that pairs tool definitions with their handlers
 interface ToolPair {
@@ -79,6 +83,7 @@ const toolPairs: ToolPair[] = [
   { definition: getProjectPeople, handler: handleGetProjectPeople },
   { definition: addPeopleToProject, handler: handleAddPeopleToProject },
   { definition: deletePerson, handler: handleDeletePerson },
+  { definition: updatePerson, handler: handleUpdatePerson },
   { definition: createCompany, handler: handleCreateCompany },
   { definition: updateCompany, handler: handleUpdateCompany },
   { definition: deleteCompany, handler: handleDeleteCompany },
@@ -90,7 +95,8 @@ const toolPairs: ToolPair[] = [
   { definition: getTime, handler: handleGetTime },
   { definition: getProjectPerson, handler: handleGetProjectPerson },
   { definition: getProjectsReportingUserTaskCompletion, handler: handleGetProjectsReportingUserTaskCompletion },
-  { definition: getProjectsReportingUtilization, handler: handleGetProjectsReportingUtilization }
+  { definition: getProjectsReportingUtilization, handler: handleGetProjectsReportingUtilization },
+  { definition: getTimezones, handler: handleGetTimezones }
 ];
 
 // Extract just the definitions for the toolDefinitions array
@@ -124,6 +130,7 @@ export { handleGetPersonById } from './people/getPersonById.js';
 export { handleGetProjectPeople } from './people/getProjectPeople.js';
 export { handleAddPeopleToProject } from './people/addPeopleToProject.js';
 export { handleDeletePerson } from './people/deletePerson.js';
+export { handleUpdatePerson } from './people/updatePerson.js';
 export { handleCreateCompany } from './companies/createCompany.js';
 export { handleUpdateCompany } from './companies/updateCompany.js';
 export { handleDeleteCompany } from './companies/deleteCompany.js';
@@ -135,4 +142,5 @@ export { handleGetTime } from './time/getTime.js';
 export { handleGetProjectsAllocationsTime } from './time/getAllocationTime.js';
 export { handleGetProjectPerson } from './people/getProjectPerson.js';
 export { handleGetProjectsReportingUserTaskCompletion } from './reporting/getUserTaskCompletion.js';
-export { handleGetProjectsReportingUtilization } from './people/getUtilization.js'; 
+export { handleGetProjectsReportingUtilization } from './people/getUtilization.js';
+export { handleGetTimezones } from './core/getTimezones.js'; 

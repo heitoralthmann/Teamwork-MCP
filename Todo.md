@@ -171,6 +171,7 @@
 
 ## People
 
+- ✅ PUT /people/{personId}.json
 - ✅ GET /projects/api/v3/people.json
 - ✅ GET /projects/api/v3/people/{personId}.json
 - ✅ GET /projects/api/v3/projects/{projectId}/people.json
@@ -291,27 +292,34 @@
 - 🟨 GET /projects/api/v3/timesheets.json
 - 🟨 GET /projects/api/v3/timesheets/totals.json
 
+## TimeZone
+
+- ✅ GET /timezones.json
+
 ## Workload
 
 - 🟨 GET /projects/api/v3/workload/planners.json
 
 ## MCP Implementation Issues
 
-### 04/17/2025
+### 04/13/2025
 
-- ✅ Implemented Company GET API endpoints
-  - Added GET /projects/api/v3/companies.json for listing all companies
-  - Added GET /projects/api/v3/companies/{companyId}.json for retrieving a specific company
-  - Added support for various filtering and pagination options
+- ✅ Implemented Timezone endpoint
+  - Added GET /timezones.json for retrieving all available timezones
+  - Useful for updating user timezones and seeing available options
+  - Added proper error handling and logging
+
+- ✅ Implemented Person Update endpoint
+  - Added PUT /people/{personId}.json for updating user information
+  - Added support for updating timezone, name, email, and other user properties
   - Added proper error handling and validation
 
-### 04/16/2025
-
 - ✅ Implemented Company API endpoints
+  - Added GET /projects/api/v3/companies.json for listing all companies
+  - Added GET /projects/api/v3/companies/{companyId}.json for retrieving a specific company
   - Added POST /projects/api/v3/companies.json for creating new companies
   - Added PATCH /projects/api/v3/companies/{companyId}.json for updating existing companies
   - Added DELETE /projects/api/v3/companies/{companyId}.json for deleting companies
-  - Added comprehensive validation for company operations
 
 ### 04/11/2025
 

@@ -241,7 +241,7 @@ const toolGroups: Record<string, string[]> = {
   'Tasks': ['getTasks', 'getTasksByProjectId', 'getTaskListsByProjectId', 'getTaskById', 'createTask', 'createSubTask', 'updateTask', 'deleteTask', 'getTasksMetricsComplete', 'getTasksMetricsLate', 'getTaskSubtasks', 'getTaskComments'],
   'People': ['getPeople', 'getPersonById', 'getProjectPeople', 'addPeopleToProject', 'deletePerson', 'getProjectsPeopleMetricsPerformance', 'getProjectsPeopleUtilization', 'getProjectPerson'],
   'Reporting': ['getProjectsReportingUserTaskCompletion', 'getProjectsReportingUtilization'],
-  'Time': ['getTime', 'getProjectsAllocationsTime'],
+  'Time': ['getTime', 'getProjectsAllocationsTime', 'getTimezones'],
   'Comments': ['createComment'],
   'Companies': ['createCompany', 'updateCompany', 'deleteCompany', 'getCompanies', 'getCompanyById']
 };

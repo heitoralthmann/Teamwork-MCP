@@ -27,6 +27,7 @@ import getPersonById from './people/getPersonById.js';
 import getProjectPeople from './people/getProjectPeople.js';
 import addPeopleToProject, { AddPeopleToProjectPayload } from './people/addPeopleToProject.js';
 import deletePerson from './people/deletePerson.js';
+import updatePerson from './people/updatePerson.js';
 import getPeopleMetricsPerformance from './people/getPeopleMetricsPerformance.js';
 import getPeopleUtilization from './people/getPeopleUtilization.js';
 import getProjectPerson from './people/getProjectPerson.js';
@@ -40,6 +41,7 @@ import getCompanyById from './companies/getCompanyById.js';
 
 // Time-related exports
 import getTime, { GetTimeParams } from './time/getTime.js';
+import getTimezones from './core/getTimezones.js';
 
 // Reporting exports
 import getUserTaskCompletion from './reporting/getUserTaskCompletion.js';
@@ -49,10 +51,11 @@ import getUtilizationCsv from './reporting/getUtilizationCsv.js';
 export { getProjects, getCurrentProject, createProject, CreateProjectData };
 export { getTasks, getTasksByProjectId, getTaskListsByProjectId, getTaskById, createTask, createSubTask, updateTask, deleteTask };
 export { createComment };
-export { getPeople, PeopleQueryParams, getPersonById, getProjectPeople, addPeopleToProject, AddPeopleToProjectPayload, deletePerson, getPeopleMetricsPerformance, getPeopleUtilization, getProjectPerson };
+export { getPeople, PeopleQueryParams, getPersonById, getProjectPeople, addPeopleToProject, AddPeopleToProjectPayload, deletePerson, updatePerson, getPeopleMetricsPerformance, getPeopleUtilization, getProjectPerson };
 export { createCompany, updateCompany, deleteCompany, getCompanies, getCompanyById };
 export { getTime, GetTimeParams };
 export { getUserTaskCompletion, getUtilizationCsv };
+export { getTimezones };
 
 // Default export with all services
 export default {
@@ -81,6 +84,7 @@ export default {
   getProjectPeople,
   addPeopleToProject,
   deletePerson,
+  updatePerson,
   getPeopleMetricsPerformance,
   getPeopleUtilization,
   getProjectPerson,
@@ -97,5 +101,8 @@ export default {
 
   // Reporting
   getUserTaskCompletion,
-  getUtilizationCsv
+  getUtilizationCsv,
+
+  // Core
+  getTimezones
 };  
