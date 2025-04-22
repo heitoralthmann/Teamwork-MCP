@@ -489,11 +489,17 @@ export const createSubTaskDefinition = {
     }
   },
   required: [
-    "taskRequest",
-    "taskId"
-  ]
-}
-};
+        "taskRequest",
+        "taskId"
+      ]
+    },
+    annotations: {
+      title: "Create a Subtask",
+      readOnlyHint: false,
+      destructiveHint: false,
+      openWorldHint: false
+    }
+  };
 
 export async function handleCreateSubTask(input: any) {
   logger.info("=== createSubTask tool called ===");

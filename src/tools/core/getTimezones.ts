@@ -14,6 +14,12 @@ export const getTimezonesDefinition = {
     type: 'object',
     properties: {},
     required: []
+  },
+  annotations: {
+    title: "Get Timezones",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

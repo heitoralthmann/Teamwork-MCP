@@ -56,6 +56,12 @@ export const updatePersonDefinition = {
       }
     },
     required: ['personId']
+  },
+  annotations: {
+    title: "Update a Person",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

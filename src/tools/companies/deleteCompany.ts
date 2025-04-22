@@ -9,7 +9,7 @@ import teamworkService from "../../services/index.js";
 // Tool definition
 export const deleteCompanyDefinition = {
   name: "deleteCompany",
-  description: "Delete an existing company. AI INSTRUCTIONS: This endpoint allows you to delete_projects_api_v3_companies_{companyid}.json resources. It requires the following parameters: companyId.",
+  description: "This tool allows you to delete a company, be careful with this tool as it will delete the company and all associated data. It requires the following parameters: companyId.",
   inputSchema: {
     type: 'object',
     properties: {
@@ -21,6 +21,12 @@ export const deleteCompanyDefinition = {
     required: [
       'companyId'
     ]
+  },
+  annotations: {
+    title: "Delete Company",
+    readOnlyHint: false,
+    destructiveHint: true,
+    openWorldHint: false
   }
 };
 

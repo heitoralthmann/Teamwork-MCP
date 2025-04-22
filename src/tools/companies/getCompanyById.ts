@@ -31,6 +31,12 @@ export const getCompanyByIdDefinition = {
       }
     },
     required: ['companyId']
+  },
+  annotations: {
+    title: "Get Company by ID",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

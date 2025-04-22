@@ -9,7 +9,7 @@ import teamworkService from "../../services/index.js";
 // Tool definition
 export const getCurrentProjectDefinition = {
   name: "getCurrentProject",
-  description: "Get the current solution's Teamwork project, check the `.teamwork` file in the root of the solution for the project ID or ask the user which project they are working on.",
+  description: "Get the current solution's Teamwork project, always check the `.teamwork` file in the root of the solution for the Teamwork project ID or ask the user which project they are working on.",
   inputSchema: {
     type: "object",
     properties: {
@@ -19,6 +19,12 @@ export const getCurrentProjectDefinition = {
       }
     },
     required: ["projectId"]
+  },
+  annotations: {
+    title: "Get the Current Project",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

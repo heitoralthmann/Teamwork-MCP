@@ -492,7 +492,13 @@ export const createTaskDefinition = {
     "taskRequest",
     "tasklistId"
   ]
-}
+  },
+  annotations: {
+    title: "Create a Task",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
+  }
 };
 // Tool handler
 export async function handleCreateTask(input: any) {

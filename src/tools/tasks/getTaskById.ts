@@ -19,6 +19,12 @@ export const getTaskByIdDefinition = {
       }
     },
     required: ["taskId"]
+  },
+  annotations: {
+    title: "Get a Task by its ID",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

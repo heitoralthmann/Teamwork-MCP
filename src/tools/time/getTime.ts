@@ -123,6 +123,12 @@ export const getTimeDefinition = {
       }
     },
     required: []
+  },
+  annotations: {
+    title: "Get Time Entries",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

@@ -184,6 +184,12 @@ export const getProjectsDefinition = {
         description: "Include project rate card task currencies"
       }
     }
+  },
+  annotations: {
+    title: "Get Projects",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

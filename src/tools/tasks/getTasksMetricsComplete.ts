@@ -15,6 +15,12 @@ export const getTasksMetricsCompleteDefinition = {
     type: "object",
     properties: {},
     required: []
+  },
+  annotations: {
+    title: "Get the Total Count of Completed Tasks",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

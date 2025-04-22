@@ -9,7 +9,7 @@ import teamworkService from "../../services/index.js";
 // Tool definition
 export const createCompanyDefinition = {
   name: "createCompany",
-  description: "Create a new company. AI INSTRUCTIONS: This endpoint allows you to create_projects_api_v3_companies.json resources. The request requires a companyRequest object with various properties like addressOne, emailOne, name, and tags.",
+  description: "Create a new company. This tool allows you to create a company. The request requires a companyRequest object with various properties like addressOne, emailOne, name, and tags.",
   inputSchema: {
     type: 'object',
     properties: {
@@ -91,6 +91,12 @@ export const createCompanyDefinition = {
       }
     },
     required: ['companyRequest']
+  },
+  annotations: {
+    title: "Create Company",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

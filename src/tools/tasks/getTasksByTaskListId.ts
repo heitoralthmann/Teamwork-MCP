@@ -56,6 +56,12 @@ export const getTasksByTaskListIdDefinition = {
       }
     },
     required: ["tasklistId"]
+  },
+  annotations: {
+    title: "Get Tasks by Task List ID",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

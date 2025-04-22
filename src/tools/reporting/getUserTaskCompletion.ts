@@ -175,6 +175,12 @@ export const getProjectsReportingUserTaskCompletionDefinition = {
       }
     },
     required: ['userId']
+  },
+  annotations: {
+    title: "Get the Tasks Completed by a User",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

@@ -9,7 +9,7 @@ import teamworkService from "../../services/index.js";
 // Tool definition
 export const getCompaniesDefinition = {
   name: "getCompanies",
-  description: "Get all companies. Retrieve all companies for the provided filters. This endpoint allows you to filter companies by various parameters including custom fields, tags, search terms, and more.",
+  description: "Get a list of companies, retrieve all companies for the provided filters. This endpoint allows you to filter companies by various parameters including custom fields, tags, search terms, and more.",
   inputSchema: {
     type: 'object',
     properties: {
@@ -54,6 +54,12 @@ export const getCompaniesDefinition = {
         description: 'Include stats of company tasks and projects'
       }
     }
+  },
+  annotations: {
+    title: "Get Companies",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

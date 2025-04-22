@@ -56,6 +56,12 @@ export const getTaskSubtasksDefinition = {
       }
     },
     required: ["taskId"]
+  },
+  annotations: {
+    title: "Get Task Subtasks",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

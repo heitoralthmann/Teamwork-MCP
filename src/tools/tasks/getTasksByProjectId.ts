@@ -19,6 +19,12 @@ export const getTasksByProjectIdDefinition = {
       }
     },
     required: ["projectId"]
+  },
+  annotations: {
+    title: "Get Tasks by Project ID",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

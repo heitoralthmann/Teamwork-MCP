@@ -19,6 +19,12 @@ export const deleteTaskDefinition = {
       }
     },
     required: ["taskId"]
+  },
+  annotations: {
+    title: "Delete a Task",
+    readOnlyHint: false,
+    destructiveHint: true,
+    openWorldHint: false
   }
 };
 

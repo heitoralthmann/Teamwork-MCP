@@ -2,7 +2,7 @@ import { getProjectPerson as getProjectPersonService } from '../../services/peop
 
 export const getProjectPersonDefinition = {
   name: "getProjectPerson",
-  description: "Returns a person on a project. Retrieve a person record.",
+  description: "Returns one or more people on a project. Retrieve a person(s) record.",
   inputSchema: {
     type: 'object',
     properties: {
@@ -201,6 +201,12 @@ export const getProjectPersonDefinition = {
       'projectId',
       'personId'
     ]
+  },
+  annotations: {
+    title: "Get a Person(s) on a Project",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

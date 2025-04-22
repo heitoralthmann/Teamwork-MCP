@@ -50,6 +50,12 @@ export const getProjectPeopleDefinition = {
       }
     },
     required: ["projectId"]
+  },
+  annotations: {
+    title: "Get People in a Project",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

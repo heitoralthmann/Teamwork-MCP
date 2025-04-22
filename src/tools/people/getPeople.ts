@@ -78,6 +78,12 @@ export const getPeopleDefinition = {
         description: "Filter by company IDs"
       }
     }
+  },
+  annotations: {
+    title: "Get People",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

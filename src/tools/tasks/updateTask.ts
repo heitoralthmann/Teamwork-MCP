@@ -491,6 +491,12 @@ export const updateTaskDefinition = {
       }
     },
     required: ['taskId', 'taskRequest']
+  },
+  annotations: {
+    title: "Update a Task",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

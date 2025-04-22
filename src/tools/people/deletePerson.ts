@@ -19,6 +19,12 @@ export const deletePersonDefinition = {
       }
     },
     required: ["personId"]
+  },
+  annotations: {
+    title: "Delete Person",
+    readOnlyHint: false,
+    destructiveHint: true,
+    openWorldHint: false
   }
 };
 

@@ -33,6 +33,12 @@ export const addPeopleToProjectDefinition = {
       }
     },
     required: ["projectId", "userIds"]
+  },
+  annotations: {
+    title: "Add People to Project",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

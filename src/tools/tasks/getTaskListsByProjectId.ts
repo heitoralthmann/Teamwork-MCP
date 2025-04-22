@@ -19,6 +19,12 @@ export const getTaskListsByProjectIdDefinition = {
       }
     },
     required: ["projectId"]
+  },
+  annotations: {
+    title: "Get Task Lists by Project ID",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

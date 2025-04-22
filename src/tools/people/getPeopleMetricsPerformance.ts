@@ -23,6 +23,12 @@ export const getProjectsPeopleMetricsPerformanceDefinition = {
         ]
       }
     }
+  },
+  annotations: {
+    title: "Get the Metrics of People's Performance in Projects",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

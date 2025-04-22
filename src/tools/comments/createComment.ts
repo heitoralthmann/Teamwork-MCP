@@ -52,6 +52,12 @@ export const createCommentDefinition = {
       }
     },
     required: ["resource", "resourceId", "body"]
+  },
+  annotations: {
+    title: "Create Comment",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

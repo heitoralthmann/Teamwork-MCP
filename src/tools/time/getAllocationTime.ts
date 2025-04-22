@@ -65,6 +65,12 @@ export const getProjectsAllocationsTimeDefinition = {
       }
     },
     required: ['allocationId']
+  },
+  annotations: {
+    title: "Get Time Entries for a Specific Allocation",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

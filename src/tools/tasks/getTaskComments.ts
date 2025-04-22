@@ -50,6 +50,12 @@ export const getTaskCommentsDefinition = {
       }
     },
     required: ["taskId"]
+  },
+  annotations: {
+    title: "Get Task Comments",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

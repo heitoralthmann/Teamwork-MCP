@@ -9,7 +9,7 @@ import teamworkService from "../../services/index.js";
 // Tool definition
 export const updateCompanyDefinition = {
   name: "updateCompany",
-  description: "Update an existing company. AI INSTRUCTIONS: This endpoint allows you to update_projects_api_v3_companies_{companyid}.json resources. It requires parameters: companyId and companyRequest.",
+  description: "This tool allows you to update a company. It requires parameters: companyId and companyRequest.",
   inputSchema: {
     type: 'object',
     properties: {
@@ -96,6 +96,12 @@ export const updateCompanyDefinition = {
       'companyId',
       'companyRequest'
     ]
+  },
+  annotations: {
+    title: "Update Company",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

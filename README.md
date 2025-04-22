@@ -1,5 +1,7 @@
 # Teamwork MCP
 
+[![npm version](https://img.shields.io/npm/v/@vizioz/teamwork-mcp.svg)](https://www.npmjs.com/package/@vizioz/teamwork-mcp)
+
 An MCP server that connects to the Teamwork API, providing a simplified interface for interacting with Teamwork projects and tasks.
 
 ## Features
@@ -32,6 +34,7 @@ The following tools are available through the MCP server:
 - `getTasks` - Get all tasks from Teamwork
 - `getTasksByProjectId` - Get all tasks from a specific project in Teamwork
 - `getTaskListsByProjectId` - Get all task lists from a specific project in Teamwork
+- `getTasksByTaskListId` - Gets all tasks from a specific task list ID from Teamwork
 - `getTaskById` - Get a specific task by ID from Teamwork
 - `createTask` - Create a new task in Teamwork
 - `createSubTask` - Create a new subtask under a parent task in Teamwork

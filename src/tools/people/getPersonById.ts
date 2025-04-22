@@ -19,6 +19,12 @@ export const getPersonByIdDefinition = {
       }
     },
     required: ["personId"]
+  },
+  annotations: {
+    title: "Get a Person by their ID",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

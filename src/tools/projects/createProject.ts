@@ -43,6 +43,12 @@ export const createProjectDefinition = {
       }
     },
     required: ["name"]
+  },
+  annotations: {
+    title: "Create a Project",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

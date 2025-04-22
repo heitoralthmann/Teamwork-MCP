@@ -15,6 +15,12 @@ export const getTasksMetricsLateDefinition = {
     type: "object",
     properties: {},
     required: []
+  },
+  annotations: {
+    title: "Get the Total Count of Late Tasks",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 

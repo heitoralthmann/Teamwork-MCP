@@ -189,6 +189,12 @@ export const getProjectsReportingUtilizationDefinition = {
       }
     },
     required: ['format']
+  },
+  annotations: {
+    title: "Get the Utilization of People in Projects",
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: false
   }
 };
 
