@@ -1,32 +1,31 @@
 import logger from '../../utils/logger.js';
 import { ensureApiClient } from '../core/apiClient.js';
-import { getTasksDefinition } from '../../tools/tasks/getTasks.js';
 
 /**
  * Fetches all tasks from the Teamwork API
- * @param params Optional query parameters for filtering and pagination
+ * @param params Query parameters for filtering and pagination, expected to be in the format required by the Teamwork API (e.g., 'fields[users]').
  * @returns The API response with task data
  */
-export const getTasks = async (params: any = {}) => {
+export const getTasks = async (params: Record<string, any> = {}) => {
   try {
     const api = ensureApiClient();
     
-    // Get the list of valid parameter keys from the tool definition
-    const validParams = Object.keys(getTasksDefinition.inputSchema.properties);
+    // The tool handler is now responsible for ensuring correct parameter names.
+    // No filtering is needed here; pass the params directly.
     
-    // Filter the params object to only include valid parameters
-    const filteredParams = Object.keys(params)
-      .filter(key => validParams.includes(key))
-      .reduce((obj, key) => {
-        obj[key] = params[key];
-        return obj;
-      }, {} as Record<string, any>);
+    logger.debug(`Making GET request to /tasks.json with params: ${JSON.stringify(params)}`);
     
-    const response = await api.get('/tasks.json', { params: filteredParams });
+    const response = await api.get('/tasks.json', { params: params });
     return response.data;
   } catch (error: any) {
-    logger.error(`Error fetching tasks: ${error.message}`);
-    throw new Error('Failed to fetch tasks from Teamwork API');
+    if (error.response) {
+        logger.error(`Error fetching tasks: Status ${error.response.status} - ${JSON.stringify(error.response.data)}`);
+    } else if (error.request) {
+        logger.error(`Error fetching tasks: No response received - ${error.request}`);
+    } else {
+        logger.error(`Error fetching tasks: ${error.message}`);
+    }
+    throw new Error(`Failed to fetch tasks from Teamwork API: ${error.message}`);
   }
 };
 

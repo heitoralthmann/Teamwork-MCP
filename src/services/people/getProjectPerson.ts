@@ -1,4 +1,5 @@
 import { getApiClientForVersion } from '../core/apiClient.js';
+import logger from '../../utils/logger.js';
 
 interface GetProjectPersonParams {
   projectId: number;
@@ -38,10 +39,33 @@ interface GetProjectPersonParams {
   companyIds?: number[];
 }
 
-export async function getProjectPerson(params: GetProjectPersonParams) {
+interface GetProjectPersonPathParams {
+  projectId: number;
+  personId: number;
+}
+
+type QueryParams = Record<string, any>;
+
+export async function getProjectPerson(params: GetProjectPersonPathParams & QueryParams) {
   const api = getApiClientForVersion('v3');
-  const response = await api.get(`/projects/${params.projectId}/people/${params.personId}.json`, { params });
-  return response.data;
+  
+  const { projectId, personId, ...queryParams } = params;
+
+  logger.debug(`Making GET request to /projects/${projectId}/people/${personId}.json with params: ${JSON.stringify(queryParams)}`);
+
+  try {
+    const response = await api.get(`/projects/${projectId}/people/${personId}.json`, { params: queryParams });
+    return response.data;
+  } catch (error: any) {
+    if (error.response) {
+        logger.error(`Error fetching project person: Status ${error.response.status} - ${JSON.stringify(error.response.data)}`);
+    } else if (error.request) {
+        logger.error(`Error fetching project person: No response received - ${error.request}`);
+    } else {
+        logger.error(`Error fetching project person: ${error.message}`);
+    }
+    throw new Error(`Failed to fetch project person from Teamwork API: ${error.message}`);
+  }
 }
 
 export default getProjectPerson; 

@@ -1,4 +1,5 @@
 import { getProjectPerson as getProjectPersonService } from '../../services/people/getProjectPerson.js';
+import logger from '../../utils/logger.js';
 
 export const getProjectPersonDefinition = {
   name: "getProjectPerson",
@@ -140,40 +141,140 @@ export const getProjectPersonDefinition = {
         },
         description: 'filter by user ids'
       },
-      'fields[teams]': {
+      fieldsTeams: {
         type: 'array',
+        description: 'Query parameter: fields[teams]',
         items: {
-          type: 'string'
-        },
-        description: 'Query parameter: fields[teams]'
+          type: 'string',
+          enum: [
+            "id",
+            "name",
+            "teamLogo",
+            "teamLogoIcon",
+            "teamLogoColor"
+          ]
+        }
       },
-      'fields[person]': {
+      fieldsPerson: {
         type: 'array',
+        description: 'Query parameter: fields[person]',
         items: {
-          type: 'string'
-        },
-        description: 'Query parameter: fields[person]'
+          type: 'string',
+          enum: [
+            "id",
+            "firstName",
+            "lastName",
+            "title",
+            "email",
+            "companyId",
+            "company",
+            "isAdmin",
+            "isClientUser",
+            "isServiceAccount",
+            "type",
+            "deleted",
+            "avatarUrl",
+            "lengthOfDay",
+            "workingHoursId",
+            "workingHour",
+            "userRate",
+            "userCost",
+            "canAddProjects"
+          ]
+        }
       },
-      'fields[people]': {
+      fieldsPeople: {
         type: 'array',
+        description: 'Query parameter: fields[people]',
         items: {
-          type: 'string'
-        },
-        description: 'Query parameter: fields[people]'
+          type: 'string',
+          enum: [
+            "id",
+            "firstName",
+            "lastName",
+            "title",
+            "email",
+            "companyId",
+            "company",
+            "isAdmin",
+            "isClientUser",
+            "isServiceAccount",
+            "type",
+            "deleted",
+            "avatarUrl",
+            "lengthOfDay",
+            "workingHoursId",
+            "workingHour",
+            "userRate",
+            "userCost",
+            "canAddProjects"
+          ]
+        }
       },
-      'fields[companies]': {
+      fieldsCompanies: {
         type: 'array',
+        description: 'Query parameter: fields[companies]',
         items: {
-          type: 'string'
-        },
-        description: 'Query parameter: fields[companies]'
+          type: 'string',
+          enum: [
+            "id",
+            "name",
+            "logoUploadedToServer",
+            "logoImage"
+          ]
+        }
       },
-      'fields[ProjectPermissions]': {
+      fieldsProjectPermissions: {
         type: 'array',
+        description: 'Query parameter: fields[ProjectPermissions]',
         items: {
-          type: 'string'
-        },
-        description: 'Query parameter: fields[ProjectPermissions]'
+          type: 'string',
+          enum: [
+            "viewMessagesAndFiles",
+            "viewTasksAndMilestones",
+            "viewTime",
+            "viewNotebooks",
+            "viewRiskRegister",
+            "viewEstimatedTime",
+            "viewInvoices",
+            "addTasks",
+            "addRisks",
+            "manageCustomFields",
+            "addExpenses",
+            "editAllTasks",
+            "addMilestones",
+            "addTaskLists",
+            "addMessages",
+            "addFiles",
+            "addTime",
+            "addNotebooks",
+            "viewLinks",
+            "addLinks",
+            "canViewForms",
+            "addForms",
+            "viewAllTimeLogs",
+            "setPrivacy",
+            "projectAdministrator",
+            "viewProjectUpdate",
+            "addProjectUpdate",
+            "canViewProjectMembers",
+            "canViewProjectBudget",
+            "canManageProjectBudget",
+            "canViewRates",
+            "canManageRates",
+            "canViewSchedule",
+            "canManageSchedule",
+            "receiveEmailNotifications",
+            "isObserving",
+            "isArchived",
+            "active",
+            "canAccess",
+            "inOwnerCompany",
+            "canManagePeople",
+            "canViewProjectTemplates",
+            "canManageProjectTemplates"
+          ]
+        }
       },
       excludeProjectIds: {
         type: 'array',
@@ -204,15 +305,40 @@ export const getProjectPersonDefinition = {
   },
   annotations: {
     title: "Get a Person(s) on a Project",
-    readOnlyHint: false,
+    readOnlyHint: true,
     destructiveHint: false,
+    idempotentHint: true,
     openWorldHint: false
   }
 };
 
 export async function handleGetProjectPerson(input: any) {
+  logger.info("Calling getProjectPersonService()");
+
+  const apiInput: Record<string, any> = { ...input };
+
+  const fieldMappings: Record<string, string> = {
+    fieldsTeams: "fields[teams]",
+    fieldsPerson: "fields[person]",
+    fieldsPeople: "fields[people]",
+    fieldsCompanies: "fields[companies]",
+    fieldsProjectPermissions: "fields[ProjectPermissions]",
+  };
+
+  for (const [camelCaseKey, apiKey] of Object.entries(fieldMappings)) {
+    if (apiInput[camelCaseKey] !== undefined) {
+      apiInput[apiKey] = apiInput[camelCaseKey];
+      delete apiInput[camelCaseKey];
+    }
+  }
+
   try {
-    const response = await getProjectPersonService(input);
+    const response = await getProjectPersonService({
+      projectId: apiInput.projectId,
+      personId: apiInput.personId,
+      ...apiInput
+    });
+    logger.info("getProjectPersonService response received");
     return {
       content: [{
         type: "text",
@@ -220,10 +346,11 @@ export async function handleGetProjectPerson(input: any) {
       }]
     };
   } catch (error: any) {
+    logger.error(`Error in handleGetProjectPerson: ${error.message}`);
     return {
       content: [{
         type: "text",
-        text: `Error: ${error.message}`
+        text: `Error retrieving project person: ${error.message}`
       }]
     };
   }

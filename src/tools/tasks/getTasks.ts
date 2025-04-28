@@ -523,85 +523,417 @@ export const getTasksDefinition = {
       type: "array",
       description: "filter by board column ids"
     },
-    "fields[users]": {
+    fieldsUsers: {
       type: "array",
-      description: "Query parameter: fields[users]"
+      description: "Query parameter: fields[users]",
+      items: {
+        type: "string",
+        enum: [
+          "id",
+          "firstName",
+          "lastName",
+          "title",
+          "email",
+          "companyId",
+          "company",
+          "isAdmin",
+          "isClientUser",
+          "isServiceAccount",
+          "type",
+          "deleted",
+          "avatarUrl",
+          "lengthOfDay",
+          "workingHoursId",
+          "workingHour",
+          "userRate",
+          "userCost",
+          "canAddProjects"
+        ]
+      }
     },
-    "fields[timers]": {
+    fieldsTimers: {
       type: "array",
-      description: "Query parameter: fields[timers]"
+      description: "Query parameter: fields[timers]",
+      items: {
+        type: "string",
+        enum: [
+          "id",
+          "userId",
+          "taskId",
+          "projectId",
+          "description",
+          "running",
+          "billable",
+          "deleted",
+          "dateCreated",
+          "dateDeleted",
+          "duration",
+          "lastStartedAt",
+          "serverTime",
+          "intervals"
+        ]
+      }
     },
-    "fields[teams]": {
+    fieldsTeams: {
       type: "array",
-      description: "Query parameter: fields[teams]"
+      description: "Query parameter: fields[teams]",
+      items: {
+        type: "string",
+        enum: [
+          "id",
+          "name",
+          "teamLogo",
+          "teamLogoIcon",
+          "teamLogoColor"
+        ]
+      }
     },
-    "fields[tasks]": {
+    fieldsTasks: {
       type: "array",
-      description: "Query parameter: fields[tasks]"
+      description: "Query parameter: fields[tasks]",
+      items: {
+        type: "string",
+        enum: [
+          "id",
+          "name",
+          "dateUpdated",
+          "parentTaskId",
+          "isPrivate",
+          "status",
+          "tasklistId",
+          "startDate",
+          "dueDate"
+        ]
+      }
     },
-    "fields[tasklists]": {
+    fieldsTasklists: {
       type: "array",
-      description: "Query parameter: fields[tasklists]"
+      description: "Query parameter: fields[tasklists]",
+      items: {
+        type: "string",
+        enum: [
+          "id",
+          "name",
+          "projectId",
+          "milestoneId"
+        ]
+      }
     },
-    "fields[taskgroups]": {
+    fieldsTaskgroups: {
       type: "array",
-      description: "Query parameter: fields[taskgroups]"
+      description: "Query parameter: fields[taskgroups]",
+      items: {
+        type: "string",
+        enum: [
+          "id",
+          "name",
+          "description",
+          "displayOrder",
+          "projectId",
+          "status"
+        ]
+      }
     },
-    "fields[taskSequences]": {
+    fieldsTaskSequences: {
       type: "array",
-      description: "Query parameter: fields[taskSequences]"
+      description: "Query parameter: fields[taskSequences]",
+      items: {
+        type: "string",
+        enum: [
+          "id",
+          "installationId",
+          "frequency",
+          "selectedWeekDays",
+          "endDate",
+          "monthlyRepeatType",
+          "duration",
+          "rrule"
+        ]
+      }
     },
-    "fields[tags]": {
+    fieldsTags: {
       type: "array",
-      description: "Query parameter: fields[tags]"
+      description: "Query parameter: fields[tags]",
+      items: {
+        type: "string",
+        enum: [
+          "id",
+          "name",
+          "color",
+          "count"
+        ]
+      }
     },
-    "fields[projects]": {
+    fieldsProjects: {
       type: "array",
-      description: "Query parameter: fields[projects]"
+      description: "Query parameter: fields[projects]",
+      items: {
+        type: "string",
+        enum: [
+          "id",
+          "name"
+        ]
+      }
     },
-    "fields[milestones]": {
+    fieldsMilestones: {
       type: "array",
-      description: "Query parameter: fields[milestones]"
+      description: "Query parameter: fields[milestones]",
+      items: {
+        type: "string",
+        enum: [
+          "id",
+          "name",
+          "description",
+          "deadline",
+          "completed",
+          "projectId",
+          "createdOn",
+          "lastChangedOn",
+          "creatorUserId",
+          "reminder",
+          "private",
+          "lockdownId",
+          "status",
+          "completedOn",
+          "completerId",
+          "percentageComplete"
+        ]
+      }
     },
-    "fields[lockdowns]": {
+    fieldsLockdowns: {
       type: "array",
-      description: "Query parameter: fields[lockdowns]"
+      description: "Query parameter: fields[lockdowns]",
+      items: {
+        type: "string",
+        enum: [
+          "id",
+          "userID",
+          "updatedAt",
+          "itemType",
+          "itemID",
+          "grantAccessTo"
+        ]
+      }
     },
-    "fields[groups]": {
+    fieldsGroups: {
       type: "array",
-      description: "Query parameter: fields[groups]"
+      description: "Query parameter: fields[groups]",
+      items: {
+        type: "string",
+        enum: [
+          "late",
+          "today",
+          "tomorrow",
+          "later-this-week",
+          "next-week",
+          "later",
+          "no-due-date"
+        ]
+      }
     },
-    "fields[files]": {
+    fieldsFiles: {
       type: "array",
-      description: "Query parameter: fields[files]"
+      description: "Query parameter: fields[files]",
+      items: {
+        type: "string",
+        enum: [
+          "isPrivate",
+          "latestFileVersionNo",
+          "versionId",
+          "status",
+          "description",
+          "lockdownId",
+          "tagIds",
+          "changeFollowers",
+          "commentFollowers",
+          "originalName",
+          "displayName",
+          "isLocked",
+          "lockedByUserId",
+          "lockedDate",
+          "size",
+          "uploadedDate",
+          "uploadedByUserID",
+          "updatedAt",
+          "deletedAt",
+          "deletedBy",
+          "fileSource",
+          "projectId",
+          "numLikes",
+          "reactions",
+          "versions",
+          "downloadURL",
+          "previewURL",
+          "thumbURL",
+          "relatedItems",
+          "commentsCount",
+          "commentsCountRead",
+          "categoryId"
+        ]
+      }
     },
-    "fields[customfields]": {
+    fieldsCustomfields: {
       type: "array",
-      description: "Query parameter: fields[customfields]"
+      description: "Query parameter: fields[customfields]",
+      items: {
+        type: "string",
+        enum: [
+          "id",
+          "projectId",
+          "entity",
+          "name",
+          "description",
+          "type",
+          "options",
+          "visibilities",
+          "isPrivate",
+          "required",
+          "createdAt",
+          "createdByUserId",
+          "updatedAt",
+          "updatedByUserId",
+          "deleted",
+          "deletedAt",
+          "deletedByUserId"
+        ]
+      }
     },
-    "fields[customfieldTasks]": {
+    fieldsCustomfieldTasks: {
       type: "array",
-      description: "Query parameter: fields[customfieldTasks]"
+      description: "Query parameter: fields[customfieldTasks]",
+      items: {
+        type: "string",
+        enum: [
+          "id",
+          "customfieldId",
+          "value",
+          "createdAt",
+          "createdBy"
+        ]
+      }
     },
-    "fields[companies]": {
+    fieldsCompanies: {
       type: "array",
-      description: "Query parameter: fields[companies]"
+      description: "Query parameter: fields[companies]",
+      items: {
+        type: "string",
+        enum: [
+          "id",
+          "name",
+          "logoUploadedToServer",
+          "logoImage"
+        ]
+      }
     },
-    "fields[comments]": {
+    fieldsComments: {
       type: "array",
-      description: "Query parameter: fields[comments]"
+      description: "Query parameter: fields[comments]",
+      items: {
+        type: "string",
+        enum: [
+          "id",
+          "objectType",
+          "objectId",
+          "title"
+        ]
+      }
     },
-    "fields[columns]": {
+    fieldsColumns: {
       type: "array",
-      description: "Query parameter: fields[columns]"
+      description: "Query parameter: fields[columns]",
+      items: {
+        type: "string",
+        enum: [
+          "id",
+          "name",
+          "color",
+          "displayOrder",
+          "createdAt",
+          "updatedAt",
+          "settings",
+          "sort",
+          "sortOrder",
+          "deletedAt",
+          "project",
+          "hasTriggers",
+          "deleted",
+          "stats",
+          "defaultTasklist"
+        ]
+      }
     },
-    "fields[cards]": {
+    fieldsCards: {
       type: "array",
-      description: "Query parameter: fields[cards]"
+      description: "Query parameter: fields[cards]",
+      items: {
+        type: "string",
+        enum: [
+          "id",
+          "displayOrder",
+          "archived",
+          "archivedAt",
+          "archivedBy",
+          "createdAt",
+          "createBy",
+          "updatedAt",
+          "visible",
+          "status",
+          "deleteBy",
+          "deletedAt"
+        ]
+      }
     },
-    "fields[ProjectPermissions]": {
+    fieldsProjectPermissions: {
       type: "array",
-      description: "Query parameter: fields[ProjectPermissions]"
+      description: "Query parameter: fields[ProjectPermissions]",
+      items: {
+        type: "string",
+        enum: [
+          "viewMessagesAndFiles",
+          "viewTasksAndMilestones",
+          "viewTime",
+          "viewNotebooks",
+          "viewRiskRegister",
+          "viewEstimatedTime",
+          "viewInvoices",
+          "addTasks",
+          "addRisks",
+          "manageCustomFields",
+          "addExpenses",
+          "editAllTasks",
+          "addMilestones",
+          "addTaskLists",
+          "addMessages",
+          "addFiles",
+          "addTime",
+          "addNotebooks",
+          "viewLinks",
+          "addLinks",
+          "canViewForms",
+          "addForms",
+          "viewAllTimeLogs",
+          "setPrivacy",
+          "projectAdministrator",
+          "viewProjectUpdate",
+          "addProjectUpdate",
+          "canViewProjectMembers",
+          "canViewProjectBudget",
+          "canManageProjectBudget",
+          "canViewRates",
+          "canManageRates",
+          "canViewSchedule",
+          "canManageSchedule",
+          "receiveEmailNotifications",
+          "isObserving",
+          "isArchived",
+          "active",
+          "canAccess",
+          "inOwnerCompany",
+          "canManagePeople",
+          "canViewProjectTemplates",
+          "canManageProjectTemplates"
+        ]
+      }
     },
     expandedIds: {
       type: "array",
@@ -631,13 +963,13 @@ export const getTasksDefinition = {
       type: "array",
       description: "filter by custom fields"
     }
-  },
-  required: []
+  }
 },
   annotations: {
-    title: "Get a list ofTasks",
-    readOnlyHint: false,
+    title: "Get Tasks from Teamwork",
+    readOnlyHint: true,
     destructiveHint: false,
+    idempotentHint: true,
     openWorldHint: false
   }
 };
@@ -647,8 +979,42 @@ export const getTasksDefinition = {
 export async function handleGetTasks(input: any) {
   logger.info("Calling teamworkService.getTasks()");
   
+  // Map camelCase field names back to API format
+  const apiInput: Record<string, any> = { ...input };
+
+  // Define the mapping for fields[...] parameters
+  const fieldMappings: Record<string, string> = {
+    fieldsUsers: "fields[users]",
+    fieldsTimers: "fields[timers]",
+    fieldsTeams: "fields[teams]",
+    fieldsTasks: "fields[tasks]",
+    fieldsTasklists: "fields[tasklists]",
+    fieldsTaskgroups: "fields[taskgroups]",
+    fieldsTaskSequences: "fields[taskSequences]",
+    fieldsTags: "fields[tags]",
+    fieldsProjects: "fields[projects]",
+    fieldsMilestones: "fields[milestones]",
+    fieldsLockdowns: "fields[lockdowns]",
+    fieldsGroups: "fields[groups]",
+    fieldsFiles: "fields[files]",
+    fieldsCustomfields: "fields[customfields]",
+    fieldsCustomfieldTasks: "fields[customfieldTasks]",
+    fieldsCompanies: "fields[companies]",
+    fieldsComments: "fields[comments]",
+    fieldsColumns: "fields[columns]",
+    fieldsCards: "fields[cards]",
+    fieldsProjectPermissions: "fields[ProjectPermissions]",
+  };
+
+  for (const [camelCaseKey, apiKey] of Object.entries(fieldMappings)) {
+    if (apiInput[camelCaseKey] !== undefined) {
+      apiInput[apiKey] = apiInput[camelCaseKey];
+      delete apiInput[camelCaseKey];
+    }
+  }
+  
   try {
-    const tasks = await teamworkService.getTasks(input);
+    const tasks = await teamworkService.getTasks(apiInput);
     logger.info("Tasks response received");
     
     return {
