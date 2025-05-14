@@ -2,8 +2,8 @@ import winston from 'winston';
 import path from 'path';
 import fs from 'fs';
 
-// Ensure logs directory exists
-const logsDir = path.join(process.cwd(), 'logs');
+// Ensure logs directory exists - TEST WITH ABSOLUTE PATH
+const logsDir = '/tmp/teamwork-mcp-logs'; // Using a fixed absolute path
 if (!fs.existsSync(logsDir)) {
   fs.mkdirSync(logsDir, { recursive: true });
 }
@@ -23,9 +23,9 @@ const logger = winston.createLogger({
   defaultMeta: { service: 'teamwork-mcp' },
   transports: [
     // Write all logs with level 'error' and below to error.log
-    new winston.transports.File({ filename: 'logs/error.log', level: 'error' }),
+    new winston.transports.File({ filename: path.join(logsDir, 'error.log'), level: 'error' }), // Adjusted path
     // Write all logs with level 'info' and below to combined.log
-    new winston.transports.File({ filename: 'logs/combined.log' })
+    new winston.transports.File({ filename: path.join(logsDir, 'combined.log') }) // Adjusted path
   ]
 });
 
